@@ -13,23 +13,20 @@
 <script>
 	
 </script>
-<style>
+<style scoped>
 #nav{
 	background-color: var(--primary);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	height: 50px;
+	padding: 0 10px; 
 }
 #nav *{
 	color: var(--white);
 }
-.logo{
-	margin-left: 8px;
-}
 .menu{
 	padding: 8px;
-	margin: 8px;
 }
 .menu:hover{
 	background-color: var(--primary-hover);
