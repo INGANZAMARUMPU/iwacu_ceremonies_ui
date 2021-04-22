@@ -14,9 +14,6 @@
     outline:0;
     font-family: var(--font-family-sans-serif);
 }
-html{
-	background-color: var(--primary-hover);
-}
 button, select{
 	background-color: var(--primary);
 	padding: 8px 25px;

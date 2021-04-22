@@ -1,4 +1,9 @@
 <template>
+<div class="home">
+	<div class="slider">
+		<HomeSlider :images="images"/>
+	</div>
+	<div class="overlay"></div>
 	<div class="home-form">
 		<label for="prix">Choisissez le prix</label>
 		<select name="prix" id="prix">
@@ -14,11 +19,34 @@
 		<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
 		<button>Trouver</button>
 	</div>
+</div>
 </template>
 <script>
-	
+import HomeSlider from "../components/slider"
+export default{
+	components:{HomeSlider,},
+	data(){
+		return {
+			images:[
+				"https://cdn.pixabay.com/photo/2015/05/15/14/22/conference-room-768441_960_720.jpg",
+				"https://cdn.pixabay.com/photo/2013/02/20/01/04/meeting-83519_960_720.jpg",
+				"https://cdn.pixabay.com/photo/2017/03/31/21/37/room-2192484_960_720.jpg",
+				"https://cdn.pixabay.com/photo/2015/01/09/11/11/seminar-594118_960_720.jpg",
+			]
+		}
+	}
+};
 </script>
 <style scoped>
+.home{
+}
+.overlay{
+	background-color: #4adb;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height:100%;
+}
 .home-form{
 	width: 400px;
 	min-width: 300px;
