@@ -44,7 +44,7 @@ export default{
 .home{
 }
 .overlay{
-	background-color: #4ad7;
+	background-color: var(--overlay-color);
 	position: fixed;
 	top: 0;
 	width: 100%;

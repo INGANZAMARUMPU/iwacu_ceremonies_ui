@@ -22,6 +22,7 @@
 	height: 50px;
 	padding: 0 10px; 
 	position: absolute;
+	top: 0;
 	width: 100%;
 	z-index: 5;
 }

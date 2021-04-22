@@ -33,7 +33,7 @@ export default{
 	position: relative;
 	top: 0;
 	height: 100%;
-	height: 100vh;
+	height:calc(100vh - 50px);
 	overflow: hidden;
 	white-space: nowrap;
 }

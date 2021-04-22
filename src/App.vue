@@ -1,7 +1,9 @@
 <template>
   <div id="app">
   	<TopBar/>
-    <router-view/>
+  	<div class="body">
+  		<router-view/>
+  	</div>
   </div>
 </template>
 <script>

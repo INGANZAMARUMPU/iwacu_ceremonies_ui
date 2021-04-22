@@ -5,6 +5,7 @@
     --primary: #235;
     --primary-hover: #479;
     --white: #eef;
+    --overlay-color:#4ad7;
 }
 *{
     box-sizing: border-box;
@@ -28,4 +29,7 @@ input{
 }
 button:hover{
 	background-color: #346;
+}
+.body{
+    margin-top: 50px;
 }
