@@ -41,7 +41,7 @@ export default{
 .home{
 }
 .overlay{
-	background-color: #4adb;
+	background-color: #4ad7;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -60,6 +60,10 @@ export default{
 	display: block;
 	font-size: 20px;
 	width: 100%;
+}
+label{
+	margin-top: 10px;
+	font-weight: 700;
 }
 button{
 	margin-top: 20px;
