@@ -18,6 +18,9 @@
 		<label for="lieux">Dans quelle localité</label>
 		<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
 		<button>Trouver</button>
+		<center>
+			<router-link to="/list">Afficher en Vrac</router-link>
+		</center>
 	</div>
 </div>
 </template>
@@ -48,15 +51,13 @@ export default{
 	height:100%;
 }
 .home-form{
-	width: 400px;
-	min-width: 300px;
+	max-width: 400px;
+	width: 90%;
 	position: absolute;
 	top:45%;
 	left:50%;
 	transform: translate(-50%, -50%);
 	color: var(--primary);
-	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; 
-
 }
 .home-form *{
 	display: block;
@@ -66,8 +67,13 @@ export default{
 label{
 	margin-top: 10px;
 	font-weight: 700;
+	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; 
 }
 button{
 	margin-top: 20px;
+}
+a{
+    color: blue;
+    text-decoration: underline;
 }
 </style>
