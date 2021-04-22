@@ -55,6 +55,8 @@ export default{
 	left:50%;
 	transform: translate(-50%, -50%);
 	color: var(--primary);
+	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; 
+
 }
 .home-form *{
 	display: block;
