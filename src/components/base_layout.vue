@@ -20,8 +20,8 @@
 					<label :for="'chk_'+i"> {{(i-1)*500000+50000}}  à {{i*500000}} Fbu</label>
 				</div>
 				<div class="field">
-					<input type="checkbox" value="50 000 à 500 000 Fbu" :id="chk_more">
-					<label :for="more"> plus de 2500000 Fbu</label>
+					<input type="checkbox" value="50 000 à 500 000 Fbu" id="chk_more">
+					<label for="more"> plus de 2500000 Fbu</label>
 				</div>
 				<button type="">Filtrer</button>
 			</div>
@@ -85,6 +85,7 @@ export default{
 	width: 100%;
 	height: 100%;
 	overflow: hidden auto;
+	padding: 20px;
 }
 .filter{
 	margin-bottom: 20px;
