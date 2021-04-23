@@ -1,15 +1,15 @@
 <template>
-<div class="parent">
+<BaseLayout>
 	<ListItem v-for="salle in salles" :item="salle"/>	
-</div>
+</BaseLayout>
 </template>
 <script>
+import BaseLayout from "../components/base_layout"
 import ListItem from "../components/list_item"
 export default {
-	components:{ListItem},
+	components:{ListItem, BaseLayout},
 	data(){
 		return {
-
 		}
 	},
 	computed:{
@@ -22,9 +22,8 @@ export default {
 <style>
 .parent{
 	padding-top: 20px;
-	max-width: 1000px;
 	width: 100%;
 	margin: auto;
-	/*background-color: var(--primary-hover);*/ 
+	background-color: #bde; 
 }
 </style>
