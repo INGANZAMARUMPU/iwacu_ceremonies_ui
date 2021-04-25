@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import List from '../views/List'
+import Create from '../views/Create'
+import Details from '../views/Details'
 
 Vue.use(VueRouter)
 
@@ -9,6 +11,8 @@ const routes = [
   { path: '/',name: 'home', component: Home},
   { path: '/list',name: 'list', component: List},
   { path: '/list/:prix/:localite',name: 'list', component: List},
+  { path: '/create',name: 'create', component: Create},
+  { path: '/details/:id',name: 'details', component: Details},
 ]
 
 const router = new VueRouter({
