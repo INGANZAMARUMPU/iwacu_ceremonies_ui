@@ -71,4 +71,21 @@ a{
 .check_date *{
 	width: 100%;
 }
+@media only screen and (max-width: 1140px) {
+	.infos{
+		flex-direction: column;
+	}
+	.salle{
+		height: unset;
+	}
+	.left img{
+		height: unset;
+		width: 100%;
+	}
+}
+@media only screen and (max-width: 550px) {
+	.salle{
+		flex-direction: column;
+	}
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
 <div class="home">
 	<div class="slider">
-		<HomeSlider :images="images"/>
+		<HomeSlider/>
 	</div>
 	<div class="overlay"></div>
 	<div class="home-form">

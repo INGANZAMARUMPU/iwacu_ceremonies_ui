@@ -88,6 +88,9 @@ img{
 input[type=file]{
 	display: none;
 }
+input{
+	padding: 8px;
+}
 .field *{
 	display: block;
 	width: 100%;

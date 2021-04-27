@@ -8,8 +8,10 @@
 </template>
 <script>
 export default{
-	props:{
-		images:{type:Array, default:[]}
+	computed:{
+		images(){
+			return this.$store.state.images;
+		}
 	},
 	data(){
 		return {

@@ -12,9 +12,9 @@
 	<hr style="margin: 20px 0">
 	<div class="flex">
 		<div class="left">
-			<h3>les prix</h3>
-			<hr>
 			<div class="filter">
+				<h3>les prix</h3>
+				<hr>
 				<div class="field" v-for="i in 5">
 					<input type="checkbox" :id="'chk_'+i">
 					<label :for="'chk_'+i"> {{(i-1)*500000+50000}}  à {{i*500000}} Fbu</label>
@@ -25,9 +25,9 @@
 				</div>
 				<button type="">Filtrer</button>
 			</div>
-			<h3>les localités</h3>
-			<hr>
 			<div class="filter">
+				<h3>les localités</h3>
+				<hr>
 				<div class="field" v-for="quartier in quartiers">
 					<input type="checkbox" :id="quartier">
 					<label :for="quartier"> {{ quartier }}</label>
@@ -92,5 +92,21 @@ export default{
 }
 .filter button{
 	width: 100%;
+}
+@media only screen and (max-width: 860px) {
+	.base_layout{
+		position: relative;
+	}
+	.left{
+		display: flex;
+		width: 100%;
+		justify-content: center;
+	}
+	.filter{
+		margin-left: 20px;
+	}
+	.flex{
+		flex-direction: column;
+	}
 }
 </style>
