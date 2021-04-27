@@ -5,26 +5,37 @@
 	</div>
 	<div class="overlay"></div>
 	<div class="home-form">
-		<div class="field">
-			<label for="lieux">Dans quelle localité</label>
-			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
+		<div class="form">
+			<div class="field">
+				<label for="nom">Nom</label>
+				<input type="text" id="nom" placeholder="votre nom">
+			</div>
+			<div class="field">
+				<label for="prenom">Prenom</label>
+				<input type="text" id="prenom" placeholder="votre prenom">
+			</div>
+			<div class="field">
+				<label for="tel">Téléphone</label>
+				<input type="text" id="tel" placeholder="votre numero de télephone">
+			</div>
+			<div class="field">
+				<label for="cni">CNI</label>
+				<input type="text" id="cni" placeholder="carte national d'identite">
+			</div>
+			<div class="field">
+				<label for="password">Mot de passe</label>
+				<input type="password" id="password" placeholder="votre mot de passe">
+			</div>
+			<div class="field">
+				<label for="password">Confirmation</label>
+				<input type="password" id="password" placeholder="retapez votre mot de passe">
+			</div>
+			<div class="field">
+				<label for="email">Email</label>
+				<input type="email" id="email" placeholder="votre adresse email">
+			</div>
+			<button>S'abonner</button>
 		</div>
-		<div class="field">
-			<label for="lieux">Dans quelle localité</label>
-			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
-		</div>
-		<div class="field">
-			<label for="lieux">Dans quelle localité</label>
-			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
-		</div>
-		<div class="field">
-			<label for="lieux">Dans quelle localité</label>
-			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
-		</div>
-		<button>Trouver</button>
-		<center>
-			<router-link to="/list">Afficher en Vrac</router-link>
-		</center>
 	</div>
 </div>
 </template>
@@ -55,18 +66,23 @@ export default{
 	height:100%;
 }
 .home-form{
-	max-width: 400px;
-	width: 90%;
-	position: absolute;
-	top:45%;
-	left:50%;
-	transform: translate(-50%, -50%);
+	position: fixed;
+	top: 50px;
+	width: 100%;
+	height: calc(100% - 50px);
+	overflow: auto;
 	color: var(--primary);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
 }
 .home-form *{
-	display: block;
 	font-size: 20px;
 	width: 100%;
+}
+.form{
+	max-width: 350px;
 }
 label{
 	margin-top: 10px;
