@@ -5,18 +5,22 @@
 	</div>
 	<div class="overlay"></div>
 	<div class="home-form">
-		<label for="prix">Choisissez le prix</label>
-		<select name="prix" id="prix">
-			<option value="1">50 000 à 500 000 Fbu</option>
-			<option value="2">550 000 à 1 000 000 Fbu</option>
-			<option value="3">1 000 000 à 1 500 000 Fbu</option>
-			<option value="4">1 500 000 à 2 000 000 Fbu</option>
-			<option value="5">2 000 000 à 2 500 000 Fbu</option>
-			<option value="6">2 500 000 à 3 000 000 Fbu</option>
-			<option value="7">plus de 3 000 000 Fbu</option>
-		</select>
-		<label for="lieux">Dans quelle localité</label>
-		<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
+		<div class="field">
+			<label for="lieux">Dans quelle localité</label>
+			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
+		</div>
+		<div class="field">
+			<label for="lieux">Dans quelle localité</label>
+			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
+		</div>
+		<div class="field">
+			<label for="lieux">Dans quelle localité</label>
+			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
+		</div>
+		<div class="field">
+			<label for="lieux">Dans quelle localité</label>
+			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
+		</div>
 		<button>Trouver</button>
 		<center>
 			<router-link to="/list">Afficher en Vrac</router-link>
@@ -25,7 +29,7 @@
 </div>
 </template>
 <script>
-import HomeSlider from "../components/slider.vue"
+import HomeSlider from "../components/slider"
 export default{
 	components:{HomeSlider,},
 	data(){

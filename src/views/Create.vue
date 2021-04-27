@@ -1,4 +1,5 @@
 <template>
+<div>
 <BaseLayout>
 	<div class="pics">
 		<div class="mainpic">
@@ -37,11 +38,11 @@
 		</div>
 		<div class="field">
 			<label for="ajouts">Valeurs ajoutées</label>
-			<textarea id="ajouts" placeholder="autres choses que le client beneficie"/>
+			<textarea id="ajouts" placeholder="autres choses que le client beneficie"></textarea>
 		</div>
 		<div class="field">
 			<label for="obligations">Obligations</label>
-			<textarea id="obligations" placeholder="ce que vous obligez aux clients" />
+			<textarea id="obligations" placeholder="ce que vous obligez aux clients"></textarea>
 		</div>
 		<div class="field">
 			<label for="prix">Prix</label>
@@ -52,11 +53,12 @@
 		</div>
 		<div class="field">
 			<label for="details_prix">Precision à propos du prix</label>
-			<textarea id="details_prix" placeholder="autres prix selon les cas" />
+			<textarea id="details_prix" placeholder="autres prix selon les cas"></textarea>
 		</div>
 	</div>
 	<button class="submit">Soumettre</button>
 </BaseLayout>
+</div>
 </template>
 <script>
 import BaseLayout from "../components/base_layout"

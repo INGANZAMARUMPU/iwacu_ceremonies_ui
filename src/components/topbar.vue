@@ -5,7 +5,7 @@
     	</div>	
     	<div class="left">
     		<router-link to="/create" class="menu">Ajouter</router-link>
-    		<router-link to="/login" class="menu">S'abonner</router-link>
+    		<router-link to="/register" class="menu">S'abonner</router-link>
     		<button>Se Connecter</button>
     	</div>
     </div>
