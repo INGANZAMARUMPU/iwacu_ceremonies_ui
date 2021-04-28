@@ -3,13 +3,13 @@
 <BaseLayout>
 	<div class="pics">
 		<div class="mainpic">
-			<img :src="item.photo_principal" @click="load('img1')" width="100%">
+			<img :src="item.photo_principal" @click="display(item.photo_principal)" width="100%">
 		</div>
 		<div class="altpic">
-			<img :src="item.photo_1" @click="load('img2')" width="100%">
-			<img :src="item.photo_2" @click="load('img3')" width="100%">
-			<img :src="item.photo_3" @click="load('img4')" width="100%">
-			<img :src="item.photo_4" @click="load('img5')" width="100%">
+			<img :src="item.photo_1" @click="display(item.photo_1)" width="100%">
+			<img :src="item.photo_2" @click="display(item.photo_2)" width="100%">
+			<img :src="item.photo_3" @click="display(item.photo_3)" width="100%">
+			<img :src="item.photo_4" @click="display(item.photo_4)" width="100%">
 		</div>
 		<div class="field">
 			<h3>Nom</h3>
@@ -48,20 +48,27 @@
 		</div>
 	</div>
 </BaseLayout>
+<ImgPlayer
+	:item="current_img" @close="closeImage"
+	:class="{'hidden':!current_img}"/>
 </div>
 </template>
 <script>
 import BaseLayout from "../components/base_layout"
+import ImgPlayer from "../components/img_player"
 export default{
-	components:{BaseLayout, },
+	components:{BaseLayout, ImgPlayer},
 	data(){
 		return {
-			item:{},
+			item:{}, current_img:null
 		}
 	},
 	methods:{
-		load(component){
-			this.$refs[component].click();
+		display(img){
+			this.current_img = img;
+		},
+		closeImage(){
+			this.current_img = null;
 		}
 	},
 	mounted(){
@@ -86,5 +93,8 @@ img{
 }
 .twin{
 	display: flex;
+}
+.hidden{
+	display: none;
 }
 </style>

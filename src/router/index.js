@@ -14,7 +14,7 @@ const routes = [
   { path: '/list',name: 'list', component: List},
   { path: '/register',name: 'register', component: Register},
   { path: '/login',name: 'login', component: Login},
-  { path: '/list/:prix/:localite',name: 'list', component: List},
+  { path: '/list/:prix/:localite',name: 'search', component: List},
   { path: '/create',name: 'create', component: Create},
   { path: '/details/:id',name: 'details', component: Details},
 ]
