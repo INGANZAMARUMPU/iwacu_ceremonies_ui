@@ -1,5 +1,5 @@
 <template>
-<div class="salle">
+<div class="salle" @click="details(item.id)">
 	<div class="left">
 		<img :src="item.photo_principal">
 	</div>
@@ -26,6 +26,11 @@
 <script>
 export default{
 	props:["item"],
+	methods:{
+		details(id){
+			this.$router.push("/details/"+id)
+		}
+	}
 };
 </script>
 <style scoped>
