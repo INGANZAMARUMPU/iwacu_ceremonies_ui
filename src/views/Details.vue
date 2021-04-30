@@ -47,6 +47,7 @@
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, facilis.</p>
 		</div>
 	</div>
+	<Calendar/>
 </BaseLayout>
 <ImgPlayer
 	:item="current_img" @close="closeImage"
@@ -56,8 +57,9 @@
 <script>
 import BaseLayout from "../components/base_layout"
 import ImgPlayer from "../components/img_player"
+import Calendar from "../components/calendar"
 export default{
-	components:{BaseLayout, ImgPlayer},
+	components:{BaseLayout, ImgPlayer, Calendar},
 	data(){
 		return {
 			item:{}, current_img:null
