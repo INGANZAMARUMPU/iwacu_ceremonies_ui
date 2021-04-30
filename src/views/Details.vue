@@ -99,4 +99,10 @@ img{
 .hidden{
 	display: none;
 }
+
+@media only screen and (max-width: 400px) {
+	.pics{
+		display: block;
+	}
+}
 </style>

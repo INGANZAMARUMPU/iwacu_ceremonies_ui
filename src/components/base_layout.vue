@@ -96,6 +96,10 @@ export default{
 @media only screen and (max-width: 860px) {
 	.base_layout{
 		position: relative;
+		padding: 10px;
+	}
+	.content{
+		padding: 0;
 	}
 	.left{
 		display: flex;
@@ -107,6 +111,9 @@ export default{
 	}
 	.flex{
 		flex-direction: column;
+	}
+	button, input{
+		font-size: 1em!important;
 	}
 }
 </style>

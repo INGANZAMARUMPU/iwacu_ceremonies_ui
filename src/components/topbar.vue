@@ -41,4 +41,11 @@ export default {
 .menu:hover{
 	background-color: var(--primary-hover);
 }
+@media only screen and (max-width: 400px) {
+	#nav{
+		display: block;
+		position: relative;
+		height: 70px;
+	}
+}
 </style>
