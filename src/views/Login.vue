@@ -63,4 +63,13 @@ a{
     color: blue;
     text-decoration: underline;
 }
+@media only screen and (max-height: 300px) {
+	.home-form{
+		max-width: 400px;
+		width: 90%;
+		position: absolute;
+		top: 40px;
+		transform: translate(-50%, 0);
+	}
+}
 </style>

@@ -96,4 +96,16 @@ a{
     color: blue;
     text-decoration: underline;
 }
+@media only screen and (max-height: 300px) {
+	.home-form{
+		max-width: 400px;
+		width: 90%;
+		position: absolute;
+		margin:auto;
+		top: 40px;
+		left: 50%;
+		height: inherit;
+		transform: translate(-50%, 0);
+	}
+}
 </style>

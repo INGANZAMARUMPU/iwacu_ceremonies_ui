@@ -4,19 +4,22 @@
     		<router-link to="/">AGATUTU</router-link>
     	</div>	
     	<div class="left">
-    		<router-link to="/create" class="menu">Ajouter</router-link>
-    		<router-link to="/register" class="menu">S'abonner</router-link>
-    		<button @click="login">Se Connecter</button>
+    		<router-link to="/create" class="menu" v-if="!!active_user">
+    			Ajouter
+    		</router-link>
+    		<div v-else>
+	    		<router-link to="/register" class="menu">
+	    			S'abonner
+	    		</router-link>
+	    		<router-link  to="/login" v-slot="{ href, navigate }">
+	    			<button @click="navigate">Se Connecter</button>
+	    		</router-link>
+    		</div>
     	</div>
     </div>
 </template>
 <script>
 export default {
-	methods:{
-		login(){
-			this.$router.push("/login")
-		}
-	}
 };
 </script>
 <style scoped>
