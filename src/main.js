@@ -25,7 +25,7 @@ Vue.mixin({
         callback()
       }).catch((error) => {
         if (error.response.status == 401) {
-          this.$store.state.user = {};
+          this.$store.state.user = null;
         } else {
           console.error(error)
         }

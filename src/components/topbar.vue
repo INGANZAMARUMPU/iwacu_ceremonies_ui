@@ -4,9 +4,12 @@
     		<router-link to="/">AGATUTU</router-link>
     	</div>	
     	<div class="left">
-    		<router-link to="/create" class="menu" v-if="!!active_user">
-    			Ajouter une Salle
-    		</router-link>
+    		<div  v-if="!!active_user">
+	    		<router-link to="/create" class="menu">
+	    			Ajouter une Salle
+	    		</router-link>
+	    		<button @click="$store.state.user=null">Se Deconnecter</button>
+    		</div>
     		<div v-else>
 	    		<router-link to="/register" class="menu">
 	    			S'abonner
