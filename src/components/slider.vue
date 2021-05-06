@@ -34,10 +34,10 @@ export default{
 .slider{
 	position: relative;
 	top: 0;
-	height: 100%;
+	min-height: 100%;
 	height:calc(100vh - 50px);
 	overflow: hidden;
-	white-space: nowrap;
+	white-space: unset;
 }
 img{
 	position: absolute;

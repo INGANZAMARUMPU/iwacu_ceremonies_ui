@@ -96,7 +96,7 @@ a{
     color: blue;
     text-decoration: underline;
 }
-@media only screen and (max-height: 300px) {
+@media only screen and (max-height: 500px) {
 	.home-form{
 		max-width: 400px;
 		width: 90%;

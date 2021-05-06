@@ -9,7 +9,8 @@
 <script>
 import TopBar from "./components/topbar"
 export default {
-	components:{ TopBar }
+	components:{ TopBar },
+	
 };
 </script>
 <style src="./style.css">

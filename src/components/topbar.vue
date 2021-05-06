@@ -5,7 +5,7 @@
     	</div>	
     	<div class="left">
     		<router-link to="/create" class="menu" v-if="!!active_user">
-    			Ajouter
+    			Ajouter une Salle
     		</router-link>
     		<div v-else>
 	    		<router-link to="/register" class="menu">

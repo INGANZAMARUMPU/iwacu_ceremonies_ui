@@ -7,22 +7,35 @@
 	<div class="home-form">
 		<div class="field">
 			<label for="tel">Téléphone</label>
-			<input type="text" id="tel" placeholder="votre numero de télephone">
+			<input type="text" id="tel" v-model="username" placeholder="votre numero de télephone">
 		</div>
 		<div class="field">
 			<label for="password">Mot de passe</label>
-			<input type="password" id="password" placeholder="votre mot de passe">
+			<input type="password" id="password" v-model="password" placeholder="votre mot de passe">
 		</div>
-		<button>Se connecter</button>
+		<button @click="login">Se connecter</button>
 	</div>
 </div>
 </template>
 <script>
+import axios from "axios"
 import HomeSlider from "../components/slider.vue"
 export default{
 	components:{HomeSlider,},
 	data(){
 		return {
+			username:"", password:""
+		}
+	},
+	methods:{
+		login(){
+			axios.post(this.url+"/login/", 
+				{"username": this.username, "password":this.password}
+			).then((response) => {
+				this.$store.state.user = response.data
+			}).catch((error) => {
+			  console.error(error);
+			})
 		}
 	}
 };
