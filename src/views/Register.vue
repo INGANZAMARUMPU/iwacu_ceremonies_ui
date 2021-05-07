@@ -3,38 +3,38 @@
 	<div class="slider">
 		<HomeSlider/>
 	</div>
-	<div class="overlay"></div>
-	<div class="home-form">
+	<div class="overlay">
 		<div class="form">
 			<div class="field">
 				<label for="nom">Nom</label>
-				<input type="text" id="nom" placeholder="votre nom">
+				<input type="text" v-model="nom" id="nom" placeholder="votre nom">
 			</div>
 			<div class="field">
 				<label for="prenom">Prenom</label>
-				<input type="text" id="prenom" placeholder="votre prenom">
+				<input type="text" v-model="prenom" id="prenom" placeholder="votre prenom">
 			</div>
 			<div class="field">
 				<label for="tel">Téléphone</label>
-				<input type="text" id="tel" placeholder="votre numero de télephone">
+				<input type="text" v-model="tel" id="tel" placeholder="votre numero de télephone">
 			</div>
 			<div class="field">
 				<label for="cni">CNI</label>
-				<input type="text" id="cni" placeholder="carte national d'identite">
+				<input type="text" v-model="cni" id="cni" placeholder="carte national d'identite">
 			</div>
 			<div class="field">
 				<label for="password">Mot de passe</label>
-				<input type="password" id="password" placeholder="votre mot de passe">
+				<input type="password" v-model="password" id="password" placeholder="votre mot de passe">
 			</div>
 			<div class="field">
-				<label for="password">Confirmation</label>
-				<input type="password" id="password" placeholder="retapez votre mot de passe">
+				<label for="password2">Confirmation</label>
+				<input type="password" v-model="password2" id="password2" placeholder="retapez votre mot de passe">
 			</div>
 			<div class="field">
 				<label for="email">Email</label>
-				<input type="email" id="email" placeholder="votre adresse email">
+				<input type="email" v-model="email" id="email" placeholder="votre adresse email">
 			</div>
-			<button>S'abonner</button>
+			<label class="logs">{{ logs }}</label>
+			<button @click="register">S'abonner</button>
 		</div>
 	</div>
 </div>
@@ -50,7 +50,27 @@ export default{
 				"https://cdn.pixabay.com/photo/2013/02/20/01/04/meeting-83519_960_720.jpg",
 				"https://cdn.pixabay.com/photo/2017/03/31/21/37/room-2192484_960_720.jpg",
 				"https://cdn.pixabay.com/photo/2015/01/09/11/11/seminar-594118_960_720.jpg",
-			]
+			],
+			nom:"", prenom:"", tel:"", cni:"",
+			password:"",password2:"",email:"",
+			logs:""
+		}
+	},
+	methods:{
+		register(){
+			this.logs = ""
+			if (this.password!=this.password2) {
+				this.logs = "les mots de passes ne sont pas identiques"
+				return;
+			}
+			let data = {
+				"nom": this.nom,
+				"prenom": this.prenom,
+				"tel": this.tel,
+				"cni": this.cni,
+				"password": this.password,
+				"email": this.email
+			}
 		}
 	}
 };
@@ -64,48 +84,26 @@ export default{
 	top: 0;
 	width: 100%;
 	height:100%;
-}
-.home-form{
-	position: fixed;
-	top: 50px;
-	width: 100%;
-	height: calc(100% - 50px);
 	overflow: auto;
-	color: var(--primary);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
-}
-.home-form *{
-	font-size: 20px;
-	width: 100%;
 }
 .form{
-	max-width: 350px;
+	position: relative;
+	top: 80px;
+	width: 300px;
+	margin: auto;
+}
+.form *{
+	display: block;
+	width: 100%;
+}
+input, button{
+	font-size: 1.2em;
 }
 label{
-	margin-top: 10px;
 	font-weight: 700;
 	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; 
 }
 button{
 	margin-top: 20px;
-}
-a{
-    color: blue;
-    text-decoration: underline;
-}
-@media only screen and (max-height: 500px) {
-	.home-form{
-		max-width: 400px;
-		width: 90%;
-		position: absolute;
-		margin:auto;
-		top: 40px;
-		left: 50%;
-		height: inherit;
-		transform: translate(-50%, 0);
-	}
 }
 </style>

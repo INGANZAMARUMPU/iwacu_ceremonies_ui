@@ -13,6 +13,7 @@
 			<label for="password">Mot de passe</label>
 			<input type="password" id="password" v-model="password" placeholder="votre mot de passe">
 		</div>
+		<label class="logs">{{ logs }}</label>
 		<button @click="login">Se connecter</button>
 	</div>
 </div>
@@ -24,11 +25,12 @@ export default{
 	components:{HomeSlider,},
 	data(){
 		return {
-			username:"", password:""
+			username:"", password:"", logs:""
 		}
 	},
 	methods:{
 		login(){
+			this.logs = ""
 			axios.post(this.url+"/login/", 
 				{"username": this.username, "password":this.password}
 			).then((response) => {
@@ -36,6 +38,7 @@ export default{
 				this.$router.push("/list");
 			}).catch((error) => {
 			  console.error(error);
+			  this.logs = error.response.data
 			})
 		}
 	}

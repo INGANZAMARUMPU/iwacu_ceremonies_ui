@@ -32,6 +32,9 @@ button:hover{
 .body{
     margin-top: 50px;
 }
+.logs{
+    color:red;
+}
 @media only screen and (max-width: 400px) {
     .body{
         margin-top: 0;
