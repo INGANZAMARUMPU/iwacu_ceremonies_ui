@@ -40,6 +40,7 @@
 </div>
 </template>
 <script>
+import axios from "axios"
 import HomeSlider from "../components/slider"
 export default{
 	components:{HomeSlider,},
@@ -66,11 +67,18 @@ export default{
 			let data = {
 				"nom": this.nom,
 				"prenom": this.prenom,
-				"tel": this.tel,
+				"telephone": this.tel,
 				"cni": this.cni,
 				"password": this.password,
 				"email": this.email
 			}
+			axios.post(this.url+"/register/", data)
+			.then((response) => {
+				this.$store.state.user = response.data;
+				this.$router.push("/list")
+			}).catch((error) => {
+			  this.logs = error.response.data
+			})
 		}
 	}
 };
