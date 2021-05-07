@@ -3,8 +3,8 @@
 	<div class="slider">
 		<HomeSlider/>
 	</div>
-	<div class="overlay"></div>
-	<div class="home-form">
+	<div class="overlay">
+		<div class="form">
 		<div class="field">
 			<label for="tel">Téléphone</label>
 			<input type="text" id="tel" v-model="username" placeholder="votre numero de télephone">
@@ -15,6 +15,7 @@
 		</div>
 		<label class="logs">{{ logs }}</label>
 		<button @click="login">Se connecter</button>
+		</div>
 	</div>
 </div>
 </template>
@@ -53,20 +54,19 @@ export default{
 	top: 0;
 	width: 100%;
 	height:100%;
+	padding-top: 100px;
+	overflow-y: auto;
 }
-.home-form{
-	max-width: 400px;
-	width: 90%;
-	position: absolute;
-	top:45%;
-	left:50%;
-	transform: translate(-50%, -50%);
-	color: var(--primary);
+.form{
+	width: 300px;
+	margin:auto;
 }
-.home-form *{
+.form *{
 	display: block;
-	font-size: 20px;
 	width: 100%;
+}
+input, button{
+	font-size: 1.2em;
 }
 label{
 	margin-top: 10px;
@@ -79,14 +79,5 @@ button{
 a{
     color: blue;
     text-decoration: underline;
-}
-@media only screen and (max-height: 300px) {
-	.home-form{
-		max-width: 400px;
-		width: 90%;
-		position: absolute;
-		top: 40px;
-		transform: translate(-50%, 0);
-	}
 }
 </style>
