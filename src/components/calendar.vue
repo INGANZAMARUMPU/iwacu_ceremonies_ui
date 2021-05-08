@@ -23,7 +23,7 @@
 export default{
 	data(){
 		return {
-			decalage:6, max:28, month:1,
+			decalage:0, max:28, month:1,
 			addition:0, year:2021, day:0,
 			month_counting_base:1,
 		}
@@ -66,7 +66,10 @@ export default{
 				this.month = pure%12
 			}
 			let first_date = new Date(this.year, this.month-1, 1)
+
 			this.decalage = first_date.getDay()-1
+			if(this.decalage==-1) this.decalage = 6
+
 			this.max = new Date(this.year, this.month, 0).getDate();
 		},
 	},
