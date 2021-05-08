@@ -3,17 +3,17 @@
 <BaseLayout>
 	<div class="pics">
 		<div class="mainpic">
-			<img src="img_placeholder.png" id="img1"
+			<img src="static/img_placeholder.png" id="img1"
 				@click="forwardTo('img1')" width="100%">
 		</div>
 		<div class="altpic">
-			<img src="img_placeholder.png" id="img2"
+			<img src="static/img_placeholder.png" id="img2"
 				@click="forwardTo('img2')" width="100%">
-			<img src="img_placeholder.png" id="img3"
+			<img src="static/img_placeholder.png" id="img3"
 				@click="forwardTo('img3')" width="100%">
-			<img src="img_placeholder.png" id="img4"
+			<img src="static/img_placeholder.png" id="img4"
 				@click="forwardTo('img4')" width="100%">
-			<img src="img_placeholder.png" id="img5"
+			<img src="static/img_placeholder.png" id="img5"
 				@click="forwardTo('img5')" width="100%">
 		</div>
 		<input type="file" ref="img1" @change="(e) => load(e, 'img1')"
@@ -124,5 +124,10 @@ input{
 .submit{
 	display: block;
 	margin:20px 0 20px auto;
+}
+@media only screen and (max-width: 400px) {
+	.field{
+		grid-column: span 2;
+	}
 }
 </style>

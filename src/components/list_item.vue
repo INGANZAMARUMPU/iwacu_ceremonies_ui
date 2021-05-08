@@ -37,7 +37,7 @@ export default{
 .salle{
 	display: flex;
 	width: 100%;
-	margin: 20px 10px;
+	margin-bottom: 20px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	overflow: hidden;
