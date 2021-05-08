@@ -3,19 +3,29 @@
 <BaseLayout>
 	<div class="pics">
 		<div class="mainpic">
-			<img src="img_placeholder.png" @click="load('img1')" width="100%">
+			<img src="img_placeholder.png" id="img1"
+				@click="forwardTo('img1')" width="100%">
 		</div>
 		<div class="altpic">
-			<img src="img_placeholder.png" @click="load('img2')" width="100%">
-			<img src="img_placeholder.png" @click="load('img3')" width="100%">
-			<img src="img_placeholder.png" @click="load('img4')" width="100%">
-			<img src="img_placeholder.png" @click="load('img5')" width="100%">
+			<img src="img_placeholder.png" id="img2"
+				@click="forwardTo('img2')" width="100%">
+			<img src="img_placeholder.png" id="img3"
+				@click="forwardTo('img3')" width="100%">
+			<img src="img_placeholder.png" id="img4"
+				@click="forwardTo('img4')" width="100%">
+			<img src="img_placeholder.png" id="img5"
+				@click="forwardTo('img5')" width="100%">
 		</div>
-		<input type="file" ref="img1" accept=".jpg,.jpeg,.gif,.png">
-		<input type="file" ref="img2" accept=".jpg,.jpeg,.gif,.png">
-		<input type="file" ref="img3" accept=".jpg,.jpeg,.gif,.png">
-		<input type="file" ref="img4" accept=".jpg,.jpeg,.gif,.png">
-		<input type="file" ref="img5" accept=".jpg,.jpeg,.gif,.png">
+		<input type="file" ref="img1" @change="(e) => load(e, 'img1')"
+			accept=".jpg,.jpeg,.gif,.png">
+		<input type="file" ref="img2" @change="(e) => load(e, 'img2')"
+			accept=".jpg,.jpeg,.gif,.png">
+		<input type="file" ref="img3" @change="(e) => load(e, 'img3')"
+			accept=".jpg,.jpeg,.gif,.png">
+		<input type="file" ref="img4" @change="(e) => load(e, 'img4')"
+			accept=".jpg,.jpeg,.gif,.png">
+		<input type="file" ref="img5" @change="(e) => load(e, 'img5')"
+			accept=".jpg,.jpeg,.gif,.png">
 		<div class="field">
 			<label for="nom">Nom</label>
 			<input id="nom" type="text" placeholder="Nom de la salle">
@@ -65,8 +75,21 @@ import BaseLayout from "../components/base_layout"
 export default{
 	components:{BaseLayout, },
 	methods:{
-		load(component){
+		forwardTo(component){
 			this.$refs[component].click();
+		},
+		load(event, img_id){
+			let placeholder = document.getElementById(img_id)
+			let raw = event.target.files[0];
+			this.compress(raw, 300, (compressed) =>{
+				console.log(raw)
+				console.log(compressed)
+				var reader = new FileReader();
+				reader.readAsDataURL(raw);
+				reader.onload = function(event) {
+					placeholder.src = event.target.result;
+				};
+			})
 		}
 	}
 };
