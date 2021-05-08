@@ -76,8 +76,4 @@ label{
 button{
 	margin-top: 20px;
 }
-a{
-    color: blue;
-    text-decoration: underline;
-}
 </style>

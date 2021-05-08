@@ -15,9 +15,9 @@
 				</ul>
 			</div>
 			<div class="check_date">
-				<input type="date" name="" value="" placeholder="">
-				<button>Verifier</button>
-				<button class="reserver">Reserver</button>
+				<input @click.stop="" type="date" name="" value="" placeholder="">
+				<button @click.stop="">Verifier</button>
+				<button @click.stop="" class="reserver">Reserver</button>
 			</div>	
 		</div>
 	</div>

@@ -116,4 +116,9 @@ export default{
 		font-size: 1em!important;
 	}
 }
+@media only screen and (max-width: 400px) {
+	.search{
+		flex-direction: column;
+	}
+}
 </style>

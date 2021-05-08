@@ -65,6 +65,7 @@ export default{
 	height: 100%;
 	width: 100%;
 	overflow: auto;
+	top: 0;
 }
 .controls{
 	position: fixed;

@@ -3,8 +3,8 @@
     	<div class="logo">
     		<router-link to="/">AGATUTU</router-link>
     	</div>	
-    	<div class="left">
-    		<div  v-if="!!active_user">
+    	<div class="left" style="overflow-x: auto;">
+    		<div  v-if="!!active_user" style="min-width: 290px;">
 	    		<router-link to="/create" class="menu">
 	    			Ajouter une Salle
 	    		</router-link>
@@ -51,7 +51,12 @@ export default {
 	#nav{
 		display: block;
 		position: relative;
-		height: 70px;
+		height: 80px;
+	}
+	.logo{
+		display: flex;
+		justify-content: center;
+		padding: 10px;
 	}
 }
 </style>
