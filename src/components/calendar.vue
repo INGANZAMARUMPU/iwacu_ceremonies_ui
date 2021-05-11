@@ -13,21 +13,32 @@
 		<div class="box col">Vendr</div>
 		<div class="box col">Samed</div>
 		<div class="box col">Diman</div>
-		<div class="box" v-for="i in max+decalage" :class="{'valid':inRange(i)}">
-			<span v-if="inRange(i)">{{ i - decalage }}</span>
+		<div class="box" v-for="i in max+decalage"
+			:class="{'valid':inRange(i)}"
+			@click="e => showContext(e, i-decalage, month-1, year)">
+			<span v-if="inRange(i)">
+				{{ i - decalage }}
+			</span>
 		</div>
 	</div>
+	<ContextMenu :x="x" :y="y" :date="selected_date"
+	:style="{'display':context_visible?'block':'none'}"
+	@close="context_visible=false"/>
 </div>
 </template>
 <script>
+import ContextMenu from "./calendar_context"
 export default{
 	data(){
 		return {
 			decalage:0, max:28, month:1,
 			addition:0, year:2021, day:0,
 			month_counting_base:1,
+			selected_date:undefined,
+			x:500, y:500, context_visible:false
 		}
 	},
+	components:{ContextMenu},
 	computed:{
 		month_name(){
 			let month_=new Date(this.year, this.month-1, 1);
@@ -35,6 +46,13 @@ export default{
 		}
 	},
 	methods:{
+		showContext(e, day, month, year){
+			this.context_visible = false;
+			this.x = e.clientX;
+			this.y = e.clientY;
+			this.selected_date = new Date(year, month, day)
+			this.context_visible = true;
+		},
 		inRange(n){
 			return n-this.decalage<=this.max && n-this.decalage>0;
 		},
