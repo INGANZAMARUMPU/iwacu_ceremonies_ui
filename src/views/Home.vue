@@ -17,9 +17,11 @@
 			</select>
 			<label for="lieux">Dans quelle localité</label>
 			<input type="text" id="lieux" placeholder="ex: Province, quartier, commune">
-			<button>Trouver</button>
+			<button @click="search">Trouver</button>
 			<center>
-				<router-link to="/list">Afficher en Vrac</router-link>
+				<router-link to="/list" v-slot="{ navigate, href }">
+					<i @click="navigate">Afficher tout</i>
+				</router-link>
 			</center>
 		</div>
 	</div>
@@ -31,6 +33,11 @@ export default{
 	components:{HomeSlider,},
 	data(){
 		return {
+		}
+	},
+	methods:{
+		search(){
+			this.$router.push("/list")
 		}
 	}
 };
@@ -64,10 +71,17 @@ label{
 button{
 	margin-top: 20px;
 }
-a{
+i{
+	margin-top: 20px;
+	cursor: pointer;
     color: blue;
-    text-decoration: underline;
+	font-size: 2em;
+	font-weight: 600;
+	-webkit-text-fill-color: blue;
+	-webkit-text-stroke: .5px white;
+}
+i:hover{
 	font-weight: 700;
-	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; 
+	-webkit-text-stroke: 1px white;
 }
 </style>

@@ -28,52 +28,73 @@
 			accept=".jpg,.jpeg,.gif,.png">
 		<div class="field">
 			<label for="nom">Nom</label>
-			<input id="nom" type="text" placeholder="Nom de la salle">
+			<input id="nom" v-model="nom" type="text" placeholder="Nom de la salle">
 		</div>
 		<div class="field">
 			<label for="lieu">Lieu</label>
 			<div class="twin">
-				<input id="lieu" type="text" placeholder="Province">
-				<input type="text" placeholder="Commune">
-				<input type="text" placeholder="Quartier, Rue">
+				<input id="lieu" v-model="province" type="text" placeholder="Province">
+				<input type="text" v-model="commune" placeholder="Commune">
+				<input type="text" v-model="quartier" placeholder="Quartier, Rue">
 			</div>
 		</div>
 		<div class="field">
 			<label for="parking">Taille du parking</label>
-			<input id="parking" type="text" placeholder="Combien de voitures">
+			<input id="parking" v-model="parking" type="text"
+				placeholder="Combien de voitures">
 		</div>
 		<div class="field">
 			<label for="places">Nombre de places</label>
-			<input id="places" type="number" min="30" max="1000">
+			<input id="places" v-model="places" type="number" min="30" max="1000">
 		</div>
 		<div class="field">
 			<label for="ajouts">Valeurs ajoutées</label>
-			<textarea id="ajouts" placeholder="autres choses que le client beneficie"></textarea>
+			<textarea id="ajouts" v-model="ajouts"
+				placeholder="autres choses que le client beneficie">
+			</textarea>
 		</div>
 		<div class="field">
 			<label for="obligations">Obligations</label>
-			<textarea id="obligations" placeholder="ce que vous obligez aux clients"></textarea>
+			<textarea id="obligations" v-model="obligations"
+				placeholder="ce que vous obligez aux clients">
+			</textarea>
 		</div>
 		<div class="field">
 			<label for="prix">Prix</label>
 			<div class="twin">
-				<input id="prix" type="number" min="50000" placeholder="minimum">
+				<input id="prix" v-model="prix" type="number" min="50000"
+					placeholder="minimum">
 				<input type="number" min="50000" placeholder="maximum">
 			</div>
 		</div>
 		<div class="field">
 			<label for="details_prix">Precision à propos du prix</label>
-			<textarea id="details_prix" placeholder="autres prix selon les cas"></textarea>
+			<textarea id="details_prix" v-model="details_prix"
+				placeholder="autres prix selon les cas">
+			</textarea>
 		</div>
 	</div>
-	<button class="submit">Soumettre</button>
+	<button class="submit" @click="upload">Soumettre</button>
 </BaseLayout>
 </div>
 </template>
 <script>
+import axios from "axios"
 import BaseLayout from "../components/base_layout"
 export default{
 	components:{BaseLayout, },
+	data(){
+		return {
+			nom:"", parking:"", places:"", ajouts:"",
+			obligations:"", prix:"", details_prix:"",
+			province:"", commune:"", quartier:""
+		}
+	},
+	computed:{
+		lieu(){
+			return `${this.province} ${this.commune} ${this.quartier}`
+		}
+	},
 	methods:{
 		forwardTo(component){
 			this.$refs[component].click();
@@ -89,6 +110,24 @@ export default{
 				reader.onload = function(event) {
 					placeholder.src = event.target.result;
 				};
+			})
+		},
+		upload(){
+			let form = new FormData();
+			form.append("nom", this.nom)
+			form.append("lieu", this.lieu)
+			form.append("parking", this.parking)
+			form.append("places", this.places)
+			form.append("ajouts", this.ajouts)
+			form.append("obligations", this.obligations)
+			form.append("prix", this.prix)
+			form.append("details_prix", this.details_prix)
+
+			axios.post(this.url, form)
+			.then((response) => {
+				console.log(response)
+			}).catch((error) => {
+				console.error(error);
 			})
 		}
 	}

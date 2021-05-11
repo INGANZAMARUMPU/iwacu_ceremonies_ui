@@ -15,9 +15,11 @@
 				</ul>
 			</div>
 			<div class="check_date">
-				<input @click.stop="" type="date" name="" value="" placeholder="">
+				<input @click.stop="" type="date" placeholder="" v-model="date">
 				<button @click.stop="">Verifier</button>
-				<button @click.stop="" class="reserver">Reserver</button>
+				<button @click.stop="" class="reserver" v-if="!!date">
+					Reserver
+				</button>
 			</div>	
 		</div>
 	</div>
@@ -26,6 +28,11 @@
 <script>
 export default{
 	props:["item"],
+	data(){
+		return {
+			date:null
+		}
+	},
 	methods:{
 		details(id){
 			this.$router.push("/details/"+id)

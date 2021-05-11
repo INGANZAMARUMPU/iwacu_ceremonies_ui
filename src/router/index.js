@@ -10,8 +10,9 @@ import Login from '../views/Login'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/',name: 'home', component: Home},
-  { path: '/list',name: 'list', component: List},
+  // { path: '/',name: 'home', component: Home},
+  { path: '/',name: 'home', component: List},
+  // { path: '/list',name: 'list', component: List},
   { path: '/register',name: 'register', component: Register},
   { path: '/login',name: 'login', component: Login},
   { path: '/list/:prix/:localite',name: 'search', component: List},
