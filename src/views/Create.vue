@@ -26,6 +26,7 @@
 			accept=".jpg,.jpeg,.gif,.png">
 		<input type="file" ref="img5" @change="(e) => load(e, 'img5')"
 			accept=".jpg,.jpeg,.gif,.png">
+		<label class="logs">{{ img_logs }}</label>
 		<div class="field">
 			<label for="nom">Nom</label>
 			<input id="nom" v-model="nom" type="text" placeholder="Nom de la salle">
@@ -40,7 +41,7 @@
 		</div>
 		<div class="field">
 			<label for="parking">Taille du parking</label>
-			<input id="parking" v-model="parking" type="text"
+			<input id="parking" v-model="parking" type="number"
 				placeholder="Combien de voitures">
 		</div>
 		<div class="field">
@@ -73,6 +74,7 @@
 				placeholder="autres prix selon les cas">
 			</textarea>
 		</div>
+		<label class="logs">{{ logs }}</label>
 	</div>
 	<button class="submit" @click="upload">Soumettre</button>
 </BaseLayout>
@@ -87,7 +89,9 @@ export default{
 		return {
 			nom:"", parking:"", places:"", ajouts:"",
 			obligations:"", prix:"", details_prix:"",
-			province:"", commune:"", quartier:""
+			province:"", commune:"", quartier:"", logs:"",
+			img_logs:"", img1:null, img2:null, img3:null,
+			img4:null, img5:null
 		}
 	},
 	computed:{
@@ -100,34 +104,67 @@ export default{
 			this.$refs[component].click();
 		},
 		load(event, img_id){
+			this.img_logs = "";
 			let placeholder = document.getElementById(img_id)
 			let raw = event.target.files[0];
-			this.compress(raw, 300, (compressed) =>{
-				console.log(raw)
-				console.log(compressed)
-				var reader = new FileReader();
-				reader.readAsDataURL(raw);
-				reader.onload = function(event) {
-					placeholder.src = event.target.result;
-				};
-			})
+			if(raw.size>350_000){
+				this.img_logs = "L'image doit être inferieur à 350ko"
+				return;
+			}
+			switch (img_id) {
+				case "img1":
+					this.img1 = raw;
+					break;
+				case "img2":
+					this.img2 = raw;
+					break;
+				case "img3":
+					this.img3 = raw;
+					break;
+				case "img4":
+					this.img4 = raw;
+					break;
+				case "img5":
+					this.img5 = raw;
+					break;
+				default:
+					console.log('DONE')
+					break;
+			}
+			var reader = new FileReader();
+			reader.readAsDataURL(raw);
+			reader.onload = function(event) {
+				placeholder.src = event.target.result;
+			}
 		},
 		upload(){
+			this.logs = "";
 			let form = new FormData();
 			form.append("nom", this.nom)
 			form.append("lieu", this.lieu)
-			form.append("parking", this.parking)
-			form.append("places", this.places)
-			form.append("ajouts", this.ajouts)
+			form.append("taille_parking", this.parking)
+			form.append("no_places", this.places)
+			form.append("valeurs_ajoutees", this.ajouts)
 			form.append("obligations", this.obligations)
 			form.append("prix", this.prix)
 			form.append("details_prix", this.details_prix)
+			form.append("photo_principal", this.img1)
+			form.append("photo_1", this.img2)
+			form.append("photo_2", this.img3)
+			form.append("photo_3", this.img4)
+			form.append("photo_4", this.img5)
 
-			axios.post(this.url, form)
+			axios.post(this.url+"/salle/", form, this.headers)
 			.then((response) => {
-				console.log(response)
+				alert("la salle a été ajoutée")
+				this.$store.state.salles.push(response.data)
+				this.$router.push("/create")
 			}).catch((error) => {
-				console.error(error);
+				if(error.response.status==403){
+					this.refreshToken(this.upload)
+				}
+				this.logs = error.response.data;
+				console.error(error)
 			})
 		}
 	}
@@ -143,6 +180,11 @@ export default{
 	display: grid;
 	grid-gap: 5px;
 	grid-template-columns: repeat(2, 1fr);
+}
+.logs{
+	grid-column: 1 / span 2;
+	text-align:center; 
+	color: red;
 }
 img{
 	background-color: #ddd;

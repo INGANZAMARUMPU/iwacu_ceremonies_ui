@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import axios from "axios"
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -18,10 +19,10 @@ Vue.mixin({
     	).format(date)
     },
     refreshToken(callback){
-      let refresh = this.$store.state.user.refresh_token
-      axios.post(this.url+"/auth/refresh/"+refresh)
+      let refresh = this.$store.state.user.refresh
+      axios.post(this.url+"/refresh/", {"refresh":refresh})
       .then((response) => {
-        this.$store.state.user.access_token = response.data.access_token
+        this.$store.state.user.access = response.data.access
         callback()
       }).catch((error) => {
         if (error.response.status == 401) {
@@ -69,7 +70,7 @@ Vue.mixin({
     headers(){
       return {
       	headers:{
-      		"Authorization":"Bearer "+this.$store.state.user.access_token
+      		"Authorization":"Bearer "+this.$store.state.user.access
       	}
       }
     }

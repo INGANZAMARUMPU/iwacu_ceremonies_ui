@@ -36,7 +36,7 @@ export default{
 				{"username": this.username, "password":this.password}
 			).then((response) => {
 				this.$store.state.user = response.data
-				this.$router.push("/list");
+				this.$router.push("/");
 			}).catch((error) => {
 			  console.error(error);
 			  this.logs = error.response.data
