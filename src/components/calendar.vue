@@ -14,8 +14,8 @@
 		<div class="box col">Samed</div>
 		<div class="box col">Diman</div>
 		<div class="box" v-for="i in max+decalage"
-			:class="{'valid':inRange(i)}"
-			@click="e => showContext(e, i-decalage, month-1, year)">
+			:class="{'valid':inRange(i), 'taken':inTaken(i-decalage, month, year)}"
+			@click="e => showContext(e, i-decalage, month, year)">
 			<span v-if="inRange(i)">
 				{{ i - decalage }}
 			</span>
@@ -29,6 +29,7 @@
 <script>
 import ContextMenu from "./calendar_context"
 export default{
+	props:["taken"],
 	data(){
 		return {
 			decalage:0, max:28, month:1,
@@ -47,14 +48,21 @@ export default{
 	},
 	methods:{
 		showContext(e, day, month, year){
+			if(this.inTaken(day, month, year)) return;
 			this.context_visible = false;
 			this.x = e.clientX;
 			this.y = e.clientY;
-			this.selected_date = new Date(year, month, day)
+			this.selected_date = new Date(year, month-1, day)
 			this.context_visible = true;
 		},
 		inRange(n){
 			return n-this.decalage<=this.max && n-this.decalage>0;
+		},
+		inTaken(day, month, year){
+			month = month <= 9 ? '0'+month : month
+			day = day <= 9 ? '0'+day : day
+			let date = `${year}-${month}-${day}`
+			return this.taken.includes(date)
 		},
 		decreaseMonth(){
 			if(this.addition<1) return;
@@ -101,6 +109,11 @@ export default{
 }
 </script>
 <style scoped>
+.taken{
+	background: gray!important;
+	color: white!important;
+	text-decoration: line-through;
+}
 .main{
 	width: 100%;
 	margin: 20px 0; 

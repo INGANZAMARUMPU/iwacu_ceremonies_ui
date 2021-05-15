@@ -37,9 +37,10 @@
 		</div>
 		<div class="field">
 			<h3>Prix</h3>
-			<div class="twin">
-				<div>Min <b>50 000 FBu</b></div>
-				<div>Max <b>{{ item.prix}} FBu</b></div>
+			<div class="twin" v-for="prix of item.prix">
+				<div>Min <b>{{ prix.prix_min }} FBu </b></div>
+				<div>Max <b>{{ prix.prix_max }} FBu </b></div>
+				<div>Max <i>{{ prix.commentaire }}</i></div>
 			</div>
 		</div>
 		<div class="field">
@@ -47,7 +48,7 @@
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, facilis.</p>
 		</div>
 	</div>
-	<Calendar/>
+	<Calendar :taken="item.allocation.map(x => x.date)"/>
 </BaseLayout>
 <ImgPlayer
 	:item="current_img" @close="closeImage"
@@ -55,6 +56,7 @@
 </div>
 </template>
 <script>
+import axios from "axios"
 import BaseLayout from "../components/base_layout"
 import ImgPlayer from "../components/img_player"
 import Calendar from "../components/calendar"
@@ -62,7 +64,7 @@ export default{
 	components:{BaseLayout, ImgPlayer, Calendar},
 	data(){
 		return {
-			item:{}, current_img:null
+			item:{allocation:[]}, current_img:null
 		}
 	},
 	methods:{
@@ -75,7 +77,14 @@ export default{
 	},
 	mounted(){
 		let id = this.$route.params["id"];
-		this.item = this.$store.state.salles.find(x => x.id = id);
+		axios.get(this.url+`/salle/${id}/`)
+		.then((response) => {
+			this.item = response.data;
+		}).catch((error) => {
+		  console.error(error);
+		}).finally(() => {
+		  // TODO
+		});
 	}
 };
 </script>
@@ -93,8 +102,8 @@ export default{
 img{
 	background-color: #ddd;
 }
-.twin{
-	display: flex;
+.twin *{
+	display: inline;
 }
 .hidden{
 	display: none;

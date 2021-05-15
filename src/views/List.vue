@@ -6,17 +6,34 @@
 </div>
 </template>
 <script>
+import axios from "axios"
 import BaseLayout from "../components/base_layout.vue"
 import ListItem from "../components/list_item.vue"
 export default {
 	components:{ListItem, BaseLayout},
 	data(){
 		return {
+			salles:this.$store.state.salles
 		}
 	},
-	computed:{
-		salles(){
-			return this.$store.state.salles;
+	watch:{
+		"$store.state.salles"(new_val){
+			this.salles = this.$store.state.salles;
+		}
+	},
+	methods:{
+		fetchSalles(){
+			axios.get(this.url+"/salle/")
+			.then((response) => {
+				this.$store.state.salles = response.data;
+			}).catch((error) => {
+				console.error(error);
+			})
+		}
+	},
+	mounted(){
+		if(this.$store.state.salles.length == 0){
+			this.fetchSalles()
 		}
 	}
 };	
