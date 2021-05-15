@@ -24,10 +24,13 @@
 	<!-- <ContextMenu :x="x" :y="y" :date="selected_date"
 	:style="{'display':reserv_visible?'block':'none'}"
 	@close="reserv_visible=false"/> -->
+	<DialogBook :date="selected_date" @close="reserv_visible=false"
+		:style="{'display':reserv_visible?'block':'none'}"/>
 </div>
 </template>
 <script>
-import ContextMenu from "./calendar_context"
+// import ContextMenu from "./calendar_context"
+import DialogBook from "./dialog_book"
 export default{
 	props:["taken"],
 	data(){
@@ -39,7 +42,7 @@ export default{
 			x:500, y:500, reserv_visible:false
 		}
 	},
-	components:{ContextMenu},
+	components:{DialogBook},
 	computed:{
 		month_name(){
 			let month_=new Date(this.year, this.month-1, 1);
