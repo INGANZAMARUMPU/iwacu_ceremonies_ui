@@ -21,9 +21,9 @@
 			</span>
 		</div>
 	</div>
-	<ContextMenu :x="x" :y="y" :date="selected_date"
-	:style="{'display':context_visible?'block':'none'}"
-	@close="context_visible=false"/>
+	<!-- <ContextMenu :x="x" :y="y" :date="selected_date"
+	:style="{'display':reserv_visible?'block':'none'}"
+	@close="reserv_visible=false"/> -->
 </div>
 </template>
 <script>
@@ -36,7 +36,7 @@ export default{
 			addition:0, year:2021, day:0,
 			month_counting_base:1,
 			selected_date:undefined,
-			x:500, y:500, context_visible:false
+			x:500, y:500, reserv_visible:false
 		}
 	},
 	components:{ContextMenu},
@@ -49,11 +49,11 @@ export default{
 	methods:{
 		showContext(e, day, month, year){
 			if(this.inTaken(day, month, year)) return;
-			this.context_visible = false;
+			this.reserv_visible = false;
 			this.x = e.clientX;
 			this.y = e.clientY;
 			this.selected_date = new Date(year, month-1, day)
-			this.context_visible = true;
+			this.reserv_visible = true;
 		},
 		inRange(n){
 			return n-this.decalage<=this.max && n-this.decalage>0;
@@ -62,7 +62,7 @@ export default{
 			month = month <= 9 ? '0'+month : month
 			day = day <= 9 ? '0'+day : day
 			let date = `${year}-${month}-${day}`
-			return this.taken.includes(date)
+			return this.taken.includes(date) || new Date(date) < new Date()
 		},
 		decreaseMonth(){
 			if(this.addition<1) return;
@@ -113,6 +113,7 @@ export default{
 	background: gray!important;
 	color: white!important;
 	text-decoration: line-through;
+	cursor: not-allowed!important;
 }
 .main{
 	width: 100%;
@@ -138,6 +139,7 @@ export default{
 }
 .valid{
 	color: var(--primary);
+	cursor: pointer;
 }
 .box{
 	flex-grow: 1;
