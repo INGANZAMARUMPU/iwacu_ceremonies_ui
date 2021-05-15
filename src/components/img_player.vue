@@ -4,10 +4,12 @@
     		@mousedown="e => startMove(e)"
     		@mouseup="moving=false"
     		@mousemove="e => move(e)"/>
+ 		<div class="zoom">
+ 			<fa @click="zoomOut" class="outline" icon="search-minus"/>
+ 			<fa @click="zoomIn" class="outline" icon="search-plus"/>
+ 		</div>
     	<div class="controls">
-    		<button style="background:green" @click="zoomOut">-</button>
-    		<button style="background:green" @click="zoomIn">+</button>
-    		<button style="background:red" @click="close">x</button>
+    		<button style="background:red" @click="close">&times</button>
     	</div>
     </div>
 </template>
@@ -73,10 +75,28 @@ export default{
 	right: 0;
 }
 button{
-	padding: 5px 15px;
+	padding: 0 7px;
 	margin: 5px;
 	font-family: monospace;
 	font-size: 2em;
+}
+.zoom{
+	font-size: 2em;
+	color: #f00;
+	position: fixed;
+	top: 50px;
+	left: 50%;
+	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; 
+	transform: translateX(-50%);
+}
+.zoom *{
+	/*background-image: linear-gradient(white 10%, #0000 60%);*/
+	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; 
+	margin: 5px;
+}
+.outline{
+	text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF; 
+
 }
 img{
 	position: absolute;
