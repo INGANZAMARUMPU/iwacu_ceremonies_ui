@@ -48,7 +48,7 @@
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, facilis.</p>
 		</div>
 	</div>
-	<Calendar :taken="item.allocation.map(x => x.date)"/>
+	<Calendar/>
 </BaseLayout>
 <ImgPlayer
 	:item="current_img" @close="closeImage"
@@ -83,9 +83,7 @@ export default{
 			this.$store.state.current_salle = response.data;
 		}).catch((error) => {
 		  console.error(error);
-		}).finally(() => {
-		  // TODO
-		});
+		})
 	}
 };
 </script>

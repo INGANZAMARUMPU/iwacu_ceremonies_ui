@@ -5,12 +5,14 @@ import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faSearchMinus, faSearchPlus,
+  faSearchMinus, faSearchPlus, faCheck, faTimes
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faSearchMinus)
 library.add(faSearchPlus)
+library.add(faCheck)
+library.add(faTimes)
 
 Vue.component('fa', FontAwesomeIcon)
 

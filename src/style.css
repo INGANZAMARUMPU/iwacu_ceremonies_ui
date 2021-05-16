@@ -16,7 +16,7 @@
 }
 button, select{
 	background-color: var(--primary);
-	padding: 8px 25px;
+	padding: 5px 10px;
 	border-radius: 5px;
 	color: var(--white);
 	border: 1px solid var(--white);

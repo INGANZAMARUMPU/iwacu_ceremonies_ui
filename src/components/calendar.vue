@@ -21,6 +21,15 @@
 			</span>
 		</div>
 	</div>
+	<div>
+		<div v-for="alloc in allocations">
+			<button><fa icon="check"/></button>
+			<button><fa icon="times"/></button>
+			<b>{{ alloc.date }}</b>
+			<span> {{ alloc.nom_client }} </span>
+			<b>{{ alloc.tel_client }}</b>
+		</div>
+	</div>
 	<!-- <ContextMenu :x="x" :y="y" :date="selected_date"
 	:style="{'display':reserv_visible?'block':'none'}"
 	@close="reserv_visible=false"/> -->
@@ -32,21 +41,46 @@
 // import ContextMenu from "./calendar_context"
 import DialogBook from "./dialog_book"
 export default{
-	props:["taken"],
+	props:[],
+	components:{DialogBook},
 	data(){
 		return {
 			decalage:0, max:28, month:1,
 			addition:0, year:2021, day:0,
 			month_counting_base:1,
 			selected_date:undefined,
-			x:500, y:500, reserv_visible:false
+			x:500, y:500, reserv_visible:false,
+			taken:"", salle:null, allocations_cache:[]
 		}
 	},
-	components:{DialogBook},
 	computed:{
 		month_name(){
 			let month_=new Date(this.year, this.month-1, 1);
 			return month_.toLocaleString('fr', { month: 'long' }) +" "+ this.year;
+		},
+		allocations:{
+			get(){
+				if(!this.salle) return this.allocations_cache
+				let month = this.month <= 9 ? '0'+this.month : this.month
+				let month_str = `${this.year}-${month}`
+				return this.salle.allocation.filter(x => x.date.includes(month_str))
+			},
+			set(new_val){
+				this.allocations_cache = new_val;
+			}
+		}
+	},
+	watch:{
+		month(new_val){
+			if(!this.salle) return;
+			let month = this.month <= 9 ? '0'+this.month : this.month
+			let month_str = `${this.year}-${month}`
+			this.allocations = this.salle.allocation.filter(x => x.date.includes(month_str))
+		},
+		"$store.state.current_salle"(new_val){
+			if(!new_val) return;
+			this.salle = new_val;
+			this.taken = new_val.allocation.map(x => x.etat>0 ? x.date : null )
 		}
 	},
 	methods:{

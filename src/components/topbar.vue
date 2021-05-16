@@ -3,7 +3,7 @@
     	<div class="logo">
     		<router-link to="/">AGATUTU</router-link>
     	</div>	
-    	<div class="left" style="overflow-x: auto;">
+    	<div class="left">
     		<div  v-if="!!active_user" style="min-width: 290px;">
 	    		<router-link to="/create" class="menu">
 	    			Ajouter une Salle
