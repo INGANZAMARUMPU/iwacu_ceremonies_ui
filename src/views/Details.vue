@@ -80,6 +80,7 @@ export default{
 		axios.get(this.url+`/salle/${id}/`)
 		.then((response) => {
 			this.item = response.data;
+			this.$store.state.current_salle = response.data;
 		}).catch((error) => {
 		  console.error(error);
 		}).finally(() => {

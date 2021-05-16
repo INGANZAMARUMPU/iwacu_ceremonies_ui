@@ -15,7 +15,8 @@ export default new Vuex.Store({
   		"https://cdn.pixabay.com/photo/2017/03/31/21/37/room-2192484_960_720.jpg",
   		"https://cdn.pixabay.com/photo/2015/01/09/11/11/seminar-594118_960_720.jpg",
   	],
-  	salles:[]
+  	salles:[],
+    current_salle:null
   },
   mutations: {
   },

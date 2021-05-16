@@ -55,7 +55,7 @@ export default{
 			this.reserv_visible = false;
 			this.x = e.clientX;
 			this.y = e.clientY;
-			this.selected_date = new Date(year, month-1, day)
+			this.selected_date = `${year}-${month}-${day}`
 			this.reserv_visible = true;
 		},
 		inRange(n){
