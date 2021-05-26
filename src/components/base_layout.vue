@@ -2,41 +2,40 @@
 <div class="base_layout">
 	<div class="top">
 		<div class="search">
-			<input type="text" placeholder="nom de la salle ou quatrier">
+			<div class="field">
+				<label for="search">Recherche</label>
+				<input type="text" id="search" placeholder="nom de la salle ou quatrier">
+			</div>
+			<div class="field">
+				<label for="prix">Prix</label>
+				<select name="prix" id="prix">
+					<option v-for="i in 5" :value="i">
+						{{(i-1)*500000+50000}}  à {{i*500000}} Fbu
+					</option>
+				</select>
+			</div>
+			<div class="field">
+				<label for="localite">Place</label>
+				<select name="localite" id="localite">
+					<option v-for="quartier in quartiers" :value="quartier">
+						{{quartier}}
+					</option>
+				</select>
+			</div>
 			<button type="">Rechercher</button>
 		</div>
-		<div>
-			0 items found
-		</div>
 	</div>
-	<hr style="margin: 20px 0">
-	<div class="flex">
-		<div class="left">
-			<div class="filter">
-				<h3>les prix</h3>
-				<hr>
-				<div class="field" v-for="i in 5">
-					<input type="checkbox" :id="'chk_'+i">
-					<label :for="'chk_'+i"> {{(i-1)*500000+50000}}  à {{i*500000}} Fbu</label>
-				</div>
-				<div class="field">
-					<input type="checkbox" value="50 000 à 500 000 Fbu" id="chk_more">
-					<label for="more"> plus de 2500000 Fbu</label>
-				</div>
-				<button type="">Filtrer</button>
-			</div>
-			<div class="filter">
-				<h3>les localités</h3>
-				<hr>
-				<div class="field" v-for="quartier in quartiers">
-					<input type="checkbox" :id="quartier">
-					<label :for="quartier"> {{ quartier }}</label>
-				</div>
-				<button type="">Filtrer</button>
-			</div>
+	<hr style="margin: 10px 0">
+	<div class="content">
+		<div style="margin: 10px 0">
+			{{ $store.state.salles.length }} items found
 		</div>
-		<div class="content">
-			<slot></slot>
+		<div class="flex">
+			<div class="left">
+			</div>
+			<div class="slot">
+				<slot></slot>
+			</div>
 		</div>
 	</div>
 </div>
@@ -51,74 +50,24 @@ export default{
 };
 </script>
 <style scoped>
-.base_layout{
-	position: absolute;
-	padding-top: 30px;
-	padding: 20px;
-	height: calc(100% - 50px);
+.content, .search{
 	width: 100%;
+	max-width: 1200px;
 	overflow: hidden;
+	margin: auto;
 }
 .search{
 	display: flex;
+	align-items: flex-end;
+	justify-content: center;
 }
-.search input{
-	flex-grow: 1;
-	font-size: 1.2em;
+.field, .search button{
+	margin:5px;
 }
-.search button{
-	font-size: 1.2em;
-}
-.flex{
-	display: flex;
-	align-items: flex-start;
-	height: calc(100% - 90px);
-	overflow: hidden;
+.field *{
+	display: block
 }
 .left{
-	min-width: 250px;
-	margin-right: 20px;
-	height: 100%;
-	overflow-y: auto;
-}
-.content{
-	width: 100%;
-	height: 100%;
-	overflow: hidden auto;
-	padding: 20px;
-}
-.filter{
-	margin-bottom: 20px;
-}
-.filter button{
-	width: 100%;
-}
-@media only screen and (max-width: 860px) {
-	.base_layout{
-		position: relative;
-		padding: 10px;
-	}
-	.content{
-		padding: 0;
-	}
-	.left{
-		display: flex;
-		width: 100%;
-		justify-content: center;
-	}
-	.filter{
-		margin-left: 20px;
-	}
-	.flex{
-		flex-direction: column;
-	}
-	button, input{
-		font-size: 1em!important;
-	}
-}
-@media only screen and (max-width: 400px) {
-	.search{
-		flex-direction: column;
-	}
+	background: lightgray;
 }
 </style>

@@ -15,11 +15,14 @@
     font-family: var(--font-family-sans-serif);
 }
 button, select{
-	background-color: var(--primary);
-	padding: 5px 10px;
 	border-radius: 5px;
-	color: var(--white);
-	border: 1px solid var(--white);
+    padding: 8px 25px;
+    border-radius: 5px;
+}
+button{
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--white);
 }
 input{
 	padding: 8px 25px;
