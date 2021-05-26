@@ -1,16 +1,28 @@
 <template>
 <div>
 <BaseLayout>
-	<div class="pics">
 		<div class="mainpic">
-			<img :src="item.photo_principal" @click="display(item.photo_principal)" width="100%">
+			<img :src="item.photo_principal" @click="display()"
+				width="100%" id="highlighted">
 		</div>
 		<div class="altpic">
-			<img :src="item.photo_1" @click="display(item.photo_1)" width="100%">
-			<img :src="item.photo_2" @click="display(item.photo_2)" width="100%">
-			<img :src="item.photo_3" @click="display(item.photo_3)" width="100%">
-			<img :src="item.photo_4" @click="display(item.photo_4)" width="100%">
+			<div class="pic">
+				<img :src="item.photo_principal" @click="highlight(item.photo_principal)" width="100%">
+			</div>
+			<div class="pic">
+				<img :src="item.photo_1" @click="highlight(item.photo_1)" width="100%">
+			</div>
+			<div class="pic">
+				<img :src="item.photo_2" @click="highlight(item.photo_2)" width="100%">
+			</div>
+			<div class="pic">
+				<img :src="item.photo_3" @click="highlight(item.photo_3)" width="100%">
+			</div>
+			<div class="pic">
+				<img :src="item.photo_4" @click="highlight(item.photo_4)" width="100%">
+			</div>
 		</div>
+	<div class="pics">
 		<div class="field">
 			<h3>Nom</h3>
 			<p>{{ item.nom }}</p>
@@ -68,8 +80,11 @@ export default{
 		}
 	},
 	methods:{
-		display(img){
-			this.current_img = img;
+		display(){
+			this.current_img = highlighted.src;
+		},
+		highlight(img){
+			highlighted.src = img;
 		},
 		closeImage(){
 			this.current_img = null;
@@ -96,10 +111,17 @@ export default{
 .altpic{
 	display: grid;
 	grid-gap: 5px;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(5, 1fr);
+}
+.pic{
+	height: 100%;
+	max-height: 140px;
+	overflow: hidden;
+	border-radius: 5px;
 }
 img{
 	background-color: #ddd;
+	width: 100%;
 }
 .twin *{
 	display: inline;
@@ -107,7 +129,13 @@ img{
 .hidden{
 	display: none;
 }
-
+.mainpic{
+	width: 100%;
+	max-height: 600px;
+	overflow: hidden;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
 @media only screen and (max-width: 400px) {
 	.pics{
 		display: block;

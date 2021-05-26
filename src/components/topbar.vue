@@ -27,7 +27,7 @@ export default {
 </script>
 <style scoped>
 #nav{
-	background-color: var(--primary);
+	background-color: var(--white);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -37,9 +37,14 @@ export default {
 	top: 0;
 	width: 100%;
 	z-index: 5;
+	border-bottom: 2px solid var(--primary);
+	position: sticky;
 }
 #nav *{
-	color: var(--white);
+	color: var(--primary);
+}
+button{
+	color: var(--white)!important;
 }
 .menu{
 	padding: 8px;

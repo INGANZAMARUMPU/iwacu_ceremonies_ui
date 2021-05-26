@@ -1,8 +1,11 @@
 <template>
 <div>
-<BaseLayout>
-	<ListItem v-for="salle in salles" :item="salle"/>	
-</BaseLayout>
+	<BaseLayout>
+		<div style="margin: 10px 0">
+			{{ $store.state.salles.length }} items found
+		</div>
+		<ListItem v-for="salle in salles" :item="salle"/>	
+	</BaseLayout>
 </div>
 </template>
 <script>

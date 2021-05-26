@@ -1,10 +1,10 @@
 @charset "UTF-8";
 :root {
-    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --primary: #235;
-    --primary-hover: #379;
+    --font-family-sans-serif: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --primary: #932;
+    --primary-hover: #a32;
     --white: #eef;
-    --overlay-color:#48d7;
+    --overlay-color:#d847;
 }
 *{
     box-sizing: border-box;
@@ -28,12 +28,14 @@ input{
 	padding: 8px 25px;
 	border-radius: 5px;
 	background-color: var(--white);
+    border-width: 1px;
 }
 button:hover{
-	background-color: #346;
+	background-color: var(--primary-hover);
 }
-.body{
-    margin-top: 50px;
+h1, h2, h3, h4{
+    color: var(--primary);
+    margin: 5px 0;
 }
 .logs{
     color:red;

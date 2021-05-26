@@ -27,11 +27,10 @@
 	</div>
 	<hr style="margin: 10px 0">
 	<div class="content">
-		<div style="margin: 10px 0">
-			{{ $store.state.salles.length }} items found
-		</div>
 		<div class="flex">
 			<div class="left">
+				<center><h4>Nos Suggestions</h4></center>
+				<SuggestionItem v-for="salle in $store.state.salles" :key="salle.id" :item="salle"/>
 			</div>
 			<div class="slot">
 				<slot></slot>
@@ -41,7 +40,9 @@
 </div>
 </template>
 <script>
+import SuggestionItem from "./suggestion_item"
 export default{
+	components:{SuggestionItem, },
 	computed:{
 		quartiers(){
 			return ["Gihosha", "kamenge", "Ngagara", "Kinama", "Rohero", "Nyakabiga", "Buwiza", "Buyenzi", "Musaga", "Kanyosha"]
@@ -56,6 +57,9 @@ export default{
 	overflow: hidden;
 	margin: auto;
 }
+.content{
+	padding: 0 10px;
+}
 .search{
 	display: flex;
 	align-items: flex-end;
@@ -67,7 +71,14 @@ export default{
 .field *{
 	display: block
 }
+.flex{
+	display: flex;
+    align-items: flex-start;
+}
 .left{
-	background: lightgray;
+	background: #eee;
+	padding: 10px;
+	border-radius: 2px;
+	margin-right: 20px;
 }
 </style>
