@@ -44,14 +44,6 @@ Vue.mixin({
         }
       })
     },
-    activeUserIs(group){
-      return this.active_user.group == this.$store.state.group_id[group];
-    },
-    activeUserIsValidator(){
-      return !this.activeUserIs("comptable") && (
-          this.activeUserIs("admin") || this.active_user.is_validator
-        );
-    },
     compress(file, width, callback){
       let reader = new FileReader();
       reader.readAsDataURL(file);

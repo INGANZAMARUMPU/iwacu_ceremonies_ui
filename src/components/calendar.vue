@@ -21,7 +21,7 @@
 			</span>
 		</div>
 	</div>
-	<div>
+	<div v-if="!!$store.state.user && $store.state.user.id==$store.state.current_salle.owner.id">
 		<div v-for="alloc in allocations">
 			<button><fa icon="check"/></button>
 			<button><fa icon="times"/></button>

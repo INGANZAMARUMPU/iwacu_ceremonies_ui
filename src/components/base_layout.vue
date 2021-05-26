@@ -30,7 +30,10 @@
 		<div class="flex">
 			<div class="left">
 				<center><h4>Nos Suggestions</h4></center>
-				<SuggestionItem v-for="salle in $store.state.salles" :key="salle.id" :item="salle"/>
+				<div class="items">
+					<SuggestionItem v-for="salle in $store.state.salles" :key="salle.id" :item="salle"/>
+					<SuggestionItem v-for="salle in $store.state.salles" :key="salle.id" :item="salle"/>
+				</div>
 			</div>
 			<div class="slot">
 				<slot></slot>
@@ -80,5 +83,34 @@ export default{
 	padding: 10px;
 	border-radius: 2px;
 	margin-right: 20px;
+}
+@media only screen and (max-width: 800px) {
+	.flex{
+		flex-direction: column;
+	}
+	.items{
+		white-space: nowrap;
+		width: 100%;
+		overflow-y: auto;
+	}
+	.items *{
+		display: inline-block;
+		width: 300px;
+	}
+	.left{
+		width: 100%;
+	}
+	.items *{
+		margin: 5px;
+	}
+	.search{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 10px;
+		padding-right: 10px;
+	}
+	.search *{
+		width: 100%;
+	}
 }
 </style>

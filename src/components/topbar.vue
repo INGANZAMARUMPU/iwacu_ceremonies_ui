@@ -1,7 +1,7 @@
 <template>
     <div id="nav">
     	<div class="logo">
-    		<router-link to="/">AGATUTU</router-link>
+    		<router-link to="/">FigiBook.com</router-link>
     	</div>	
     	<div class="left">
     		<div  v-if="!!active_user" style="min-width: 290px;">
@@ -51,6 +51,12 @@ button{
 }
 .menu:hover{
 	background-color: var(--primary-hover);
+	color: var(--white)!important;
+}
+.logo *{
+	font-size: 1.5em;
+	font-weight: 700;
+	font-family: monospace;
 }
 @media only screen and (max-width: 400px) {
 	#nav{

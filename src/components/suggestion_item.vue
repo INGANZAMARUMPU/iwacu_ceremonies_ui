@@ -40,6 +40,10 @@ export default{
 	width: 100%;
 	border-radius: 2px;
 }
+.img{
+	max-height: 180px;
+	overflow: hidden;
+}
 a{
     color: blue;
     text-decoration: underline;

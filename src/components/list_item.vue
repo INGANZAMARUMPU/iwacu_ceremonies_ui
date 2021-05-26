@@ -7,12 +7,10 @@
 		<h3 style="margin:10px 0">{{ item.nom }}</h3>
 		<div class="infos">
 			<div class="details">
-				<ul>
-					<li><b>lieu:</b> {{ item.lieu }}</li>
-					<li><b>places:</b> {{ item.no_places }}</li>
-					<li><b>parkings:</b> {{ item.taille_parking }}</li>
-					<li><b>prix:</b> {{ item.prix }}</li>
-				</ul>
+				<div><b>lieu:</b> {{ item.lieu }}</div>
+				<div><b>places:</b> {{ item.no_places }}</div>
+				<div><b>parkings:</b> {{ item.taille_parking }}</div>
+				<div><b>prix:</b> {{ item.prix }}</div>
 			</div>
 			<button @click.stop="">Verifier</button>
 		</div>
@@ -74,9 +72,32 @@ a{
 .check_date *{
 	width: 100%;
 }
-@media only screen and (max-width: 550px) {
+.infos{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.details{
+	flex-grow: 1;
+}
+button{
+	background-color: var(--white);
+	border: 1px solid var(--primary);
+	color: var(--primary);
+}
+button:active{
+	background-color: var(--primary);
+	color: var(--white);
+}
+@media only screen and (max-width: 600px) {
 	.salle{
 		flex-direction: column;
+		height: inherit;
+	}
+	.left{
+		width: 100%;
+		height: inherit;
+		margin: auto;
 	}
 }
 </style>
