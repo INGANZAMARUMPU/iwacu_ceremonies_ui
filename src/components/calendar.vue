@@ -23,8 +23,12 @@
 	</div>
 	<div v-if="!!$store.state.user && $store.state.user.id==$store.state.current_salle.owner.id">
 		<div v-for="alloc in allocations">
-			<button><fa icon="check"/></button>
-			<button><fa icon="times"/></button>
+			<button style="background:green">
+				<fa icon="check"/>
+			</button>
+			<button @click="deleteRequest(alloc.id)">
+				<fa icon="times"/>
+			</button>
 			<b>{{ alloc.date }}</b>
 			<span> {{ alloc.nom_client }} </span>
 			<b>{{ alloc.tel_client }}</b>
@@ -135,6 +139,17 @@ export default{
 
 			this.max = new Date(this.year, this.month, 0).getDate();
 		},
+		deleteRequest(id){
+			axios.delete(this.url+`/allocation/${id}/`, this.headers)
+			.then((response) => {
+			  alert("la demande a été annulée");
+			  let allocations = this.$store.state.current_salle.allocation;
+			  let allocation = allocations.filter(x => x.id == id)
+			  allocations.splice(allocations.indexOf(allocation),1)
+			}).catch((error) => {
+			  console.error(error);
+			})
+		}
 	},
 	mounted(){
 		this.month = new Date().getMonth()+1;

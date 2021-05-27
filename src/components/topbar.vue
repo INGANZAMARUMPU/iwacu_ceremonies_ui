@@ -1,10 +1,10 @@
 <template>
     <div id="nav">
     	<div class="logo">
-    		<router-link to="/">FigiBook.com</router-link>
+    		<router-link to="/">FiGiBook.com</router-link>
     	</div>	
     	<div class="left">
-    		<div  v-if="!!active_user" style="min-width: 290px;">
+    		<div  v-if="!!active_user" style="width: 290px; margin: auto;">
 	    		<router-link to="/create" class="menu">
 	    			Ajouter une Salle
 	    		</router-link>

@@ -80,7 +80,7 @@ Vue.mixin({
     }
   }
 })
-
+window.axios = axios;
 Vue.config.productionTip = false
 
 new Vue({

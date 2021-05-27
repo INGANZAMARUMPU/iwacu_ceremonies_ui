@@ -41,11 +41,11 @@
 		</div>
 		<div class="field">
 			<h3>Valeurs ajoutées</h3>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing, elit. Beatae, recusandae?</p>
+			<p>{{ item.valeurs_ajoutees }}</p>
 		</div>
 		<div class="field">
 			<h3>Obligations</h3>
-			<p>Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Nam, commodi!</p>
+			<p>{{ item.obligations }}</p>
 		</div>
 		<div class="field">
 			<h3>Prix</h3>

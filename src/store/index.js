@@ -8,7 +8,6 @@ export default new Vuex.Store({
   	url:"http://127.0.0.1:8000/api",
   	// url:"/api",
   	user:null,
-    allocation_states : ["Demandée", "partiellement Payée", "entierement Payée"],
   	images:[
   		"https://cdn.pixabay.com/photo/2015/05/15/14/22/conference-room-768441_960_720.jpg",
   		"https://cdn.pixabay.com/photo/2013/02/20/01/04/meeting-83519_960_720.jpg",
@@ -16,7 +15,8 @@ export default new Vuex.Store({
   		"https://cdn.pixabay.com/photo/2015/01/09/11/11/seminar-594118_960_720.jpg",
   	],
   	salles:[],
-    current_salle:null
+    current_salle:null,
+    allocation_states:{ "Partiellement Payée":1, "Entierement Payée":2}
   },
   mutations: {
   },

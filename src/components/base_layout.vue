@@ -32,7 +32,6 @@
 				<center><h4>Nos Suggestions</h4></center>
 				<div class="items">
 					<SuggestionItem v-for="salle in $store.state.salles" :key="salle.id" :item="salle"/>
-					<SuggestionItem v-for="salle in $store.state.salles" :key="salle.id" :item="salle"/>
 				</div>
 			</div>
 			<div class="slot">

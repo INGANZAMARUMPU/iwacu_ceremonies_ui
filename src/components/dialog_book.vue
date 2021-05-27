@@ -17,7 +17,7 @@
 			<label for="tel2">Numero alternative</label>
 			<input type="text" v-model="tel2" id="tel2" placeholder="votre numero de télephone">
 		</div>
-		<label class="logs" v-html="logs.slice(0, 40)"></label>
+		<label class="logs" v-html="logs.slice(0, 128)"></label>
 		<div class="buttons" id="book">
 			<button @click="reserver">Demander</button>
 		</div>
