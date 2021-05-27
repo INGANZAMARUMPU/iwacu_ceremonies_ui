@@ -21,17 +21,20 @@
 			</span>
 		</div>
 	</div>
-	<div v-if="!!$store.state.user && $store.state.user.id==$store.state.current_salle.owner.id">
+	<div v-if="isOwner">
 		<div v-for="alloc in allocations">
-			<button style="background:green">
-				<fa icon="check"/>
-			</button>
-			<button @click="deleteRequest(alloc.id)">
-				<fa icon="times"/>
-			</button>
+			<div v-if="alloc.etat == 0" style="display: inline;">
+				<button style="background:green" @click="validateRequest(alloc.id)">
+					<fa icon="check"/>
+				</button>
+				<button @click="deleteRequest(alloc.id)">
+					<fa icon="times"/>
+				</button>
+			</div>
 			<b>{{ alloc.date }}</b>
 			<span> {{ alloc.nom_client }} </span>
 			<b>{{ alloc.tel_client }}</b>
+			<h5 style="display: inline;"> ({{ alloc.str_etat }})</h5>
 		</div>
 	</div>
 	<!-- <ContextMenu :x="x" :y="y" :date="selected_date"
@@ -72,6 +75,10 @@ export default{
 			set(new_val){
 				this.allocations_cache = new_val;
 			}
+		},
+		isOwner(){
+			return !!this.$store.state.current_salle &&
+				this.$store.state.user.id==this.$store.state.current_salle.owner.id
 		}
 	},
 	watch:{
@@ -146,6 +153,26 @@ export default{
 			  let allocations = this.$store.state.current_salle.allocation;
 			  let allocation = allocations.filter(x => x.id == id)
 			  allocations.splice(allocations.indexOf(allocation),1)
+			}).catch((error) => {
+			  console.error(error);
+			})
+		},
+		validateRequest(id){
+			axios.get(this.url+`/allocation/${id}/validate/`, this.headers)
+			.then((response) => {
+			  alert("la demande a été approuvée");
+			  let allocations = this.$store.state.current_salle.allocation;
+			  let allocation;
+			  for(let i=0; i<allocations.length; i++){
+			  	allocation = allocations[i];
+			  	if(allocation.id == response.data.id){
+			  		this.$store.state.current_salle.allocation[i] = response.data;
+			  		continue;
+			  	}
+			  	if(allocation.date == response.data.date){
+			  		this.$store.state.current_salle.allocation.splice(i, 1)
+			  	}
+			  }
 			}).catch((error) => {
 			  console.error(error);
 			})
