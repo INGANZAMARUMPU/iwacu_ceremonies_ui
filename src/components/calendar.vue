@@ -77,8 +77,9 @@ export default{
 			}
 		},
 		isOwner(){
-			return !!this.$store.state.current_salle &&
-				this.$store.state.user.id==this.$store.state.current_salle.owner.id
+			if(!!this.$store.state.user)
+				return this.$store.state.user.id == this.$store.state.current_salle.owner.id
+			return false;
 		}
 	},
 	watch:{
