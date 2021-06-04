@@ -9,6 +9,7 @@
 			<div class="field">
 				<label for="prix">Prix</label>
 				<select name="prix" id="prix">
+					<option value="">----</option>
 					<option v-for="i in 5" :value="i">
 						{{(i-1)*500000+50000}}  à {{i*500000}} Fbu
 					</option>
@@ -82,6 +83,9 @@ export default{
 	padding: 10px;
 	border-radius: 2px;
 	margin-right: 20px;
+}
+.slot{
+	flex-grow: 1;
 }
 @media only screen and (max-width: 800px) {
 	.flex{

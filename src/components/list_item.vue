@@ -10,9 +10,16 @@
 				<div><b>lieu:</b> {{ item.lieu }}</div>
 				<div><b>places:</b> {{ item.no_places }}</div>
 				<div><b>parkings:</b> {{ item.taille_parking }}</div>
-				<div><b>prix:</b> {{ item.prix }}</div>
+				<div>
+					<b>prix:</b>
+					<span>
+						varie entre
+						<b>{{ item.prix_min }}</b> et 
+						<b>{{ item.prix_max }}</b>
+					</span>
+				</div>
 			</div>
-			<button @click.stop="">Verifier</button>
+			<button>Reserver</button>
 		</div>
 	</div>
 </div>
@@ -84,6 +91,8 @@ button{
 	background-color: var(--white);
 	border: 1px solid var(--primary);
 	color: var(--primary);
+	max-width: 250px;
+	margin-left: auto;
 }
 button:active{
 	background-color: var(--primary);
@@ -97,6 +106,9 @@ button:active{
 	.left{
 		width: 100%;
 		height: inherit;
+		margin: auto;
+	}
+	button{
 		margin: auto;
 	}
 }

@@ -49,10 +49,10 @@
 		</div>
 		<div class="field">
 			<h3>Prix</h3>
-			<div class="twin" v-for="prix of item.prix">
-				<div>Min <b>{{ prix.prix_min }} FBu </b></div>
-				<div>Max <b>{{ prix.prix_max }} FBu </b></div>
-				<div>Max <i>{{ prix.commentaire }}</i></div>
+			<div class="inline">
+				varie entre 
+				<b>{{ money(item.prix_min) }} FBu</b> et 
+				<b>{{ money(item.prix_max) }} FBu</b>
 			</div>
 		</div>
 		<div class="field">
@@ -135,6 +135,9 @@ img{
 	overflow: hidden;
 	border-radius: 5px;
 	margin-bottom: 10px;
+}
+.inline *{
+	display: inline;
 }
 @media only screen and (max-width: 400px) {
 	.pics{

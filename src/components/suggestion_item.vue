@@ -8,9 +8,15 @@
 		<div class="details">
 			<div><b>places:</b> {{ item.no_places }}</div>
 			<div><b>parkings:</b> {{ item.taille_parking }}</div>
-			<div><b>prix:</b> {{ item.prix }}</div>
+			<div>
+				<b>prix: </b>
+				<span>
+					<b>{{ item.prix_min }}</b> à 
+					<b>{{ item.prix_max }}</b>
+				</span>
+			</div>
 		</div>
-		<button @click.stop="" class="reserver">Details</button>
+		<button class="reserver">Reserver</button>
 	</div>
 </div>
 </template>

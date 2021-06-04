@@ -4,20 +4,25 @@
     		<router-link to="/">FiGiBook.com</router-link>
     	</div>	
     	<div class="left">
-    		<div  v-if="!!active_user" style="width: 290px; margin: auto;">
-	    		<router-link to="/create" class="menu">
-	    			Ajouter une Salle
-	    		</router-link>
-	    		<button @click="$store.state.user=null">Se Deconnecter</button>
-    		</div>
-    		<div v-else>
-	    		<router-link to="/register" class="menu">
-	    			S'abonner
-	    		</router-link>
-	    		<router-link  to="/login" v-slot="{ href, navigate }">
-	    			<button @click="navigate">Se Connecter</button>
-	    		</router-link>
-    		</div>
+    		<center>
+				<div  v-if="!!active_user">
+					<router-link to="/create" class="menu">
+						Mes Salles
+					</router-link>
+					<router-link to="/create" class="menu">
+						Ajouter une Salle
+					</router-link>
+					<button @click="$store.state.user=null">Se Deconnecter</button>
+				</div>
+				<div v-else>
+					<router-link to="/register" class="menu">
+						S'abonner
+					</router-link>
+					<router-link  to="/login" v-slot="{ href, navigate }">
+						<button @click="navigate">Se Connecter</button>
+					</router-link>
+				</div>
+    		</center>
     	</div>
     </div>
 </template>

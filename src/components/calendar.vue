@@ -77,7 +77,7 @@ export default{
 			}
 		},
 		isOwner(){
-			if(!!this.$store.state.user)
+			if(!!this.$store.state.user && !!this.$store.state.current_salle)
 				return this.$store.state.user.id == this.$store.state.current_salle.owner.id
 			return false;
 		}

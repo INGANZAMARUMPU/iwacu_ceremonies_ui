@@ -7,6 +7,7 @@
 		<div class="form">
 			<label for="prix">Choisissez le prix</label>
 			<select name="prix" id="prix">
+				<option value="">----</option>
 				<option value="1">50 000 à 500 000 Fbu</option>
 				<option value="2">550 000 à 1 000 000 Fbu</option>
 				<option value="3">1 000 000 à 1 500 000 Fbu</option>
