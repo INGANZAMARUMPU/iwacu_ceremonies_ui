@@ -63,9 +63,9 @@
 		<div class="field">
 			<label for="prix">Prix</label>
 			<div class="twin">
-				<input id="prix" v-model="prix" type="number" min="50000"
+				<input id="prix" v-model="prix_min" type="number" min="50000"
 					placeholder="minimum">
-				<input type="number" min="50000" placeholder="maximum">
+				<input type="number" v-model="prix_max" min="50000" placeholder="maximum">
 			</div>
 		</div>
 		<div class="field">
@@ -88,7 +88,7 @@ export default{
 	data(){
 		return {
 			nom:"", parking:"", places:"", ajouts:"",
-			obligations:"", prix:"", details_prix:"",
+			obligations:"", prix_min:"", prix_max:"", prix_infos:"",
 			province:"", commune:"", quartier:"", logs:"",
 			img_logs:"", img1:null, img2:null, img3:null,
 			img4:null, img5:null
@@ -146,8 +146,9 @@ export default{
 			form.append("no_places", this.places)
 			form.append("valeurs_ajoutees", this.ajouts)
 			form.append("obligations", this.obligations)
-			form.append("prix", this.prix)
-			form.append("details_prix", this.details_prix)
+			form.append("prix_min", this.prix_min)
+			form.append("prix_max", this.prix_max)
+			form.append("prix_infos", this.prix_infos)
 			form.append("photo_principal", this.img1)
 			form.append("photo_1", this.img2)
 			form.append("photo_2", this.img3)

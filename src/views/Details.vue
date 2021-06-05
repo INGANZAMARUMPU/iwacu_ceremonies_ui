@@ -57,7 +57,7 @@
 		</div>
 		<div class="field">
 			<h3>Precision à propos du prix</h3>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, facilis.</p>
+			<p>{{ item.prix_infos }}</p>
 		</div>
 	</div>
 	<Calendar/>
