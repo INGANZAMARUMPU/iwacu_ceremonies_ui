@@ -32,7 +32,8 @@
 			<div class="left">
 				<center><h4>Nos Suggestions</h4></center>
 				<div class="items">
-					<SuggestionItem v-for="salle in $store.state.salles" :key="salle.id" :item="salle"/>
+					<SuggestionItem v-for="suggestion in $store.state.suggestions"
+						:key="suggestion.salle.id" :item="suggestion.salle"/>
 				</div>
 			</div>
 			<div class="slot">
@@ -49,6 +50,21 @@ export default{
 	computed:{
 		quartiers(){
 			return ["Gihosha", "kamenge", "Ngagara", "Kinama", "Rohero", "Nyakabiga", "Buwiza", "Buyenzi", "Musaga", "Kanyosha"]
+		}
+	},
+	methods:{
+		fetchSuggestions(){
+			axios.get(this.url+"/salle/suggestions/")
+			.then((response) => {
+				this.$store.state.suggestions = response.data;
+			}).catch((error) => {
+				console.error(error);
+			})
+		}
+	},
+	mounted(){
+		if(this.$store.state.suggestions.length<2){
+			this.fetchSuggestions()
 		}
 	}
 };
