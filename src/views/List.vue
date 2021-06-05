@@ -21,23 +21,56 @@ export default {
 	},
 	watch:{
 		"$store.state.salles"(new_val){
-			this.salles = this.$store.state.salles;
+			if(this.$route.path!="/mine"){
+				this.salles = new_val;
+			}
+		},
+		"$store.state.mes_salles"(new_val){
+			if(this.$route.path=="/mine"){
+				this.salles = new_val;
+			}
+		},
+		"$route.path"(new_val){
+			this.refetch(new_val)
 		}
 	},
 	methods:{
+		refetch(path){
+			if(path=="/mine"){
+				if(this.$store.state.mes_salles.length == 0){
+					this.fetchMesSalles()
+				} else {
+					this.salles = this.$store.state.mes_salles
+				}
+			} else {
+				if(this.$store.state.salles.length == 0){
+					this.fetchSalles()
+				} else{
+					this.salles = this.$store.state.salles
+				}
+			}
+		},
 		fetchSalles(){
 			axios.get(this.url+"/salle/")
 			.then((response) => {
 				this.$store.state.salles = response.data;
+				this.salles = response.data
+			}).catch((error) => {
+				console.error(error);
+			})
+		},
+		fetchMesSalles(){
+			axios.get(this.url+"/salle/mine/", this.headers)
+			.then((response) => {
+				this.$store.state.mes_salles = response.data;
+				this.salles = response.data
 			}).catch((error) => {
 				console.error(error);
 			})
 		}
 	},
 	mounted(){
-		if(this.$store.state.salles.length == 0){
-			this.fetchSalles()
-		}
+		this.refetch(this.$route.path)
 	}
 };	
 </script>

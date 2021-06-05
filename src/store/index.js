@@ -16,6 +16,7 @@ export default new Vuex.Store({
   		"https://cdn.pixabay.com/photo/2015/01/09/11/11/seminar-594118_960_720.jpg",
   	],
   	salles:[],
+    mes_salles:[],
     current_salle:null,
     allocation_states:{ "Partiellement Payée":1, "Entierement Payée":2}
   },

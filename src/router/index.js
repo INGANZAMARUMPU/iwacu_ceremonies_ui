@@ -10,14 +10,15 @@ import Login from '../views/Login'
 Vue.use(VueRouter)
 
 const routes = [
-  // { path: '/',name: 'home', component: Home},
-  { path: '/',name: 'home', component: List},
-  // { path: '/list',name: 'list', component: List},
-  { path: '/register',name: 'register', component: Register},
-  { path: '/login',name: 'login', component: Login},
-  { path: '/list/:prix/:localite',name: 'search', component: List},
-  { path: '/create',name: 'create', component: Create},
-  { path: '/details/:id',name: 'details', component: Details},
+  // { path: '/', name:'home', component:Home},
+  { path: '/', name:'home', component:List},
+  { path: '/mine', name:'mine', component:List},
+  // { path: '/list', name:'list', component:List},
+  { path: '/register', name:'register', component:Register},
+  { path: '/login', name:'login', component:Login},
+  { path: '/list/:prix/:localite', name:'search', component:List},
+  { path: '/create', name:'create', component:Create},
+  { path: '/details/:id', name:'details', component:Details},
 ]
 
 const router = new VueRouter({
