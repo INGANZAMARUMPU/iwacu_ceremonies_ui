@@ -17,7 +17,7 @@
 			<label for="tel2">Numero alternative</label>
 			<input type="text" v-model="tel2" id="tel2" placeholder="votre numero de télephone">
 		</div>
-		<label class="logs" v-html="logs.slice(0, 128)"></label>
+		<label class="logs" v-html="logs.slice(0, 256)"></label>
 		<div class="buttons" id="book">
 			<button @click="reserver">Demander</button>
 		</div>
@@ -42,7 +42,8 @@ export default{
 	},
 	methods:{
 		reserver(){
-			if(this.tel_client.length<5){
+			this.logs = "demmande en cours..."
+			if(this.tel_client.length<6){
 				this.logs = "vous devez donner un numero valide"
 				return;
 			}
@@ -50,16 +51,15 @@ export default{
 			let data = {
 				"date": this.date,
 				"nom_client": this.nom_client,
-				"tel_client": this.tel_client,
-				"salle": salle.id
+				"tel_client": this.tel_client
 			}
 			let message = `La demmande a été soumise, Le proprietaire de la salle s'appelle <b>${salle.owner.first_name}  ${salle.owner.last_name}</b> son numero de telephone est <b>${salle.owner.username}</b>`
-			axios.post(this.url+"/allocation/", data)
+			axios.post(this.url+`/salle/${salle.id}/allouer/`, data)
 			.then((response) => {
-				salle.allocation.push(response.data)
 				this.logs = message
 				book.style.display = 'none'
 				// window.setTimeout(()=>this.$emit("close"), 30_000)
+				try {salle.allocation.push(response.data)} catch(e) {}
 			}).catch((error) => {
 			  console.error(error);
 			  this.logs = error.response.data
