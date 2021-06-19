@@ -74,7 +74,7 @@ Vue.mixin({
     headers(){
       return {
       	headers:{
-      		"Authorization":"Bearer "+this.$store.state.user.access
+      		  "Authorization":"Bearer "+active_user.access
       	}
       }
     }

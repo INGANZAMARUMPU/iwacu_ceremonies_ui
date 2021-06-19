@@ -92,7 +92,8 @@ export default{
 	},
 	mounted(){
 		let id = this.$route.params["id"];
-		axios.get(this.url+`/salle/${id}/`)
+		let headers = !!this.active_user?this.headers:{}
+		axios.get(this.url+`/salle/${id}/`, headers)
 		.then((response) => {
 			this.item = response.data;
 			this.$store.state.current_salle = response.data;
