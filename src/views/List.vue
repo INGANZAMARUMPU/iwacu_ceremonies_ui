@@ -37,6 +37,10 @@ export default {
 	methods:{
 		refetch(path){
 			if(path=="/mine"){
+				if(!this.active_user){
+					this.$router.push("/")
+					return
+				}
 				if(this.$store.state.mes_salles.length == 0){
 					this.fetchMesSalles()
 				} else {
@@ -65,7 +69,11 @@ export default {
 				this.$store.state.mes_salles = response.data;
 				this.salles = response.data
 			}).catch((error) => {
-				console.error(error);
+				if(error.response.status == 403){
+					this.refreshToken(this.fetchComptes)
+				} else {
+					this.logs = error.response.data;
+				}
 			})
 		}
 	},

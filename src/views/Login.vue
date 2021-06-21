@@ -4,18 +4,18 @@
 		<HomeSlider/>
 	</div>
 	<div class="overlay">
-		<div class="form">
-		<div class="field">
-			<label for="tel">Téléphone</label>
-			<input type="text" id="tel" v-model="username" placeholder="votre numero de télephone">
-		</div>
-		<div class="field">
-			<label for="password">Mot de passe</label>
-			<input type="password" id="password" v-model="password" placeholder="votre mot de passe">
-		</div>
-		<label class="logs">{{ logs }}</label>
-		<button @click="login">Se connecter</button>
-		</div>
+		<form class="form" @submit.prevent.stop="login">
+			<div class="field">
+				<label for="tel">Téléphone</label>
+				<input type="text" id="tel" v-model="username" placeholder="votre numero de télephone">
+			</div>
+			<div class="field">
+				<label for="password">Mot de passe</label>
+				<input type="password" id="password" v-model="password" placeholder="votre mot de passe">
+			</div>
+			<label class="logs">{{ logs }}</label>
+			<button @click.prevent.stop="login">Se connecter</button>
+		</form>
 	</div>
 </div>
 </template>
@@ -31,15 +31,16 @@ export default{
 	},
 	methods:{
 		login(){
-			this.logs = ""
+			this.logs = "loging in ..."
 			axios.post(this.url+"/login/", 
 				{"username": this.username, "password":this.password}
 			).then((response) => {
+				this.logs = ""
 				this.$store.state.user = response.data
 				this.$router.push("/");
 			}).catch((error) => {
-			  console.error(error);
-			  this.logs = error.response.data
+				console.error(error);
+				this.logs = error.response.data
 			})
 		}
 	}

@@ -5,7 +5,7 @@
     	</div>	
     	<div class="left">
     		<center>
-				<div  v-if="!!active_user">
+				<div v-if="!!active_user">
 					<router-link to="/mine" class="menu">
 						Mes Salles
 					</router-link>

@@ -70,7 +70,9 @@ export default{
 				if(!this.salle) return this.allocations_cache
 				let month = this.month <= 9 ? '0'+this.month : this.month
 				let month_str = `${this.year}-${month}`
-				return this.salle.allocation.filter(x => x.date.includes(month_str))
+				return !!this.salle.allocation?this.salle.allocation.filter(
+					x => x.date.includes(month_str)
+				):[]
 			},
 			set(new_val){
 				this.allocations_cache = new_val;
@@ -92,7 +94,9 @@ export default{
 		"$store.state.current_salle"(new_val){
 			if(!new_val) return;
 			this.salle = new_val;
-			this.taken = new_val.allocation.map(x => x.etat>0 ? x.date : null )
+			this.taken = !!new_val.allocation? new_val.allocation.map(
+				x => x.etat>0 ? x.date : null
+			):[]
 		}
 	},
 	methods:{
