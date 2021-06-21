@@ -57,6 +57,8 @@ export default{
 			axios.get(this.url+"/salle/suggestions/")
 			.then((response) => {
 				this.$store.state.suggestions = response.data;
+				this.$store.state.images = response.data.map(x => x.salle.photo_principal)
+				console.log(this.$store.state.images)
 			}).catch((error) => {
 				console.error(error);
 			})

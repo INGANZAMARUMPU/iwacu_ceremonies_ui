@@ -19,7 +19,23 @@ export default{
 			interval_function:null
 		}
 	},
+
+	methods:{
+		fetchSuggestions(){
+			axios.get(this.url+"/salle/suggestions/")
+			.then((response) => {
+				this.$store.state.suggestions = response.data;
+				this.$store.state.images = response.data.map(x => x.salle.photo_principal)
+				console.log(this.$store.state.images)
+			}).catch((error) => {
+				console.error(error);
+			})
+		}
+	},
 	mounted(){
+		if(this.$store.state.suggestions.length<2){
+			this.fetchSuggestions()
+		}
 		parent = this;
 		this.interval_function = setInterval(() => {
 			this.position = (this.position + 1)%this.images.length;
