@@ -1,11 +1,11 @@
 <template>
-<div class="main" id="calendar">
+<div class="main">
 	<div class="head">
 		<button @click="decreaseMonth"><<</button>
 		<div class="month">{{month_name}}</div>
 		<button @click="increaseMonth">>></button>
 	</div>
-	<div class="grid">
+	<div class="grid" ref="calendar">
 		<div class="box col">Lundi</div>
 		<div class="box col">Mardi</div>
 		<div class="box col">Mercr</div>
@@ -189,6 +189,14 @@ export default{
 		this.month_counting_base = this.month;
 		this.max = new Date(this.year, this.month, 0).getDate()
 		this.decalage = new Date(this.year, this.month-1, 1).getDay()-1
+
+		if(window.location.href.includes("calendar")){
+			window.setTimeout(() =>{
+				let calendar = this.$refs["calendar"];
+				let top = calendar.offsetTop;
+				window.scrollTo({top: top, behavior: 'smooth'});
+			}, 1000)
+		}
 	}
 }
 </script>

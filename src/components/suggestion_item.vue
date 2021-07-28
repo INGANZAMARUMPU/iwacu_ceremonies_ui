@@ -16,7 +16,7 @@
 				</span>
 			</div>
 		</div>
-		<button class="reserver">Reserver</button>
+		<button class="reserver" @click="details(item.id)">Reserver</button>
 	</div>
 </div>
 </template>
@@ -30,7 +30,7 @@ export default{
 	},
 	methods:{
 		details(id){
-			this.$router.push("/details/"+id)
+			this.$router.push(`/details/${id}#calendar`)
 		}
 	}
 };

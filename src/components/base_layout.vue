@@ -106,7 +106,7 @@ export default{
 }
 @media only screen and (max-width: 800px) {
 	.flex{
-		flex-direction: column;
+		flex-direction: column-reverse;
 	}
 	.items{
 		white-space: nowrap;

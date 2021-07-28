@@ -34,7 +34,7 @@ export default{
 	},
 	methods:{
 		details(id){
-			this.$router.push("/details/"+id)
+			this.$router.push(`/details/${id}#calendar`)
 		}
 	}
 };

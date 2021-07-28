@@ -36,9 +36,7 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 50px;
-	padding: 0 10px; 
-	position: absolute;
+	padding: 10px;
 	top: 0;
 	width: 100%;
 	z-index: 5;
@@ -63,11 +61,10 @@ button{
 	font-weight: 700;
 	font-family: monospace;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 540px) {
 	#nav{
 		display: block;
 		position: relative;
-		height: 80px;
 	}
 	.logo{
 		display: flex;

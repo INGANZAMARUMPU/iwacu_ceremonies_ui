@@ -1,27 +1,27 @@
 <template>
 <div>
 <BaseLayout>
-		<div class="mainpic">
-			<img :src="item.photo_principal" @click="display()"
-				width="100%" id="highlighted">
+	<div class="mainpic">
+		<img :src="item.photo_principal" @click="display()"
+			width="100%" id="highlighted">
+	</div>
+	<div class="altpic">
+		<div class="pic">
+			<img :src="item.photo_principal" @click="highlight(item.photo_principal)" width="100%">
 		</div>
-		<div class="altpic">
-			<div class="pic">
-				<img :src="item.photo_principal" @click="highlight(item.photo_principal)" width="100%">
-			</div>
-			<div class="pic">
-				<img :src="item.photo_1" @click="highlight(item.photo_1)" width="100%">
-			</div>
-			<div class="pic">
-				<img :src="item.photo_2" @click="highlight(item.photo_2)" width="100%">
-			</div>
-			<div class="pic">
-				<img :src="item.photo_3" @click="highlight(item.photo_3)" width="100%">
-			</div>
-			<div class="pic">
-				<img :src="item.photo_4" @click="highlight(item.photo_4)" width="100%">
-			</div>
+		<div class="pic">
+			<img :src="item.photo_1" @click="highlight(item.photo_1)" width="100%">
 		</div>
+		<div class="pic">
+			<img :src="item.photo_2" @click="highlight(item.photo_2)" width="100%">
+		</div>
+		<div class="pic">
+			<img :src="item.photo_3" @click="highlight(item.photo_3)" width="100%">
+		</div>
+		<div class="pic">
+			<img :src="item.photo_4" @click="highlight(item.photo_4)" width="100%">
+		</div>
+	</div>
 	<div class="pics">
 		<div class="field">
 			<h3>Nom</h3>
