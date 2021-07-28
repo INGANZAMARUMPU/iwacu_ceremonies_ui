@@ -18,6 +18,14 @@
 			<input type="text" v-model="tel2" id="tel2" placeholder="votre numero de télephone">
 		</div>
 		<label class="logs" v-html="logs.slice(0, 256)"></label>
+		<a v-if="!!new_date" :href="`https://api.whatsapp.com/send?phone=
+			${$store.state.current_salle.owner.username}
+			&text=Je m'appele ${nom_client}. Je veux reserver la salle 
+			${$store.state.current_salle.nom} pour la date du ${new_date}`"
+			target="_blank">
+			Whatsapp
+		</a>
+		<img src="" alt="">
 		<div class="buttons" id="book">
 			<button @click="reserver">Demander</button>
 		</div>
@@ -30,7 +38,7 @@ export default{
 	props:["date"],
 	data(){
 		return {
-			nom_client:"", tel2:"", tel1:"", logs:""
+			nom_client:"", tel2:"", tel1:"", logs:"", new_date:""
 		}
 	},
 	computed:{
@@ -57,6 +65,7 @@ export default{
 			axios.post(this.url+`/salle/${salle.id}/allouer/`, data)
 			.then((response) => {
 				this.logs = message
+				this.new_date = response.data.date
 				book.style.display = 'none'
 				// window.setTimeout(()=>this.$emit("close"), 30_000)
 				try {salle.allocation.push(response.data)} catch(e) {}
