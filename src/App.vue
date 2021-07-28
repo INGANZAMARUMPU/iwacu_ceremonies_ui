@@ -22,12 +22,12 @@ export default {
 			}
 		}
 	},
-    mounted(){
-        var user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-          this.$store.state.user = user;
-        }
-    }
+  mounted(){
+      var user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        this.$store.state.user = user;
+      }
+  }
 };
 </script>
 <style src="./style.css">

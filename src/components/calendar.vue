@@ -1,5 +1,5 @@
 <template>
-<div class="main">
+<div class="main" id="calendar">
 	<div class="head">
 		<button @click="decreaseMonth"><<</button>
 		<div class="month">{{month_name}}</div>
@@ -21,7 +21,7 @@
 			</span>
 		</div>
 	</div>
-	<div v-if="isOwner">
+	<div v-if="isOwner" style="margin-top:20px">
 		<div v-for="alloc in allocations">
 			<div v-if="alloc.etat == 0" style="display: inline;">
 				<button style="background:green" @click="validateRequest(alloc.id)">

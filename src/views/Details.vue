@@ -79,6 +79,11 @@ export default{
 			item:{allocation:[]}, current_img:null
 		}
 	},
+	watch:{
+		"$store.state.user.access"(new_val){
+			this.fetchData()
+		}
+	},
 	methods:{
 		display(){
 			this.current_img = highlighted.src;
@@ -88,18 +93,21 @@ export default{
 		},
 		closeImage(){
 			this.current_img = null;
+		},
+		fetchData(){
+			let id = this.$route.params["id"];
+			let headers = !!this.active_user?this.headers:{}
+			axios.get(this.url+`/salle/${id}/`, headers)
+			.then((response) => {
+				this.item = response.data;
+				this.$store.state.current_salle = response.data;
+			}).catch((error) => {
+			  console.error(error);
+			})
 		}
 	},
 	mounted(){
-		let id = this.$route.params["id"];
-		let headers = !!this.active_user?this.headers:{}
-		axios.get(this.url+`/salle/${id}/`, headers)
-		.then((response) => {
-			this.item = response.data;
-			this.$store.state.current_salle = response.data;
-		}).catch((error) => {
-		  console.error(error);
-		})
+		this.fetchData()
 	}
 };
 </script>

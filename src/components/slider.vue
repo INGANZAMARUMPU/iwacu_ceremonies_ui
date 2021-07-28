@@ -26,7 +26,6 @@ export default{
 			.then((response) => {
 				this.$store.state.suggestions = response.data;
 				this.$store.state.images = response.data.map(x => x.salle.photo_principal)
-				console.log(this.$store.state.images)
 			}).catch((error) => {
 				console.error(error);
 			})
@@ -48,6 +47,7 @@ export default{
 </script>
 <style scoped>
 .slider{
+	filter: blur(5px);
 	position: relative;
 	top: 0;
 	min-height: 100%;

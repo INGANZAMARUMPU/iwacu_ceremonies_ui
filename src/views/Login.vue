@@ -50,7 +50,7 @@ export default{
 .home{
 }
 .overlay{
-	background-color: var(--overlay-color);
+	/*background-color: var(--overlay-color);*/
 	position: fixed;
 	top: 0;
 	width: 100%;
