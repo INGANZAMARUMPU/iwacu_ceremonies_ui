@@ -14,7 +14,11 @@
 		<div class="box col">Samed</div>
 		<div class="box col">Diman</div>
 		<div class="box" v-for="i in max+decalage"
-			:class="{'valid':inRange(i), 'taken':inTaken(i-decalage, month, year)}"
+			:class="{
+						'valid':inRange(i),
+						'taken':inTaken(i-decalage, month, year),
+						'invalid':inExpired(i-decalage, month, year)
+					}"
 			@click="e => showContext(e, i-decalage, month, year)">
 			<span v-if="inRange(i)">
 				{{ i - decalage }}
@@ -57,10 +61,14 @@ export default{
 			month_counting_base:1,
 			selected_date:undefined,
 			x:500, y:500, reserv_visible:false,
-			taken:"", salle:null, allocations_cache:[]
+			salle:null, allocations_cache:[]
 		}
 	},
 	computed:{
+		taken(){
+			let salle = this.$store.state.current_salle;
+			return !!salle?this.$store.state.current_salle.taken.map(x => x.date):[]
+		},
 		month_name(){
 			let month_=new Date(this.year, this.month-1, 1);
 			return month_.toLocaleString('fr', { month: 'long' }) +" "+ this.year;
@@ -94,14 +102,11 @@ export default{
 		"$store.state.current_salle"(new_val){
 			if(!new_val) return;
 			this.salle = new_val;
-			this.taken = !!new_val.allocation? new_val.allocation.map(
-				x => x.etat>0 ? x.date : null
-			):[]
 		}
 	},
 	methods:{
 		showContext(e, day, month, year){
-			if(this.inTaken(day, month, year)) return;
+			if(this.inTaken(day, month, year) || day<0) return;
 			this.reserv_visible = false;
 			this.x = e.clientX;
 			this.y = e.clientY;
@@ -115,7 +120,13 @@ export default{
 			month = month <= 9 ? '0'+month : month
 			day = day <= 9 ? '0'+day : day
 			let date = `${year}-${month}-${day}`
-			return this.taken.includes(date) || new Date(date) < new Date()
+			return this.taken.includes(date)
+		},
+		inExpired(day, month, year){
+			month = month <= 9 ? '0'+month : month
+			day = day <= 9 ? '0'+day : day
+			let date = `${year}-${month}-${day}`
+			return new Date(date) < new Date()
 		},
 		decreaseMonth(){
 			if(this.addition<1) return;
@@ -202,8 +213,7 @@ export default{
 </script>
 <style scoped>
 .taken{
-	background: gray!important;
-	color: white!important;
+	color: gray!important;
 	text-decoration: line-through;
 	cursor: not-allowed!important;
 }
@@ -228,6 +238,13 @@ export default{
 	text-align: center;
 	font-size: 2em;
 	color: var(--primary);
+}
+.invalid{
+	background: gray!important;
+	color: white!important;
+	text-decoration: line-through;
+	color: var(--primary);
+	cursor: pointer;
 }
 .valid{
 	color: var(--primary);
