@@ -35,7 +35,7 @@ export default{
 	methods:{
 		details(id){
 			this.$router.push(`/details/${id}`)
-		}
+		},
 		reserver(id){
 			this.$router.push(`/details/${id}#calendar`)
 		}

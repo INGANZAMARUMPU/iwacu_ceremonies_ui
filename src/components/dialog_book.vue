@@ -2,7 +2,7 @@
 <div class="overlay">
 	<div class="form">
 		<div class="buttons">
-			<button class="close" @click="$emit('close')">&times</button>
+			<button class="close" @click="close">&times</button>
 		</div>
 		<div class="field">
 			<label for="nom">Nom *</label>
@@ -49,6 +49,10 @@ export default{
 		}
 	},
 	methods:{
+		close(){
+			this.logs = ""
+			this.$emit('close')
+		},
 		reserver(){
 			this.logs = "demande en cours..."
 			if(this.tel_client.length<6){
@@ -71,8 +75,12 @@ export default{
 				try {salle.allocation.push(response.data)} catch(e) {}
 			}).catch((error) => {
 			  console.error(error);
-			  this.logs = error.response.data
-			})
+			  this.logs = `Reservation échouée`
+			}).finally(() => {
+				this.tel1 = ""
+				this.tel2 = ""
+				this.nom_client = ""
+			});
 		}
 	}
 };
