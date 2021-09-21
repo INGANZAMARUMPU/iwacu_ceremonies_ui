@@ -4,7 +4,8 @@
 		<div class="search">
 			<div class="field">
 				<label for="search">Recherche</label>
-				<input type="text" id="search" placeholder="nom de la salle ou quatrier">
+				<input type="text" id="search" v-model="keyword"
+					placeholder="nom de la salle ou quatrier">
 			</div>
 			<div class="field">
 				<label for="prix">Prix</label>
@@ -47,6 +48,16 @@
 import SuggestionItem from "./suggestion_item"
 export default{
 	components:{SuggestionItem, },
+	data(){
+		return {
+			keyword:""
+		}
+	},
+	watch:{
+		keyword(new_val){
+			this.$emit("search", {"keyword": new_val})
+		}
+	},
 	computed:{
 		quartiers(){
 			return ["Gihosha", "kamenge", "Ngagara", "Kinama", "Rohero", "Nyakabiga", "Buwiza", "Buyenzi", "Musaga", "Kanyosha"]

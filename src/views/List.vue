@@ -1,6 +1,6 @@
 <template>
 <div>
-	<BaseLayout>
+	<BaseLayout @search="search">
 		<div style="margin: 10px 0">
 			{{ $store.state.salles.length }} items found
 		</div>
@@ -35,6 +35,11 @@ export default {
 		}
 	},
 	methods:{
+		search(data){
+			this.salles = this.$store.state.salles.filter(x => {
+				return JSON.stringify(x).toUpperCase().includes(data.keyword.toUpperCase())
+			})
+		},
 		refetch(path){
 			if(path=="/mine"){
 				if(!this.active_user){
