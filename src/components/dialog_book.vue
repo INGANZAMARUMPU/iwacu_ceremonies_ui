@@ -70,7 +70,7 @@ export default{
 				"nom_client": this.nom_client,
 				"tel_client": this.tel_client
 			}
-			let message = `La demande a été soumise, Le proprietaire de la salle s'appelle <b>${salle.owner.first_name}  ${salle.owner.last_name}</b> son numero de telephone est <b>${salle.owner.username}</b>`
+			let message = `Votre demande a été soumise.<br>Pour plus d'informations veuillez nous contacter<b>`
 			axios.post(this.url+`/salle/${salle.id}/allouer/`, data)
 			.then((response) => {
 				this.logs = message

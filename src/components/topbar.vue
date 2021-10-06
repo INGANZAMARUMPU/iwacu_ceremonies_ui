@@ -1,7 +1,10 @@
 <template>
     <div id="nav">
     	<div class="logo">
-    		<router-link to="/">FiGiBook.com</router-link>
+    		<router-link to="/">
+    			<img src="@/assets/logo.png" width="36">
+    			FiGiBook.com
+    		</router-link>
     	</div>	
     	<div class="left">
     		<center>
@@ -36,7 +39,7 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
+	padding: 5px 20px 0 100px;
 	top: 0;
 	width: 100%;
 	z-index: 5;
@@ -48,9 +51,6 @@ export default {
 }
 button{
 	color: var(--white)!important;
-}
-.menu{
-	padding: 8px;
 }
 .menu:hover{
 	background-color: var(--primary-hover);

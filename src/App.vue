@@ -2,7 +2,7 @@
   <div id="app">
   	<TopBar/>
   	<div class="body">
-  		<router-view/>
+  		<router-view :key="$route.fullPath"/>
   	</div>
   </div>
 </template>

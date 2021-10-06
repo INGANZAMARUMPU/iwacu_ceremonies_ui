@@ -103,7 +103,11 @@ export default{
 				this.item = response.data;
 				this.$store.state.current_salle = response.data;
 			}).catch((error) => {
-			  console.error(error);
+				if(error.response.status==401){
+					this.refreshToken(this.fetchData)
+				}
+				this.logs = error.response.data;
+				console.error(error)
 			})
 		},
 		animatePictures(nb){
