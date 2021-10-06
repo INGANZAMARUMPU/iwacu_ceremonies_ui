@@ -8,23 +8,10 @@
 					placeholder="nom de la salle ou quatrier">
 			</div>
 			<div class="field">
-				<label for="prix">Prix</label>
-				<select name="prix" id="prix">
-					<option value="">----</option>
-					<option v-for="i in 5" :value="i">
-						{{(i-1)*500000+50000}}  à {{i*500000}} Fbu
-					</option>
-				</select>
+				<label for="date">Date</label>
+				<input type="date" id="date" name="date" v-model="date">
 			</div>
-			<div class="field">
-				<label for="localite">Place</label>
-				<select name="localite" id="localite">
-					<option v-for="quartier in quartiers" :value="quartier">
-						{{quartier}}
-					</option>
-				</select>
-			</div>
-			<button type="">Rechercher</button>
+			<button @click="search">Rechercher</button>
 		</div>
 	</div>
 	<hr style="margin: 10px 0">
@@ -50,17 +37,12 @@ export default{
 	components:{SuggestionItem, },
 	data(){
 		return {
-			keyword:""
+			keyword:"", date:""
 		}
 	},
 	watch:{
 		keyword(new_val){
 			this.$emit("search", {"keyword": new_val})
-		}
-	},
-	computed:{
-		quartiers(){
-			return ["Gihosha", "kamenge", "Ngagara", "Kinama", "Rohero", "Nyakabiga", "Buwiza", "Buyenzi", "Musaga", "Kanyosha"]
 		}
 	},
 	methods:{
@@ -69,6 +51,17 @@ export default{
 			.then((response) => {
 				this.$store.state.suggestions = response.data;
 				this.$store.state.images = response.data.map(x => x.salle.photo_principal)
+			}).catch((error) => {
+				console.error(error);
+			})
+		},
+		search(){
+			axios.get(this.url+`/salle/?search=${this.keyword}&date=${this.date}`)
+			.then((response) => {
+				this.$store.state.salles = response.data
+				if(window.location.pathname != "/"){
+					this.$router.push("/")
+				}
 			}).catch((error) => {
 				console.error(error);
 			})

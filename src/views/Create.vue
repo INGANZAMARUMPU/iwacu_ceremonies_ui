@@ -70,7 +70,7 @@
 		</div>
 		<div class="field">
 			<label for="details_prix">Precision à propos du prix</label>
-			<textarea id="details_prix" v-model="details_prix"
+			<textarea id="details_prix" v-model="prix_infos"
 				placeholder="autres prix selon les cas">
 			</textarea>
 		</div>
