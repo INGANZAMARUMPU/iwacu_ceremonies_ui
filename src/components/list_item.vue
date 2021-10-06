@@ -1,5 +1,5 @@
 <template>
-<div class="salle" @click="details(item.id)">
+<div class="salle" @click="details(item.nom)">
 	<div class="left">
 		<img :src="item.photo_principal">
 	</div>
@@ -33,11 +33,11 @@ export default{
 		}
 	},
 	methods:{
-		details(id){
-			this.$router.push(`/details/${id}`)
+		details(salle_name){
+			this.$router.push(`/details/${salle_name}`)
 		},
-		reserver(id){
-			this.$router.push(`/details/${id}#calendar`)
+		reserver(salle_name){
+			this.$router.push(`/details/${salle_name}#calendar`)
 		}
 	}
 };

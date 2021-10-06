@@ -95,9 +95,9 @@ export default{
 			this.current_img = null;
 		},
 		fetchData(){
-			let id = this.$route.params["id"];
+			let salle_name = this.$route.params["salle_name"];
 			let headers = !!this.active_user?this.headers:{}
-			axios.get(this.url+`/salle/${id}/`, headers)
+			axios.get(this.url+`/salle/by_name/${salle_name}/`, headers)
 			.then((response) => {
 				this.item = response.data;
 				this.$store.state.current_salle = response.data;

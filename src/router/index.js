@@ -18,7 +18,7 @@ const routes = [
   { path: '/login', name:'login', component:Login},
   { path: '/list/:prix/:localite', name:'search', component:List},
   { path: '/create', name:'create', component:Create},
-  { path: '/details/:id', name:'details', component:Details},
+  { path: '/details/:salle_name', name:'details', component:Details},
 ]
 
 const router = new VueRouter({
