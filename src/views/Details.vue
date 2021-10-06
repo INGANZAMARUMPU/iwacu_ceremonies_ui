@@ -1,25 +1,26 @@
 <template>
 <div>
 <BaseLayout>
+	<center><h1>{{ item.nom }}</h1></center>
 	<div class="mainpic">
 		<img :src="item.photo_principal" @click="display()"
 			width="100%" id="highlighted">
 	</div>
 	<div class="altpic">
 		<div class="pic">
-			<img :src="item.photo_principal" @click="highlight(item.photo_principal)" width="100%">
+			<img :src="item.photo_principal" id="photo_0" @click="highlight(item.photo_principal)" width="100%">
 		</div>
 		<div class="pic">
-			<img :src="item.photo_1" @click="highlight(item.photo_1)" width="100%">
+			<img :src="item.photo_1" id="photo_1" @click="highlight(item.photo_1)" width="100%">
 		</div>
 		<div class="pic">
-			<img :src="item.photo_2" @click="highlight(item.photo_2)" width="100%">
+			<img :src="item.photo_2" id="photo_2" @click="highlight(item.photo_2)" width="100%">
 		</div>
 		<div class="pic">
-			<img :src="item.photo_3" @click="highlight(item.photo_3)" width="100%">
+			<img :src="item.photo_3" id="photo_3" @click="highlight(item.photo_3)" width="100%">
 		</div>
 		<div class="pic">
-			<img :src="item.photo_4" @click="highlight(item.photo_4)" width="100%">
+			<img :src="item.photo_4" id="photo_4" @click="highlight(item.photo_4)" width="100%">
 		</div>
 	</div>
 	<div class="pics">
@@ -104,14 +105,30 @@ export default{
 			}).catch((error) => {
 			  console.error(error);
 			})
+		},
+		animatePictures(nb){
+			parent = this;
+			this.interval_function = setInterval(() => {
+				if(nb>4) nb = 0;
+				let item = document.getElementById(`photo_${nb}`)
+				item.click()
+				nb++
+			}, 3000,)
 		}
 	},
 	mounted(){
 		this.fetchData()
+		this.animatePictures(0)
+	},
+	beforeDestroy(){
+		clearInterval(this.interval_function)
 	}
 };
 </script>
 <style scoped>
+center h1 {
+	margin: 30px;
+}
 .pics{
 	display: grid;
 	grid-gap: 5px;
