@@ -18,12 +18,8 @@
 			<input type="text" v-model="tel2" id="tel2" placeholder="votre numero de télephone">
 		</div>
 		<label class="logs" v-html="logs.slice(0, 256)"></label>
-		<a v-if="!!new_date" :href="`https://api.whatsapp.com/send?phone=
-			${$store.state.current_salle.owner.username}
-			&text=Je m'appele ${nom_client}. Je veux reserver la salle 
-			${$store.state.current_salle.nom} pour la date du ${new_date}`"
-			target="_blank">
-			Whatsapp
+		<a v-if="!!new_date" :href="whatsapp_url" target="_blank" class="whatsapp_link">
+			CONTINUER AVEC WHATSAPP
 		</a>
 		<img src="" alt="">
 		<div class="buttons" id="book">
@@ -46,11 +42,20 @@ export default{
 			let tel1 = this.tel1.length>5?this.tel1:""
 			let tel2 = this.tel2.length>5?" / "+this.tel2:""
 			return tel1 + tel2 
+		},
+		whatsapp_url(){
+			return `https://api.whatsapp.com/send?phone=
+			${this.$store.state.current_salle.owner.username}
+			&text=Je m'appele ${this.nom_client}. Je veux reserver la salle 
+			${this.$store.state.current_salle.nom} pour la date du ${this.new_date}`
 		}
 	},
 	methods:{
 		close(){
 			this.logs = ""
+			this.tel1 = ""
+			this.tel2 = ""
+			this.nom_client = ""
 			this.$emit('close')
 		},
 		reserver(){
@@ -76,10 +81,6 @@ export default{
 			}).catch((error) => {
 			  console.error(error);
 			  this.logs = `Reservation échouée`
-			}).finally(() => {
-				this.tel1 = ""
-				this.tel2 = ""
-				this.nom_client = ""
 			});
 		}
 	}
@@ -123,5 +124,16 @@ label{
 }
 button{
 	margin-top: 20px;
+}
+.whatsapp_link{
+	background-color: #5b5;
+	color: white;
+	font-weight: 600;
+	margin: 10px 10px 0 10px;
+	padding: 7px;
+	display: block;
+	text-align: center;
+	border-radius: 5px;
+	text-decoration: none;
 }
 </style>
