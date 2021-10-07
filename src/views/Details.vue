@@ -1,7 +1,6 @@
 <template>
 <div>
 <BaseLayout>
-	<div v-if="item">
 	<center><h1>{{ item.nom }}</h1></center>
 	<div class="mainpic">
 		<img :src="item.photo_principal" @click="display()"
@@ -63,7 +62,6 @@
 		</div>
 	</div>
 	<Calendar/>
-	</div>
 </BaseLayout>
 <ImgPlayer
 	:item="current_img" @close="closeImage"
@@ -79,18 +77,13 @@ export default{
 	components:{BaseLayout, ImgPlayer, Calendar},
 	data(){
 		return {
-			current_img:null
-		}
-	},
-	computed:{
-		item(){
-			return this.$store.state.current_salle
+			item:{allocation:[]}, current_img:null
 		}
 	},
 	watch:{
 		"$store.state.user.access"(new_val){
 			this.fetchData()
-		},
+		}
 	},
 	methods:{
 		display(){
@@ -101,6 +94,21 @@ export default{
 		},
 		closeImage(){
 			this.current_img = null;
+		},
+		fetchData(){
+			let salle_name = this.$route.params["salle_name"];
+			let headers = !!this.active_user?this.headers:{}
+			axios.get(this.url+`/salle/by_slug/${salle_name}/`, headers)
+			.then((response) => {
+				this.item = response.data;
+				this.$store.state.current_salle = response.data;
+			}).catch((error) => {
+				if(error.response.status==401){
+					this.refreshToken(this.fetchData)
+				}
+				this.logs = error.response.data;
+				console.error(error)
+			})
 		},
 		animatePictures(nb){
 			parent = this;
@@ -113,6 +121,7 @@ export default{
 		}
 	},
 	mounted(){
+		this.fetchData()
 		this.animatePictures(0)
 	},
 	beforeDestroy(){
