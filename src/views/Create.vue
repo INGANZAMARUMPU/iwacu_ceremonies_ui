@@ -69,8 +69,8 @@
 			</div>
 		</div>
 		<div class="field">
-			<label for="details_prix">Precision à propos du prix</label>
-			<textarea id="details_prix" v-model="prix_infos"
+			<label for="details_prix">Autres details:</label>
+			<textarea id="details_prix" v-model="details"
 				placeholder="autres prix selon les cas">
 			</textarea>
 		</div>
@@ -88,7 +88,7 @@ export default{
 	data(){
 		return {
 			nom:"", parking:"", places:"", ajouts:"",
-			obligations:"", prix_min:"", prix_max:"", prix_infos:"",
+			obligations:"", prix_min:"", prix_max:"", details:"",
 			province:"", commune:"", quartier:"", logs:"",
 			img_logs:"", img1:null, img2:null, img3:null,
 			img4:null, img5:null
@@ -148,7 +148,7 @@ export default{
 			form.append("obligations", this.obligations)
 			form.append("prix_min", this.prix_min)
 			form.append("prix_max", this.prix_max)
-			form.append("prix_infos", this.prix_infos)
+			form.append("details", this.details)
 			form.append("photo_principal", this.img1)
 			form.append("photo_1", this.img2)
 			form.append("photo_2", this.img3)

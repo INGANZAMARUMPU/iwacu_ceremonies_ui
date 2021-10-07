@@ -1,6 +1,7 @@
 <template>
 <div>
 <BaseLayout>
+	<div v-if="item">
 	<center><h1>{{ item.nom }}</h1></center>
 	<div class="mainpic">
 		<img :src="item.photo_principal" @click="display()"
@@ -62,6 +63,7 @@
 		</div>
 	</div>
 	<Calendar/>
+	</div>
 </BaseLayout>
 <ImgPlayer
 	:item="current_img" @close="closeImage"
