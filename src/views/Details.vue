@@ -83,7 +83,10 @@ export default{
 	watch:{
 		"$store.state.user.access"(new_val){
 			this.fetchData()
-		}
+		},
+		$route(to, from) {
+			this.fetchData()
+	    }
 	},
 	methods:{
 		display(){
