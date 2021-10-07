@@ -77,13 +77,18 @@ export default{
 	components:{BaseLayout, ImgPlayer, Calendar},
 	data(){
 		return {
-			item:{allocation:[]}, current_img:null
+			current_img:null
+		}
+	},
+	computed:{
+		item(){
+			return this.$store.state.current_salle
 		}
 	},
 	watch:{
 		"$store.state.user.access"(new_val){
 			this.fetchData()
-		}
+		},
 	},
 	methods:{
 		display(){
@@ -94,21 +99,6 @@ export default{
 		},
 		closeImage(){
 			this.current_img = null;
-		},
-		fetchData(){
-			let salle_name = this.$route.params["salle_name"];
-			let headers = !!this.active_user?this.headers:{}
-			axios.get(this.url+`/salle/by_name/${salle_name}/`, headers)
-			.then((response) => {
-				this.item = response.data;
-				this.$store.state.current_salle = response.data;
-			}).catch((error) => {
-				if(error.response.status==401){
-					this.refreshToken(this.fetchData)
-				}
-				this.logs = error.response.data;
-				console.error(error)
-			})
 		},
 		animatePictures(nb){
 			parent = this;
@@ -121,7 +111,6 @@ export default{
 		}
 	},
 	mounted(){
-		this.fetchData()
 		this.animatePictures(0)
 	},
 	beforeDestroy(){

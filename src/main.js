@@ -62,7 +62,21 @@ Vue.mixin({
             URL.revokeObjectURL(file);
         };
       }
-    }
+    },
+    setActiveItem(id){
+      let headers = !!this.active_user?this.headers:{}
+      axios.get(this.url+`/salle/${id}/`, headers)
+      .then((response) => {
+        this.item = response.data;
+        this.$store.state.current_salle = response.data;
+      }).catch((error) => {
+        if(error.response.status==401){
+          this.refreshToken(() => this.setActiveItem(id))
+        }
+        this.logs = error.response.data;
+        console.error(error)
+      })
+    },
   },
   computed:{
     active_user(){

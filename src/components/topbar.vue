@@ -2,7 +2,7 @@
     <div id="nav">
     	<div class="logo">
     		<router-link to="/">
-    			<img src="@/assets/logo.png" width="36">
+    			<img src="/static/logo.png" width="36">
     			FiGiBook.com
     		</router-link>
     	</div>	
@@ -65,6 +65,7 @@ button{
 	#nav{
 		display: block;
 		position: relative;
+		padding: 5px;
 	}
 	.logo{
 		display: flex;

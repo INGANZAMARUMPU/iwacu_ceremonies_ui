@@ -21,7 +21,7 @@
 				<center><h4>Nos Suggestions</h4></center>
 				<div class="items">
 					<SuggestionItem v-for="suggestion in $store.state.suggestions"
-						:key="suggestion.salle.id" :item="suggestion.salle"/>
+						:key="suggestion.salle.nom" :item="suggestion.salle"/>
 				</div>
 			</div>
 			<div class="slot">
