@@ -1,7 +1,7 @@
 <template>
 <div class="main">
 	<div class="head">
-		<button @click="decreaseMonth"><<</button>
+		<button @click="decreaseMonth">&lt&lt</button>
 		<div class="month">{{month_name}}</div>
 		<button @click="increaseMonth">>></button>
 	</div>

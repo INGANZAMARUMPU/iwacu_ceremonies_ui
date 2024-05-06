@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import axios from "axios"
 import App from './App.vue'
 import router from './router'
@@ -14,9 +14,8 @@ library.add(faSearchPlus)
 library.add(faCheck)
 library.add(faTimes)
 
-Vue.component('fa', FontAwesomeIcon)
 
-Vue.mixin({
+let mixins = {
   methods: {
     money(x) {
       if(x == undefined) return 0;
@@ -93,12 +92,12 @@ Vue.mixin({
       }
     }
   }
-})
+}
 window.axios = axios;
-Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+createApp(App)
+	.component('fa', FontAwesomeIcon)
+	.mixin(mixins)
+  .use(store)
+	.use(router)
+	.mount('#app')
