@@ -47,8 +47,6 @@ export default{
 };
 </script>
 <style scoped>
-.home{
-}
 .overlay{
 	/*background-color: var(--overlay-color);*/
 	position: fixed;
