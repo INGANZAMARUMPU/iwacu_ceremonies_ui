@@ -2,7 +2,7 @@
 <div>
 <BaseLayout>
 	<center><h1>{{ item.nom }}</h1></center>
-	<div class="mainpic">
+	<div ref="mainpic" class="mainpic">
 		<img :src="item.photo_principal" @click="display()"
 			width="100%" id="highlighted">
 	</div>
@@ -124,6 +124,8 @@ export default{
 		}
 	},
 	mounted(){
+		this.$refs.mainpic.scrollIntoView()
+
 		this.fetchData()
 		this.animatePictures(0)
 	},
