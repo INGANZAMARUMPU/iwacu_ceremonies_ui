@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main section">
     <div class="head">
       <button @click="decreaseMonth">&lt&lt</button>
       <div class="month">{{ month_name }}</div>
@@ -277,6 +277,7 @@ export default {
   flex-grow: 1;
   margin: 2px;
   font-weight: 700;
+  font-size: small;
   text-align: center;
   padding-top: 8px;
   padding-bottom: 8px;
