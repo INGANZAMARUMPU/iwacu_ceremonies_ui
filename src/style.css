@@ -1,48 +1,114 @@
 @charset "UTF-8";
 :root {
-    --font-family-sans-serif: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --primary: #932;
-    --primary-hover: #a32;
-    --white: #eef;
-    --overlay-color:#d847;
+  --font-family-sans-serif: "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --primary: #932;
+  --primary-hover: #a32;
+  --white: #eef;
+  --overlay-color: #d847;
 }
-*{
-    box-sizing: border-box;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    outline:0;
-    font-family: var(--font-family-sans-serif);
-    overflow-x: hidden;
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  font-family: var(--font-family-sans-serif);
+  overflow-x: hidden;
 }
-button, select{
-	border-radius: 5px;
-    padding: 8px 25px;
-    border-radius: 5px;
+button,
+select {
+  border-radius: 5px;
+  padding: 8px 25px;
+  border-radius: 5px;
 }
-button{
-    background-color: var(--primary);
-    color: var(--white);
-    border: 1px solid var(--white);
+button {
+  background-color: var(--primary);
+  color: var(--white);
+  border: 1px solid var(--white);
 }
-input{
-	padding: 8px 25px;
-	border-radius: 5px;
-	background-color: var(--white);
-    border-width: 1px;
+input {
+  padding: 8px 25px;
+  border-radius: 5px;
+  background-color: var(--white);
+  border-width: 1px;
 }
-button:hover{
-	background-color: var(--primary-hover);
+button:hover {
+  background-color: var(--primary-hover);
 }
-h1, h2, h3, h4{
-    color: var(--primary);
-    margin: 5px 0;
+h1,
+h2,
+h3,
+h4 {
+  color: var(--primary);
+  margin: 5px 0;
 }
-.logs{
-    color:red;
+.logs {
+  color: red;
 }
+
+/** Formulaires d'authentification*/
+/* Add styles to the form container */
+.form-container {
+  max-width: 400px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover,
+.open-button:hover {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 800px) {
+  .form-container {
+    max-width: 300px;
+  }
+}
+/**Fin Formulaires d'authentification*/
+
+
 @media only screen and (max-width: 400px) {
-    .body{
-        margin-top: 0;
-    }
+  .body {
+    margin-top: 0;
+  }
+  .form-container {
+    max-width: 300px;
+  }
 }
