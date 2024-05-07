@@ -20,7 +20,11 @@ export default {
     document.body.addEventListener(
       "mouseup",
       (evt) => {
-        if (evt.target.id == "popup") this.$store.state.auth_popup = false;
+        const condition1 = Array.from(evt.target.classList).includes(
+          "form-popup"
+        );
+        const condition2 = evt.target.id == "popup";
+        if (condition1 || condition2) this.$store.state.auth_popup = false;
       },
       true
     );
@@ -39,9 +43,11 @@ body {
 #popup {
   background: rgba(112, 112, 112, 0.656);
   /* opacity: 0.8; */
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
