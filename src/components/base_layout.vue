@@ -2,16 +2,15 @@
   <div class="base_layout">
     <div id="hero">
       <img src="/static/house.jpg" alt="" srcset="" />
-    </div>
-    <div class="top">
-      <div class="search">
-        <div class="m-right field">
-          <label for="search">Recherche</label>
+      <div class="top">
+        <div class="search">
+          <div class="m-right field">
+            <label for="search">Recherche</label>
           <input
-            type="text"
-            id="search"
-            v-model="keyword"
-            placeholder="nom de la salle ou quatrier"
+          type="text"
+          id="search"
+          v-model="keyword"
+          placeholder="nom de la salle ou quatrier"
           />
         </div>
         <div class="field">
@@ -21,6 +20,7 @@
         <button @click="search">Rechercher</button>
       </div>
     </div>
+  </div>
     <hr style="margin: 10px 0" />
     <div class="content">
       <div class="flex">
