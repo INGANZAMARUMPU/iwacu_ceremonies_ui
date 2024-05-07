@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <hr style="margin: 10px 0" />
+    <!-- <hr style="margin: 10px 0" /> -->
     <div class="content">
       <div class="flex">
         <div v-if="!!!suggestion" class="left">
@@ -126,6 +126,7 @@ input {
   max-width: 1200px;
   overflow: hidden;
   margin: auto;
+  margin-top: 2vh;
 }
 .content {
   padding: 0 10px;
