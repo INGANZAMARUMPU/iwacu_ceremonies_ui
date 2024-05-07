@@ -61,7 +61,7 @@ export default {
   width: 100%;
   z-index: 5;
   border-bottom: 2px solid var(--primary);
-  position: sticky;
+  position: fixed;
 }
 #nav * {
   color: var(--primary);
@@ -85,6 +85,11 @@ button {
   font-weight: 700;
   font-family: monospace;
 }
+img{
+	width: 25%;
+	border: 1px solid var(--primary);
+	border-radius: 5px;
+}
 .nav-items {
   display: flex;
   justify-content: space-between;
@@ -93,7 +98,7 @@ button {
 @media only screen and (max-width: 540px) {
   #nav {
     display: block;
-    position: relative;
+    /* position: relative; */
     padding: 5px;
   }
   .logo {
