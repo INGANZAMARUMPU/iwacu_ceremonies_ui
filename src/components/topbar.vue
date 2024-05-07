@@ -6,16 +6,18 @@
         FiGiBook.com
       </router-link>
     </div>
-    <div class="left">
+    <div
+      class="left"
+    >
       <center>
-        <div v-if="!!active_user">
+        <div class="nav-items" v-if="!!active_user">
           <router-link to="/mine" class="menu"> Mes Salles </router-link>
           <router-link to="/create" class="menu">
             Ajouter une Salle
           </router-link>
           <button @click="$store.state.user = null">Se Deconnecter</button>
         </div>
-        <div v-else>
+        <div class="nav-items" v-else>
           <button to="/register" class="menu" @click="register">
             S'abonner
           </button>
@@ -67,6 +69,13 @@ export default {
 button {
   color: var(--white) !important;
 }
+.menu {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
 .menu:hover {
   background-color: var(--primary-hover);
   color: var(--white) !important;
@@ -75,6 +84,11 @@ button {
   font-size: 1.5em;
   font-weight: 700;
   font-family: monospace;
+}
+.nav-items {
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
 }
 @media only screen and (max-width: 540px) {
   #nav {
