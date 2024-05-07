@@ -16,22 +16,34 @@
           <button @click="$store.state.user = null">Se Deconnecter</button>
         </div>
         <div v-else>
-          <router-link to="/register" class="menu"> S'abonner </router-link>
-          <button @click="signin">Se Connecter</button>
+          <button to="/register" class="menu" @click="register">
+            S'abonner
+          </button>
+          <button @click="login">Se Connecter</button>
         </div>
       </center>
     </div>
   </div>
-  <Popup v-if="$store.state.auth_popup"></Popup>
+  <Popup :action="action" v-if="$store.state.auth_popup"></Popup>
 </template>
 <script>
 import Popup from "../components/popup.vue";
 export default {
   components: { Popup },
+  data() {
+    return {
+      action: 0,
+    };
+  },
 
   methods: {
-    signin() {
+    login() {
       this.$store.state.auth_popup = true;
+      this.action = 0;
+    },
+    register() {
+      this.$store.state.auth_popup = true;
+      this.action = 1;
     },
   },
 };
