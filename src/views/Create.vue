@@ -114,6 +114,8 @@
           <div class="field">
             <label for="ajouts">Valeurs ajoutées</label>
             <textarea
+              cols="30"
+              rows="10"
               id="ajouts"
               v-model="ajouts"
               placeholder="autres choses que le client beneficie"
@@ -123,6 +125,8 @@
           <div class="field">
             <label for="obligations">Obligations</label>
             <textarea
+              cols="30"
+              rows="10"
               id="obligations"
               v-model="obligations"
               placeholder="ce que vous obligez aux clients"
@@ -150,6 +154,8 @@
           <div class="field">
             <label for="details_prix">Autres details:</label>
             <textarea
+              cols="30"
+              rows="10"
               id="details_prix"
               v-model="details"
               placeholder="autres prix selon les cas"
@@ -313,12 +319,13 @@ input {
   margin: 20px 0 20px auto;
 }
 
-input {
+input, textarea {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
   background: #f1f1f1;
+  border: 1px solid var(--white3);
 }
 @media only screen and (max-width: 400px) {
   .field {
