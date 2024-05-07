@@ -6,21 +6,21 @@
         <div class="search">
           <div class="m-right field">
             <label for="search">Recherche</label>
-          <input
-          type="text"
-          id="search"
-          v-model="keyword"
-          placeholder="nom de la salle ou quatrier"
-          />
+            <input
+              type="text"
+              id="search"
+              v-model="keyword"
+              placeholder="nom de la salle ou quatrier"
+            />
+          </div>
+          <div class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" v-model="date" />
+          </div>
+          <button @click="search">Rechercher</button>
         </div>
-        <div class="field">
-          <label for="date">Date</label>
-          <input type="date" id="date" name="date" v-model="date" />
-        </div>
-        <button @click="search">Rechercher</button>
       </div>
     </div>
-  </div>
     <hr style="margin: 10px 0" />
     <div class="content">
       <div class="flex">
@@ -149,7 +149,6 @@ input {
 .left {
   background: #eee;
   padding: 10px;
-  /* position: absolute; */
   border-radius: 2px;
   margin-right: 20px;
 }
