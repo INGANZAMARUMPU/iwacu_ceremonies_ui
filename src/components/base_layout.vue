@@ -24,7 +24,7 @@
     <hr style="margin: 10px 0" />
     <div class="content">
       <div class="flex">
-        <div class="left">
+        <div v-if="!!!suggestion" class="left">
           <center><h4>Nos Suggestions</h4></center>
           <div class="items">
             <SuggestionItem
@@ -148,6 +148,7 @@ input {
 .left {
   background: #eee;
   padding: 10px;
+  /* position: absolute; */
   border-radius: 2px;
   margin-right: 20px;
 }

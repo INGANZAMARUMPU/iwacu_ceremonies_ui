@@ -1,5 +1,5 @@
 <template>
-<div class="salle" @click="details(item.slug)">
+<div class="salle section" @click="details(item.slug)">
 	<div class="left">
 		<img :src="item.photo_principal">
 	</div>
@@ -49,7 +49,6 @@ export default{
 	padding: 10px;
 	overflow: hidden;
 	height: 260px;
-	border-top: 2px solid gray;
 }
 .left{
 	max-height: 260px;

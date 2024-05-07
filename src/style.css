@@ -7,6 +7,8 @@
   --primary-hover: #a32;
   --white: #eef;
   --overlay-color: #d847;
+  --white2: #fdf9f9;
+  --white3: #ebe4e4;
 }
 * {
   box-sizing: border-box;
@@ -103,6 +105,19 @@ h4 {
 }
 /**Fin Formulaires d'authentification*/
 
+/** design sections */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.section {
+  background: var(--white2);
+  padding: 20px;
+  border: 1px solid var(--white3);
+  border-radius: 10px;
+}
+/**End design sections */
 
 @media only screen and (max-width: 400px) {
   .body {
