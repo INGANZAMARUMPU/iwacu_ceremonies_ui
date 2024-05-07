@@ -3,8 +3,8 @@
   --font-family-sans-serif: "Segoe UI", Roboto, "Helvetica Neue", Arial,
     "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
-  --primary: #932;
-  --primary-hover: #a32;
+  --primary: rgb(34, 153, 141);
+  --primary-hover: rgb(170, 159, 34);
   --white: #eef;
   --overlay-color: #d847;
   --white2: #fdf9f9;

@@ -94,6 +94,7 @@ export default {
 <style scoped>
 #hero {
   position: relative;
+  /* top: 0; */
 }
 
 .search {

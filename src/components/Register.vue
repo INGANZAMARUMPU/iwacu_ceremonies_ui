@@ -103,3 +103,8 @@ export default {
   },
 };
 </script>
+<style>
+.form-popup{
+  height: 90%;
+}
+</style>
