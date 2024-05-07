@@ -21,7 +21,6 @@ export default {
       "mouseup",
       (evt) => {
         if (evt.target.id == "popup") this.$store.state.auth_popup = false;
-        console.log(evt);
       },
       true
     );

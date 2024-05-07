@@ -124,7 +124,8 @@ export default{
 		}
 	},
 	mounted(){
-		this.$refs.mainpic.scrollIntoView()
+		// this.$refs.mainpic.scrollIntoView()
+		window.scrollBy(0, 10)
 
 		this.fetchData()
 		this.animatePictures(0)
