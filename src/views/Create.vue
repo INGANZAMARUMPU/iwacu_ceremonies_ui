@@ -264,7 +264,8 @@ export default {
     },
   },
   mounted() {
-    window.scrollBy(0, 200);
+    if (window.screen.width <= 400) window.scrollBy(0, 500);
+    else window.scrollBy(0, 200);
   },
 };
 </script>
