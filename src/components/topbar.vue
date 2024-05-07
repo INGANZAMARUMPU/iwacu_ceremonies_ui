@@ -6,9 +6,7 @@
         FiGiBook.com
       </router-link>
     </div>
-    <div
-      class="left"
-    >
+    <div class="left">
       <center>
         <div class="nav-items" v-if="!!active_user">
           <router-link to="/mine" class="menu"> Mes Salles </router-link>
@@ -60,7 +58,7 @@ export default {
   top: 0;
   width: 100%;
   z-index: 5;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 1px solid var(--primary);
   position: fixed;
 }
 #nav * {
@@ -85,10 +83,10 @@ button {
   font-weight: 700;
   font-family: monospace;
 }
-img{
-	width: 25%;
-	border: 1px solid var(--primary);
-	border-radius: 5px;
+img {
+  width: 25%;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
 }
 .nav-items {
   display: flex;
