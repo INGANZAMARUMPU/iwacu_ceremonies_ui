@@ -47,17 +47,16 @@ export default{
 </script>
 <style scoped>
 .slider{
-	filter: blur(5px);
 	position: relative;
 	top: 0;
-	min-height: 100%;
-	height:calc(100vh - 50px);
+	height:100vh;
 	overflow: hidden;
 	white-space: unset;
 }
 img{
 	position: absolute;
-	min-width: 100%;
+	top: 0;
+	width: 100%;
 	min-height: 100%;
 	left: 50%;
 	transform: translateX(-50%);

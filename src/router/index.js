@@ -6,8 +6,7 @@ import Details from '../views/Details'
 
 
 const routes = [
-  // { path: '/', name:'home', component:Home},
-  { path: '/', name:'home', component:List},
+  { path: '/', name:'home', component:Home},
   { path: '/mine', name:'mine', component:List},
   // { path: '/list', name:'list', component:List},
   { path: '/list/:prix/:localite', name:'search', component:List},

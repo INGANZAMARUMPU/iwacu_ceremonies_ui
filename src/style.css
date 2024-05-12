@@ -3,8 +3,8 @@
   --font-family-sans-serif: "Segoe UI", Roboto, "Helvetica Neue", Arial,
     "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
-  --primary: rgb(34, 153, 141);
-  --primary-hover: rgb(86, 184, 175);
+  --primary-hover: rgb(248, 170, 97);
+  --primary: rgb(216, 135, 60);
   --hover: red;
   --white: #eef;
   --overlay-color: #d847;
@@ -18,16 +18,25 @@
   font-family: var(--font-family-sans-serif);
   overflow-x: hidden;
 }
+.router-view{
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+}
 button,
 select {
   border-radius: 5px;
-  padding: 15px 20px;
+  padding: 13px 20px;
   border-radius: 5px;
+}
+select {
+  border: 1px solid lightgray;
+  color: #888;
 }
 button {
   background-color: var(--primary);
-  color: var(--white);
-  border: 1px solid var(--white);
+  color: #fff;
+  border: 0;
   font-size: 1em;
 }
 input {

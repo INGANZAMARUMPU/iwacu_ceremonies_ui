@@ -7,7 +7,7 @@
           FiGiBook.com
         </router-link>
       </div>
-      <div class="center">
+      <div>
         <router-link to="/"
           v-slot="{ href, navigate, isActive, isExactActive }">
           <div class="menu-item" @click="closeNav(navigate)">
@@ -114,7 +114,8 @@ export default {
 </script>
 <style scoped>
 #nav{
-  border-bottom: 2px solid #EEE;
+  background-color: #FFFa;
+  border-bottom: 2px solid #9995;
 }
 .menu, .menu > *{
   display: flex;
@@ -132,7 +133,7 @@ a{
 }
 .submenu{
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   background-color: white;
 }
 .menu-item{
@@ -150,7 +151,10 @@ a{
 .submenu-item{
   padding: 10px;
 }
+.content-item{
+  height: 100%;
+}
 a:hover{
-  color: var(--hover);
+  color: var(--primary);
 }
 </style>
