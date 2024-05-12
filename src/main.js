@@ -41,6 +41,17 @@ let mixins = {
         }
       })
     },
+    fetchSalles() {
+      axios
+        .get(this.url + "/salle/")
+        .then((response) => {
+          this.$store.state.salles = response.data;
+          this.salles = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
     compress(file, width, callback){
       let reader = new FileReader();
       reader.readAsDataURL(file);

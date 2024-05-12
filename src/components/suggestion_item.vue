@@ -1,22 +1,24 @@
 <template>
 <div class="salle" @click="details(item.slug)">
-	<div class="img">
-		<img :src="item.photo_principal">
-	</div>
-	<h3 style="margin:10px 0">{{ item.nom }}</h3>
+	<img :src="item.photo_principal">
 	<div class="infos">
-		<div class="details">
-			<div><b>places:</b> {{ item.no_places }}</div>
-			<div><b>parkings:</b> {{ item.taille_parking }}</div>
+		<h3>{{ item.nom }}</h3>
+		<div><small>{{ item.lieu }}</small></div>
+		<h2>{{ money(item.prix_min) }} FBU</h2>
+		<div class="numbers">
 			<div>
-				<b>prix: </b>
-				<span>
-					<b>{{ item.prix_min }}</b> à 
-					<b>{{ item.prix_max }}</b>
-				</span>
+				<div class="key">Places</div>
+				<div>{{ item.no_places }}</div>
+			</div>
+			<div>
+				<div class="key">Parkings</div>
+				<div>{{ item.taille_parking }}</div>
+			</div>
+			<div>
+				<div class="key">Decor</div>
+				<div>{{ money(item.prix_max - item.prix_min) }} BIF</div>
 			</div>
 		</div>
-		<button class="reserver" @click="reserver(item.slug)">Reserver</button>
 	</div>
 </div>
 </template>
@@ -40,32 +42,24 @@ export default{
 </script>
 <style scoped>
 .salle{
-	width: 250px;
-	margin-bottom: 10px;
-	overflow: hidden;
-	border-radius: 2px;
+	width: 100%;
+	border-radius: 5px;
 }
 .img, img{
 	width: 100%;
-	border-radius: 2px;
 }
 .img{
-	max-height: 180px;
 	overflow: hidden;
 }
-a{
-    color: blue;
-    text-decoration: underline;
+.infos{
+	background-color: white;
+	padding: 20px;
 }
-.check_date{
-	width: 200px;
-	margin: 10px;
+.numbers{
+	display: flex;
+	gap:20px;
 }
-.check_date *{
-	width: 100%;
-}
-button{
-	display: block;
-	width: 100%;
+.key{
+	color: #333;
 }
 </style>

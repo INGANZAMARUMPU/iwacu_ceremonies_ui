@@ -63,17 +63,6 @@ export default {
         }
       }
     },
-    fetchSalles() {
-      axios
-        .get(this.url + "/salle/")
-        .then((response) => {
-          this.$store.state.salles = response.data;
-          this.salles = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    },
     fetchMesSalles() {
       axios
         .get(this.url + "/salle/mine/", this.headers)

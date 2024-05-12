@@ -17,6 +17,10 @@
   outline: 0;
   font-family: var(--font-family-sans-serif);
   overflow-x: hidden;
+  color: #666;
+}
+html{
+  background-color: #fcf4ed;
 }
 .router-view{
   position: absolute;
@@ -48,12 +52,12 @@ input {
 button:hover {
   background-color: var(--primary-hover);
 }
-h1,
-h2,
-h3,
-h4 {
+h1, h2{
   color: var(--primary);
   margin: 5px 0;
+}
+h3{
+  color: #333;
 }
 .logs {
   color: red;
