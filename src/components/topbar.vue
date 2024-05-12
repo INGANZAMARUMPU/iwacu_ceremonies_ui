@@ -1,108 +1,156 @@
 <template>
   <div id="nav">
-    <div class="logo">
-      <router-link to="/">
-        <img src="/static/logo.png" width="36" />
-        FiGiBook.com
-      </router-link>
-    </div>
-    <div class="left">
-      <center>
-        <div class="nav-items" v-if="!!active_user">
-          <router-link to="/mine" class="menu"> Mes Salles </router-link>
-          <router-link to="/create" class="menu">
-            Ajouter une Salle
-          </router-link>
-          <button @click="$store.state.user = null">Se Deconnecter</button>
+    <div class="menu">
+      <div class="logo">
+        <router-link to="/">
+          <img src="/static/logo.png" width="36" />
+          FiGiBook.com
+        </router-link>
+      </div>
+      <div class="center">
+        <router-link to="/"
+          v-slot="{ href, navigate, isActive, isExactActive }">
+          <div class="menu-item" @click="closeNav(navigate)">
+            <a :href="href" :class="{ selected: isActive }">
+              Accueil
+            </a>
+          </div>
+        </router-link>
+        <div class="content-item">
+          <div class="menu-item parent-menu" @click="closeNav(navigate)">
+            <router-link to="/"
+              v-slot="{ href, navigate, isActive, isExactActive }">
+              <div @click="closeNav(navigate)">
+                <a :href="href" :class="{ selected: isActive }">
+                  Les salles
+                </a>
+                <fa />
+              </div>
+            </router-link>
+            <div class="submenu">
+              <div>
+                <router-link
+                  to="/investissements"
+                  v-slot="{ href, navigate, isActive, isExactActive }">
+                  <div class="submenu-item" @click="closeNav(navigate)">
+                    <a :href="href" :class="{ selected: isActive }">
+                      Tout les salles
+                    </a>
+                  </div>
+                </router-link>
+                <router-link
+                  to="/passifs"
+                  v-slot="{ href, navigate, isActive, isExactActive }">
+                  <div class="submenu-item" @click="closeNav(navigate)">
+                    <a :href="href" :class="{ selected: isActive }">
+                      Mes salles
+                    </a>
+                  </div>
+                </router-link>
+                <router-link
+                  to="/produits"
+                  v-slot="{ href, navigate, isActive, isExactActive }">
+                  <div class="submenu-item" @click="closeNav(navigate)">
+                    <a :href="href" :class="{ selected: isActive }">
+                      Mes reservations
+                    </a>
+                  </div>
+                </router-link>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="nav-items" v-else>
-          <button to="/register" class="menu" @click="register">
-            S'abonner
-          </button>
-          <button @click="login">Se Connecter</button>
+        <router-link
+          to="/produits"
+          v-slot="{ href, navigate, isActive, isExactActive }">
+          <div class="menu-item" @click="closeNav(navigate)">
+            <a :href="href" :class="{ selected: isActive }">
+              Profile
+            </a>
+          </div>
+        </router-link>
+        <router-link
+          to="/produits"
+          v-slot="{ href, navigate, isActive, isExactActive }">
+          <div class="menu-item" @click="closeNav(navigate)">
+            <a :href="href" :class="{ selected: isActive }">
+              Contact
+            </a>
+          </div>
+        </router-link>
+      </div>
+      <div class="right">
+        <div class="menu-item" v-if="!!active_user">
+          <a href="#" @click="login">
+            Se Connecter
+          </a>
         </div>
-      </center>
+        <div class="menu-item" v-else>
+          <a href="#" @click="login">
+            Se Deconnecter
+          </a>
+        </div>
+        <router-link
+          to="/produits"
+          v-slot="{ href, navigate, isActive, isExactActive }">
+          <div class="menu-item" @click="closeNav(navigate)">
+            <button :href="href" :class="{ selected: isActive }">
+              Ajouter une Salle
+            </button>
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
-  <Popup :action="action" v-if="$store.state.auth_popup"></Popup>
 </template>
 <script>
-import Popup from "../components/popup.vue";
 export default {
-  components: { Popup },
   data() {
-    return {
-      action: 0,
-    };
   },
 
   methods: {
-    login() {
-      this.$store.state.auth_popup = true;
-      this.action = 0;
-    },
-    register() {
-      this.$store.state.auth_popup = true;
-      this.action = 1;
-    },
   },
 };
 </script>
 <style scoped>
-#nav {
-  background-color: var(--white);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 20px 0 100px;
-  top: 0;
-  width: 100%;
-  z-index: 5;
-  border-bottom: 1px solid var(--primary);
-  position: fixed;
+#nav{
+  border-bottom: 2px solid #EEE;
 }
-#nav * {
-  color: var(--primary);
-}
-button {
-  color: var(--white) !important;
-}
-.menu {
-  border-radius: 5px;
+.menu, .menu > *{
   display: flex;
   align-items: center;
-  padding-left: 5px;
-  padding-right: 5px;
 }
-.menu:hover {
-  background-color: var(--primary-hover);
-  color: var(--white) !important;
+a{
+  color: #333;
 }
-.logo * {
-  font-size: 1.5em;
-  font-weight: 700;
-  font-family: monospace;
-}
-img {
-  width: 25%;
-  border: 1px solid var(--primary);
-  border-radius: 5px;
-}
-.nav-items {
-  display: flex;
+.menu{
+  margin: auto;
   justify-content: space-between;
-  gap: 2px;
 }
-@media only screen and (max-width: 540px) {
-  #nav {
-    display: block;
-    /* position: relative; */
-    padding: 5px;
-  }
-  .logo {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-  }
+.logo{
+  padding: 10px 20px;
+}
+.submenu{
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+}
+.menu-item{
+  padding: 15px;
+}
+.submenu{
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #999;
+  display: none;
+}
+.menu-item:has(a:hover) .submenu{
+  display: block;
+}
+.submenu-item{
+  padding: 10px;
+}
+a:hover{
+  color: var(--hover);
 }
 </style>

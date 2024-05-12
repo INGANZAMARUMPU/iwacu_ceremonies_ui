@@ -5,14 +5,12 @@ import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
-  faSearchMinus, faSearchPlus, faCheck, faTimes
+  faChevronDown, faPlus
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faSearchMinus)
-library.add(faSearchPlus)
-library.add(faCheck)
-library.add(faTimes)
+library.add(faChevronDown)
+library.add(faPlus)
 
 
 let mixins = {
