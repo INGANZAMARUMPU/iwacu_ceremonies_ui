@@ -23,8 +23,8 @@
               <div @click="closeNav(navigate)">
                 <a :href="href" :class="{ selected: isActive }">
                   Les salles
+                  <fa icon="chevron-down" @click="remove(item)"/>
                 </a>
-                <fa />
               </div>
             </router-link>
             <div class="submenu">
@@ -95,6 +95,7 @@
           v-slot="{ href, navigate, isActive, isExactActive }">
           <div class="menu-item" @click="closeNav(navigate)">
             <button :href="href" :class="{ selected: isActive }">
+              <fa icon="plus" style="color: #fff;" @click="remove(item)"/>
               Ajouter une Salle
             </button>
           </div>

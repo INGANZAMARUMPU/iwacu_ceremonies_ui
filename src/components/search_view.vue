@@ -79,7 +79,7 @@
   }
   .form .body{
     background-color: #eeee;
-    padding: 40px;
+    padding: 40px 40px 30px 40px;
     border-radius: 5px;
   }
   .form .body div{

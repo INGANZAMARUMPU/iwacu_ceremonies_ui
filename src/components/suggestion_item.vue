@@ -3,8 +3,9 @@
 	<img :src="item.photo_principal">
 	<div class="infos">
 		<h3>{{ item.nom }}</h3>
-		<div><small>{{ item.lieu }}</small></div>
+		<div><small :title="item.lieu">{{ item.lieu }}</small></div>
 		<h2>{{ money(item.prix_min) }} FBU</h2>
+		<hr style="margin-bottom: 10px;">
 		<div class="numbers">
 			<div>
 				<div class="key">Places</div>
@@ -44,6 +45,7 @@ export default{
 .salle{
 	width: 100%;
 	border-radius: 5px;
+	cursor: default;
 }
 .img, img{
 	width: 100%;
@@ -61,5 +63,13 @@ export default{
 }
 .key{
 	color: #333;
+}
+small{
+	max-width: 100%;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+}
+h3, h2{
+	font-weight: 100;
 }
 </style>
