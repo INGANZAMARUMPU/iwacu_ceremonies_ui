@@ -10,17 +10,19 @@
 	<HomeSuggestions/>
 	<Steps/>
 	<ParVille/>
+	<Contact/>
 </div>
 </template>
 <script>
-import HomeSlider from "../components/slider.vue"
-import SearchView from "../components/search_view.vue"
-import HomeSuggestions from "../components/home_suggestions.vue"
-import Steps from "../components/steps.vue"
-import ParVille from "../components/par_ville.vue"
+import HomeSlider from "@/components/home/slider.vue"
+import SearchView from "@/components/home/search_view.vue"
+import HomeSuggestions from "@/components/home/home_suggestions.vue"
+import Steps from "@/components/home/steps.vue"
+import ParVille from "@/components/home/par_ville.vue"
+import Contact from "@/components/home/contact.vue"
 
 export default{
-	components:{ HomeSlider, SearchView, HomeSuggestions, Steps, ParVille },
+	components:{ HomeSlider, SearchView, HomeSuggestions, Steps, ParVille, Contact },
 	data(){
 		return {
 			show_all: false
@@ -46,14 +48,13 @@ export default{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	overflow-y: hidden;
 }
 .slider-text h1{
 	padding: 50px;
+	color: white;
 }
 h1{
 	text-align: center;
-	font-weight: 300;
 	font-size: 3em;
 }
 </style>
