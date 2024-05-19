@@ -9,6 +9,7 @@
 	<HomeSlider/>
 	<HomeSuggestions/>
 	<Steps/>
+	<ParVille/>
 </div>
 </template>
 <script>
@@ -16,9 +17,10 @@ import HomeSlider from "../components/slider.vue"
 import SearchView from "../components/search_view.vue"
 import HomeSuggestions from "../components/home_suggestions.vue"
 import Steps from "../components/steps.vue"
+import ParVille from "../components/par_ville.vue"
 
 export default{
-	components:{ HomeSlider, SearchView, HomeSuggestions, Steps },
+	components:{ HomeSlider, SearchView, HomeSuggestions, Steps, ParVille },
 	data(){
 		return {
 			show_all: false
