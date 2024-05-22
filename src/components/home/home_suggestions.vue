@@ -24,6 +24,7 @@ export default{
 }
 .suggestions{
 	width: 1150px;
+  overflow-x: hidden;
 	margin: 0 auto 30px auto;
 }
 .items{

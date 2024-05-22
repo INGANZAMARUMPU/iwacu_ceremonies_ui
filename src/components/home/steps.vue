@@ -6,17 +6,23 @@
 	</div>
 	<div class="steps">
 		<div class="item">
-			<div class="number">1.</div>
+			<div class="number">
+				<i class="pi pi-filter" style="color:var(--secondary);"></i>
+			</div>
 			<h3>Filtez</h3>
 			<div>Vous pouvez filter par prix, par localité, par nombre de places...</div>
 		</div>
 		<div class="item">
-			<div class="number">2.</div>
+			<div class="number">
+				<i class="pi pi-check" style="color:var(--secondary);"></i>
+			</div>
 			<h3>Choisissez</h3>
 			<div>Selectionner une parmis les resultats que vous recevez</div>
 		</div>
 		<div class="item">
-			<div class="number">3.</div>
+			<div class="number">
+				<i class="pi pi-inbox" style="color:var(--secondary);"></i>
+			</div>
 			<h3>Réservez</h3>
 			<div>Selectionnez la datte et demandez la reservation. Le reste on s'en charge!</div>
 		</div>
@@ -49,8 +55,11 @@ export default{
 	padding: 5px 0;
 }
 .number{
-	font-size: 3em;
+	font-size: 2em;
 	font-weight: 100;
+	color: var(--secondary);
+}
+h3{
 	color: var(--primary);
 }
 </style>

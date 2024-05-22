@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <nav id="nav">
     <div class="menu">
       <div class="logo">
         <router-link to="/">
@@ -23,7 +23,7 @@
               <div @click="closeNav(navigate)">
                 <a :href="href" :class="{ selected: isActive }">
                   Les salles
-                  <fa icon="chevron-down" @click="remove(item)"/>
+                  <i class="pi pi-angle-down" style="color:var(--primary)"></i>
                 </a>
               </div>
             </router-link>
@@ -95,28 +95,36 @@
           v-slot="{ href, navigate, isActive, isExactActive }">
           <div class="menu-item" @click="closeNav(navigate)">
             <button :href="href" :class="{ selected: isActive }">
-              <fa icon="plus" style="color: #fff;" @click="remove(item)"/>
+              <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
               Ajouter une Salle
             </button>
           </div>
         </router-link>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 <script>
 export default {
   data() {
   },
-
   methods: {
   },
+  mounted(){
+  }
 };
 </script>
 <style scoped>
+#nav:hover{
+  background-color: #FFFE;
+}
 #nav{
-  background-color: #FFFa;
+  background-color: #FFF9;
   border-bottom: 2px solid #9995;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
 }
 .menu, .menu > *{
   display: flex;

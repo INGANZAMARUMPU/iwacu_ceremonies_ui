@@ -3,15 +3,7 @@ import axios from "axios"
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faChevronDown, faPlus
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-library.add(faChevronDown)
-library.add(faPlus)
-
+import 'primeicons/primeicons.css'
 
 let mixins = {
   methods: {
@@ -105,7 +97,6 @@ let mixins = {
 window.axios = axios;
 
 createApp(App)
-	.component('fa', FontAwesomeIcon)
 	.mixin(mixins)
   .use(store)
 	.use(router)

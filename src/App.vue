@@ -1,10 +1,8 @@
 <template>
-  <div id="app">
-	<div class="router-view">
-		<router-view/>
-	</div>
+<div id="app">
 	<TopBar/>
-  </div>
+	<router-view/>
+</div>
 </template>
 <script>
 import TopBar from "./components/topbar"
