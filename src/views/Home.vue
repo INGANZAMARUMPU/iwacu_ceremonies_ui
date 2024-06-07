@@ -14,6 +14,7 @@
 	<ParVille/>
 	<Contact/>
 	<Foot/>
+	
 </div>
 </template>
 <script>
@@ -42,7 +43,6 @@ export default{
 <style scoped>
 .home{
 	position: relative;
-	margin-top: -75px;
 	height: 100vh;
 }
 .slider-imgs{

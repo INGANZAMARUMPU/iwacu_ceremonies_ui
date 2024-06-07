@@ -1,23 +1,23 @@
 <template>
-<div class="salle" @click="details(item.slug)">
+<div class="salle" @click="details(item.nom)">
 	<img :src="item.photo_principal">
 	<div class="infos">
 		<h3>{{ item.nom }}</h3>
 		<div><small :title="item.lieu">{{ item.lieu }}</small></div>
-		<h2>{{ money(item.prix_min) }} FBU</h2>
+		<h2>{{ money(item.prix) }} FBU</h2>
 		<hr style="margin-bottom: 10px;">
 		<div class="numbers">
 			<div>
 				<div class="key">Places</div>
-				<div>{{ item.no_places }}</div>
+				<div>{{ item.places }}</div>
 			</div>
 			<div>
 				<div class="key">Parkings</div>
 				<div>{{ item.taille_parking }}</div>
 			</div>
-			<div>
-				<div class="key">Decor</div>
-				<div>{{ money(item.prix_max - item.prix_min) }} BIF</div>
+			<div v-for="produit in item.produits">
+				<div class="key">{{ produit.category }}</div>
+				<div>{{ money(produit.prix) }} BIF</div>
 			</div>
 		</div>
 	</div>

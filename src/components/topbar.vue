@@ -10,17 +10,17 @@
       <div>
         <router-link to="/"
           v-slot="{ href, navigate, isActive, isExactActive }">
-          <div class="menu-item" @click="closeNav(navigate)">
+          <div class="menu-item">
             <a :href="href" :class="{ selected: isActive }">
               Accueil
             </a>
           </div>
         </router-link>
         <div class="content-item">
-          <div class="menu-item parent-menu" @click="closeNav(navigate)">
-            <router-link to="/"
+          <div class="menu-item parent-menu">
+            <router-link to="/list"
               v-slot="{ href, navigate, isActive, isExactActive }">
-              <div @click="closeNav(navigate)">
+              <div>
                 <a :href="href" :class="{ selected: isActive }">
                   Les salles
                   <i class="pi pi-angle-down" style="color:var(--primary)"></i>
@@ -28,20 +28,20 @@
               </div>
             </router-link>
             <div class="submenu">
-              <div>
+              <div class="content">
                 <router-link
-                  to="/investissements"
+                  to="/list"
                   v-slot="{ href, navigate, isActive, isExactActive }">
-                  <div class="submenu-item" @click="closeNav(navigate)">
+                  <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
                       Tout les salles
                     </a>
                   </div>
                 </router-link>
                 <router-link
-                  to="/passifs"
+                  to="/mine"
                   v-slot="{ href, navigate, isActive, isExactActive }">
-                  <div class="submenu-item" @click="closeNav(navigate)">
+                  <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
                       Mes salles
                     </a>
@@ -50,7 +50,7 @@
                 <router-link
                   to="/produits"
                   v-slot="{ href, navigate, isActive, isExactActive }">
-                  <div class="submenu-item" @click="closeNav(navigate)">
+                  <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
                       Mes reservations
                     </a>
@@ -63,7 +63,7 @@
         <router-link
           to="/produits"
           v-slot="{ href, navigate, isActive, isExactActive }">
-          <div class="menu-item" @click="closeNav(navigate)">
+          <div class="menu-item">
             <a :href="href" :class="{ selected: isActive }">
               Profile
             </a>
@@ -72,7 +72,7 @@
         <router-link
           to="/produits"
           v-slot="{ href, navigate, isActive, isExactActive }">
-          <div class="menu-item" @click="closeNav(navigate)">
+          <div class="menu-item">
             <a :href="href" :class="{ selected: isActive }">
               Contact
             </a>
@@ -93,7 +93,7 @@
         <router-link
           to="/produits"
           v-slot="{ href, navigate, isActive, isExactActive }">
-          <div class="menu-item" @click="closeNav(navigate)">
+          <div class="menu-item">
             <button :href="href" :class="{ selected: isActive }">
               <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
               Ajouter une Salle
@@ -115,12 +115,8 @@ export default {
 };
 </script>
 <style scoped>
-#nav:hover{
-  background-color: #FFFE;
-}
 #nav{
-  background-color: #FFF9;
-  border-bottom: 2px solid #9995;
+  background-color: #FFFE;
   position: fixed;
   top: 0;
   z-index: 100;
@@ -143,18 +139,19 @@ a{
 .submenu{
   position: absolute;
   z-index: 10;
-  background-color: white;
+  display: none;
+  padding: 20px 5px 5px 5px;
+  margin-left: -5px;
 }
 .menu-item{
   padding: 15px;
 }
-.submenu{
-  margin-top: 20px;
+.submenu .content{
   border-radius: 5px;
+  background-color: white;
   box-shadow: 0 0 10px #999;
-  display: none;
 }
-.menu-item:has(a:hover) .submenu{
+.content-item:hover .submenu{
   display: block;
 }
 .submenu-item{
@@ -164,6 +161,6 @@ a{
   height: 100%;
 }
 a:hover{
-  color: var(--primary);
+  color: var(--secondary);
 }
 </style>

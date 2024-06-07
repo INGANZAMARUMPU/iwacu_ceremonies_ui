@@ -35,7 +35,7 @@ let mixins = {
     },
     fetchSalles() {
       axios
-        .get(this.url + "/salle/")
+        .get(this.url + "/salles/")
         .then((response) => {
           this.$store.state.salles = response.data;
           this.salles = response.data;
@@ -65,7 +65,7 @@ let mixins = {
     },
     setActiveItem(id){
       let headers = !!this.active_user?this.headers:{}
-      axios.get(this.url+`/salle/${id}/`, headers)
+      axios.get(this.url+`/salles/${id}/`, headers)
       .then((response) => {
         this.item = response.data;
         this.$store.state.current_salle = response.data;

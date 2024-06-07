@@ -1,147 +1,66 @@
 <template>
-  <div>
-    <BaseLayout>
-      <center>
-        <h1>{{ item.nom }}</h1>
-      </center>
-      <div class="container">
-        <div ref="mainpic" class="mainpic">
-          <img
-            :src="item.photo_principal"
-            @click="display()"
-            width="100%"
-            id="highlighted"
-          />
-        </div>
-        <section class="section altpic">
-          <div class="pic">
-            <img
-              :src="item.photo_principal"
-              id="photo_0"
-              @click="highlight(item.photo_principal)"
-              width="100%"
-            />
-          </div>
-          <div class="pic">
-            <img
-              :src="item.photo_1"
-              id="photo_1"
-              @click="highlight(item.photo_1)"
-              width="100%"
-            />
-          </div>
-          <div class="pic">
-            <img
-              :src="item.photo_2"
-              id="photo_2"
-              @click="highlight(item.photo_2)"
-              width="100%"
-            />
-          </div>
-          <div class="pic">
-            <img
-              :src="item.photo_3"
-              id="photo_3"
-              @click="highlight(item.photo_3)"
-              width="100%"
-            />
-          </div>
-          <div class="pic">
-            <img
-              :src="item.photo_4"
-              id="photo_4"
-              @click="highlight(item.photo_4)"
-              width="100%"
-            />
-          </div>
-        </section>
-        <section class="section pics">
-          <div class="field">
-            <h3>Nom</h3>
-            <p>{{ item.nom }}</p>
-          </div>
-          <div class="field">
-            <h3>Lieu</h3>
-            <p>{{ item.lieu }}</p>
-          </div>
-          <div class="field">
-            <h3>Taille du parking</h3>
-            <p>{{ item.taille_parking }}</p>
-          </div>
-          <div class="field">
-            <h3>Nombre de places</h3>
-            <p>{{ item.no_places }}</p>
-          </div>
-          <div class="field">
-            <h3>Valeurs ajoutées</h3>
-            <p>{{ item.valeurs_ajoutees }}</p>
-          </div>
-          <div class="field">
-            <h3>Obligations</h3>
-            <p>{{ item.obligations }}</p>
-          </div>
-          <div class="field">
-            <h3>Prix</h3>
-            <div class="inline">
-              varie entre
-              <b>{{ money(item.prix_min) }} FBu</b> et
-              <b>{{ money(item.prix_max) }} FBu</b>
-            </div>
-          </div>
-          <div class="field">
-            <h3>Precision à propos du prix</h3>
-            <p>{{ item.prix_infos }}</p>
-          </div>
-        </section>
-        <Calendar />
+  <div class="page" v-if="!!current_salle">
+    <div class="nom">
+      <div>
+        <h1>{{ current_salle.nom }}</h1>
+        <h3 class="gray">
+          <i class="pi pi-map-marker"></i>
+          {{ current_salle.lieu }}
+        </h3>
       </div>
-    </BaseLayout>
-    <ImgPlayer
-      :item="current_img"
-      @close="closeImage"
-      :class="{ hidden: !current_img }"
-    />
+      <div>
+        <h3>PRIX</h3>
+        <h1 class="primary">${{ current_salle.prix }} FBU</h1>
+      </div>
+    </div>
+    <hr>
+    <div class="details">
+      <div class="left">
+        {{ current_salle }}
+      </div>
+      <div class="right">
+        <div class="agent">
+          <h3>A propos de notre Agent</h3>
+          <img src="/static/gilbert.jpg" alt="">
+          <h3>Gilbert NIYONKURU</h3>
+          <div>
+					  <i class="pi pi-phone" style="color:var(--primary)"></i>
+            +257 71 20 83 96
+          </div>
+          <div>
+					  <i class="pi pi-at" style="color:var(--primary)"></i>
+            <a href="mailto:gigidevict@gmail.com" target="_blank"> gigidevict@gmail.com</a>
+          </div>
+          <div>
+					  <i class="pi pi-link" style="color:var(--primary)"></i>
+            <a href="https://digitech.com" target="_blank"> digitech.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-import BaseLayout from "../components/base_layout";
-import ImgPlayer from "../components/img_player";
-import Calendar from "../components/calendar";
+// import BaseLayout from "../components/base_layout";
 export default {
-  components: { BaseLayout, ImgPlayer, Calendar },
+  // components: { BaseLayout,},
   data() {
     return {
-      item: { allocation: [] },
-      current_img: null,
+      current_salle: null
     };
   },
   watch: {
-    "$store.state.user.access"(new_val) {
-      this.fetchData();
-    },
-    $route(to, from) {
-      this.fetchData();
-    },
   },
   methods: {
-    display() {
-      this.current_img = highlighted.src;
-    },
-    highlight(img) {
-      highlighted.src = img;
-    },
-    closeImage() {
-      this.current_img = null;
-    },
     fetchData() {
       let salle_name = this.$route.params["salle_name"];
       let headers = !!this.active_user ? this.headers : {};
       axios
-        .get(this.url + `/salle/by_slug/${salle_name}/`, headers)
+        .get(this.url + `/salles/${salle_name}/`, headers)
         .then((response) => {
           this.item = response.data;
-          this.$store.state.current_salle = response.data;
+          this.current_salle = response.data;
         })
         .catch((error) => {
           if (error.response.status == 401) {
@@ -151,72 +70,51 @@ export default {
           console.error(error);
         });
     },
-    animatePictures(nb) {
-      parent = this;
-      this.interval_function = setInterval(() => {
-        if (nb > 4) nb = 0;
-        let item = document.getElementById(`photo_${nb}`);
-        item.click();
-        nb++;
-      }, 3000);
-    },
   },
   mounted() {
-    // this.$refs.mainpic.scrollIntoView()
-    window.scrollBy(0, 10);
-
-    this.fetchData();
-    this.animatePictures(0);
-  },
-  beforeDestroy() {
-    clearInterval(this.interval_function);
+    this.fetchData()
   },
 };
 </script>
 <style scoped>
-center h1 {
-  margin: 30px;
+.page{
+  width: 90%;
+  max-width: 1080px;
+  margin: 80px auto 20px auto;
 }
-
-.pics {
+.nom{
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0;
+}
+h1, h3{
+  font-weight: 400!important;
+}
+.details{
   display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+  padding: 40px 0;
 }
-.altpic {
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(5, 1fr);
+.right{
+  width: 300px;
 }
-.pic {
-  height: 100%;
-  max-height: 140px;
-  overflow: hidden;
-  border-radius: 5px;
+.left{
+  flex-grow: 1;
 }
-img {
-  background-color: #ddd;
+.agent{
   width: 100%;
-}
-.twin * {
-  display: inline;
-}
-.hidden {
-  display: none;
-}
-.mainpic {
-  width: 100%;
-  max-height: 600px;
-  overflow: hidden;
   border-radius: 5px;
-  margin-bottom: 10px;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap:20px;
 }
-.inline * {
-  display: inline;
+.gray{
+  color: #999!important;
 }
-@media only screen and (max-width: 400px) {
-  .pics {
-    display: block;
-  }
+.primary{
+  color: var(--secondary)!important;
 }
 </style>

@@ -8,37 +8,29 @@
 </template>
 <script>
 export default{
-	computed:{
-		images(){
-			return this.$store.state.images;
-		}
-	},
 	data(){
 		return {
 			position:0,
-			interval_function:null
+			interval_function:null,
+			images: []
 		}
 	},
-
 	methods:{
 		fetchSuggestions(){
-			axios.get(this.url+"/salle/suggestions/")
+			axios.get(this.url+"/salles/")
 			.then((response) => {
-				this.$store.state.suggestions = response.data;
-				this.$store.state.images = response.data.map(x => x.salle.photo_principal)
+				this.images = response.data.results.map(x => x.photo_principal)
 			}).catch((error) => {
 				console.error(error);
 			})
 		}
 	},
 	mounted(){
-		if(this.$store.state.suggestions.length<2){
-			this.fetchSuggestions()
-		}
 		parent = this;
+		this.fetchSuggestions()
 		this.interval_function = setInterval(() => {
 			this.position = (this.position + 1)%this.images.length;
-		}, 6000,)
+		}, 6000)
 	},
 	beforeDestroy(){
 		clearInterval(this.interval_function)

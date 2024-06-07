@@ -36,7 +36,7 @@ export default{
 <style scoped>
 .parent{
 	background-color: white;
-	padding: 20px
+	padding: 40px 20px
 }
 .title{
 	padding: 10px 0 20px 0;

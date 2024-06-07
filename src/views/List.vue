@@ -24,12 +24,12 @@ export default {
   watch: {
     "$store.state.salles"(new_val) {
       if (this.$route.path != "/mine") {
-        this.salles = new_val;
+        this.salles = new_val.results;
       }
     },
     "$store.state.mes_salles"(new_val) {
       if (this.$route.path == "/mine") {
-        this.salles = new_val;
+        this.salles = new_val.results;
       }
     },
     "$route.path"(new_val) {
@@ -68,7 +68,7 @@ export default {
         .get(this.url + "/salle/mine/", this.headers)
         .then((response) => {
           this.$store.state.mes_salles = response.data;
-          this.salles = response.data;
+          this.salles = response.data.results;
         })
         .catch((error) => {
           if (error.response.status == 403) {

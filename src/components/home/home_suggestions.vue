@@ -6,7 +6,7 @@
 	</div>
 	<div class="suggestions">
 		<div class="items">
-			<SuggestionItem :item="salle" v-for="salle in $store.state.salles.slice(0, 9)"/>
+			<SuggestionItem :item="salle" v-for="salle in $store.state.salles?.results?.slice(0, 9)"/>
 		</div>
 	</div>
 </div>
