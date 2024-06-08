@@ -17,7 +17,7 @@
     <div class="details">
       <div class="left">
         <ImgPlayer :photos="gallery"/>
-        {{ current_salle }}
+        <SalleDetails :salle="current_salle"/>
       </div>
       <div class="right">
         <Agent/>
@@ -29,9 +29,10 @@
 import axios from "axios";
 import Agent from "@/components/details/agent"
 import ImgPlayer from "@/components/details/img_player"
+import SalleDetails from "@/components/details/details"
 export default {
   components:{
-    Agent, ImgPlayer
+    Agent, ImgPlayer, SalleDetails
   },
   data() {
     return {
@@ -94,6 +95,9 @@ h1, h3{
 .left{
   flex-grow: 1;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .gray{
   color: #999!important;

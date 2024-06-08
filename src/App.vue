@@ -2,12 +2,15 @@
 <div id="app">
 	<TopBar/>
 	<router-view/>
+	<Foot/>
 </div>
 </template>
 <script>
 import TopBar from "./components/topbar"
+import Foot from "./components/foot.vue"
+
 export default {
-	components:{ TopBar },
+	components:{ TopBar, Foot },
 	watch:{
 		"$store.state.user":{
 			deep:true,

@@ -2,9 +2,11 @@
 <div class="salle" @click="details(item.nom)">
 	<img :src="item.photo_principal">
 	<div class="infos">
-		<h3>{{ item.nom }}</h3>
-		<div><small :title="item.lieu">{{ item.lieu }}</small></div>
-		<h2>{{ money(item.prix) }} FBU</h2>
+		<div style="width: 100%; overflow: hidden;">
+			<h3>{{ item.nom }}</h3>
+			<div><small :title="item.lieu">{{ item.lieu }}</small></div>
+			<h2>{{ money(item.prix) }} FBU</h2>
+		</div>
 		<hr style="margin-bottom: 10px;">
 		<div class="numbers">
 			<div>
@@ -43,9 +45,10 @@ export default{
 </script>
 <style scoped>
 .salle{
-	width: 100%;
+	width: 360px;
 	border-radius: 5px;
 	cursor: default;
+	overflow: hidden;
 }
 .img, img{
 	width: 100%;

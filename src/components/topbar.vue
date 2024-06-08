@@ -121,6 +121,7 @@ export default {
   top: 0;
   z-index: 100;
   width: 100%;
+  box-shadow: 0 0 5px #999;
 }
 .menu, .menu > *{
   display: flex;

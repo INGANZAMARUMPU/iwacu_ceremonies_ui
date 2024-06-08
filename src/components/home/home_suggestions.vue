@@ -24,7 +24,7 @@ export default{
 }
 .suggestions{
 	width: 1150px;
-  overflow-x: hidden;
+	overflow-x: hidden;
 	margin: 0 auto 30px auto;
 }
 .items{
@@ -34,7 +34,6 @@ export default{
 }
 .items > *{
 	display: inline-block;
-	width: 360px;
 	margin-right: 30px;
 	box-shadow: 1px 1px 10px #9993;
 }

@@ -63,7 +63,8 @@ export default{
 </script>
 <style scoped>
 .content{
-	max-width: 900px;
+	width: 90%;
+	max-width: 1080px;
 	padding-bottom: 40px;
 	margin: auto;
 }
