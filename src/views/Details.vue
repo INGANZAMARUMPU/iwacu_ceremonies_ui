@@ -16,6 +16,9 @@
     <hr>
     <div class="details">
       <div class="left">
+        <div class="gallery">
+
+        </div>
         {{ current_salle }}
       </div>
       <div class="right">
@@ -42,12 +45,11 @@
 </template>
 <script>
 import axios from "axios";
-// import BaseLayout from "../components/base_layout";
 export default {
-  // components: { BaseLayout,},
   data() {
     return {
-      current_salle: null
+      current_salle: null,
+      gallery:[]
     };
   },
   watch: {
@@ -59,8 +61,11 @@ export default {
       axios
         .get(this.url + `/salles/${salle_name}/`, headers)
         .then((response) => {
-          this.item = response.data;
+          let salle = response.data;
           this.current_salle = response.data;
+          this.gallery = [
+            salle.photo_principal, salle.photo_1, salle.photo_2, salle.photo_3, salle.photo_4,
+          ]
         })
         .catch((error) => {
           if (error.response.status == 401) {
