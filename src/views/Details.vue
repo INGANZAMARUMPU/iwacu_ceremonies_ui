@@ -21,6 +21,7 @@
       </div>
       <div class="right">
         <Agent/>
+        <Suggestions/>
       </div>
     </div>
   </div>
@@ -30,9 +31,10 @@ import axios from "axios";
 import Agent from "@/components/details/agent"
 import ImgPlayer from "@/components/details/img_player"
 import SalleDetails from "@/components/details/details"
+import Suggestions from "@/components/details/suggestions"
 export default {
   components:{
-    Agent, ImgPlayer, SalleDetails
+    Agent, ImgPlayer, SalleDetails, Suggestions
   },
   data() {
     return {
@@ -95,6 +97,8 @@ h1, h3{
 .left{
   flex-grow: 1;
   overflow: hidden;
+}
+.right, .left{
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -7,10 +7,12 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.4.0",
     "core-js": "^3.8.3",
     "primeicons": "^7.0.0",
     "url": "^0.11.1",
+    "v-calendar": "^3.1.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"

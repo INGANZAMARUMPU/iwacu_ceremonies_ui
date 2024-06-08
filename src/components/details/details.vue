@@ -25,14 +25,25 @@
 		</div>
 	</div>
 	<div class="descr">{{ salle.details }}</div>
+	<h3>Quelle est la date de votre evenement?</h3>
+	<DatePicker v-model="today" style="width: 100%!important"/>
 	<button>
 		Reserver
 	</button>
 </div>
 </template>
 <script>
+import { DatePicker } from 'v-calendar';
+import 'v-calendar/style.css';
+
 export default{
+	components:{ DatePicker },
 	props:[ "salle" ],
+	data(){
+		return {
+			today: new Date(),
+		}
+	}
 }
 </script>
 <style scoped>
