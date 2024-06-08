@@ -10,42 +10,29 @@
       </div>
       <div>
         <h3>PRIX</h3>
-        <h1 class="primary">${{ current_salle.prix }} FBU</h1>
+        <h1 class="primary">BIF {{ money(current_salle.prix) }}</h1>
       </div>
     </div>
     <hr>
     <div class="details">
       <div class="left">
-        <div class="gallery">
-
-        </div>
+        <ImgPlayer :photos="gallery"/>
         {{ current_salle }}
       </div>
       <div class="right">
-        <div class="agent">
-          <h3>A propos de notre Agent</h3>
-          <img src="/static/gilbert.jpg" alt="">
-          <h3>Gilbert NIYONKURU</h3>
-          <div>
-					  <i class="pi pi-phone" style="color:var(--primary)"></i>
-            +257 71 20 83 96
-          </div>
-          <div>
-					  <i class="pi pi-at" style="color:var(--primary)"></i>
-            <a href="mailto:gigidevict@gmail.com" target="_blank"> gigidevict@gmail.com</a>
-          </div>
-          <div>
-					  <i class="pi pi-link" style="color:var(--primary)"></i>
-            <a href="https://digitech.com" target="_blank"> digitech.com</a>
-          </div>
-        </div>
+        <Agent/>
       </div>
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
+import Agent from "@/components/details/agent"
+import ImgPlayer from "@/components/details/img_player"
 export default {
+  components:{
+    Agent, ImgPlayer
+  },
   data() {
     return {
       current_salle: null,
@@ -106,15 +93,7 @@ h1, h3{
 }
 .left{
   flex-grow: 1;
-}
-.agent{
-  width: 100%;
-  border-radius: 5px;
-  background-color: white;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap:20px;
+  overflow: hidden;
 }
 .gray{
   color: #999!important;
