@@ -91,7 +91,7 @@
           </a>
         </div>
         <router-link
-          to="/produits"
+          to="/create"
           v-slot="{ href, navigate, isActive, isExactActive }">
           <div class="menu-item">
             <button :href="href" :class="{ selected: isActive }" class="btn">

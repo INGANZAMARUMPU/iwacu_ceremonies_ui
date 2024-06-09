@@ -1,126 +1,77 @@
 <template>
-  <div>
+  <div class="page">
     <div class="container">
-      <section class="pics section">
-        <div class="mainpic">
-          <img src="/static/img_placeholder.png" id="img1" @click="forwardTo('img1')"/>
-        </div>
-        <div class="altpic">
-          <img src="/static/img_placeholder.png" id="img2" @click="forwardTo('img2')"/>
-          <img src="/static/img_placeholder.png" id="img3" @click="forwardTo('img3')"/>
-          <img src="/static/img_placeholder.png" id="img4" @click="forwardTo('img4')"/>
-          <img src="/static/img_placeholder.png" id="img5" @click="forwardTo('img5')"/>
-        </div>
-        <input type="file" ref="img1" @change="(e) => load(e, 'img1')" accept=".jpg,.jpeg,.gif,.png"/>
-        <input type="file" ref="img2" @change="(e) => load(e, 'img2')" accept=".jpg,.jpeg,.gif,.png"/>
-        <input type="file" ref="img3" @change="(e) => load(e, 'img3')" accept=".jpg,.jpeg,.gif,.png"/>
-        <input type="file" ref="img4" @change="(e) => load(e, 'img4')" accept=".jpg,.jpeg,.gif,.png"/>
-        <input type="file" ref="img5" @change="(e) => load(e, 'img5')" accept=".jpg,.jpeg,.gif,.png"/>
-      </section>
-
       <section class="section">
+        <h3>Ajouter une salle</h3>
         <label class="logs">{{ img_logs }}</label>
         <div class="field">
           <label for="nom">Nom</label>
-          <input
-            id="nom"
-            v-model="nom"
-            type="text"
-            placeholder="Nom de la salle"
-          />
+          <input id="nom" v-model="nom" type="text" placeholder="Nom de la salle"/>
         </div>
-        <div class="field">
-          <label for="lieu">Lieu</label>
-          <div class="twin">
-            <input
-              id="lieu"
-              v-model="province"
-              type="text"
-              placeholder="Province"
-            />
+        <div class="fields">
+          <div class="field">
+            <label for="lieu">Lieu</label>
+            <input id="lieu" v-model="province" type="text" placeholder="Province"/>
+          </div>
+          <div class="field">
+            <label for="lieu">Lieu</label>
             <input type="text" v-model="commune" placeholder="Commune" />
-            <input
-              type="text"
-              v-model="quartier"
-              placeholder="Quartier, Rue"
-            />
+          </div>
+          <div class="field">
+            <label for="lieu">Lieu</label>
+            <input type="text" v-model="quartier" placeholder="Quartier, Rue"/>
+          </div>
+          <div class="field">
+            <label for="parking">Taille du parking</label>
+            <input id="parking" v-model="parking" type="number" placeholder="Combien de voitures"/>
+          </div>
+          <div class="field">
+            <label for="places">Nombre de places</label>
+            <input id="places" v-model="places" type="number" min="30" max="1000" placeholder="Capacité de la salle"/>
+          </div>
+          <div class="field">
+            <label for="prix">Prix</label>
+            <input id="prix" v-model="prix" type="number" min="50000" placeholder="Prix de location"/>
           </div>
         </div>
         <div class="field">
-          <label for="parking">Taille du parking</label>
-          <input
-            id="parking"
-            v-model="parking"
-            type="number"
-            placeholder="Combien de voitures"
-          />
+          <label for="details">Details:</label>
+          <textarea cols="30" rows="10" id="details" v-model="details"
+            placeholder="Les autres details sur cette salle">
+          </textarea>
         </div>
-        <div class="field">
-          <label for="places">Nombre de places</label>
-          <input
-            id="places"
-            v-model="places"
-            type="number"
-            min="30"
-            max="1000"
-          />
-        </div>
+        <section class="pics">
+          <div class="mainpic">
+            <img src="/static/img_placeholder.png" id="img1" @click="forwardTo('img1')"/>
+          </div>
+          <div class="altpic">
+            <img src="/static/img_placeholder.png" id="img2" @click="forwardTo('img2')"/>
+            <img src="/static/img_placeholder.png" id="img3" @click="forwardTo('img3')"/>
+            <img src="/static/img_placeholder.png" id="img4" @click="forwardTo('img4')"/>
+            <img src="/static/img_placeholder.png" id="img5" @click="forwardTo('img5')"/>
+          </div>
+          <input type="file" ref="img1" @change="(e) => load(e, 'img1')" accept=".jpg,.jpeg,.gif,.png"/>
+          <input type="file" ref="img2" @change="(e) => load(e, 'img2')" accept=".jpg,.jpeg,.gif,.png"/>
+          <input type="file" ref="img3" @change="(e) => load(e, 'img3')" accept=".jpg,.jpeg,.gif,.png"/>
+          <input type="file" ref="img4" @change="(e) => load(e, 'img4')" accept=".jpg,.jpeg,.gif,.png"/>
+          <input type="file" ref="img5" @change="(e) => load(e, 'img5')" accept=".jpg,.jpeg,.gif,.png"/>
+        </section>
         <div class="field">
           <label for="ajouts">Valeurs ajoutées</label>
-          <textarea
-            cols="30"
-            rows="10"
-            id="ajouts"
-            v-model="ajouts"
-            placeholder="autres choses que le client beneficie"
-          >
+          <textarea cols="30" rows="10" id="ajouts" v-model="ajouts"
+            placeholder="autres choses que le client beneficie">
           </textarea>
         </div>
         <div class="field">
           <label for="obligations">Obligations</label>
-          <textarea
-            cols="30"
-            rows="10"
-            id="obligations"
-            v-model="obligations"
-            placeholder="ce que vous obligez aux clients"
-          >
-          </textarea>
-        </div>
-        <div class="field">
-          <label for="prix">Prix</label>
-          <div class="twin">
-            <input
-              id="prix"
-              v-model="prix_min"
-              type="number"
-              min="50000"
-              placeholder="minimum"
-            />
-            <input
-              type="number"
-              v-model="prix_max"
-              min="50000"
-              placeholder="maximum"
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label for="details_prix">Autres details:</label>
-          <textarea
-            cols="30"
-            rows="10"
-            id="details_prix"
-            v-model="details"
-            placeholder="autres prix selon les cas"
-          >
+          <textarea cols="30" rows="10" id="obligations" v-model="obligations"
+            placeholder="ce que vous obligez aux clients">
           </textarea>
         </div>
       </section>
-
       <label class="logs">{{ logs }}</label>
     </div>
-    <button class="submit" @click="upload">Soumettre</button>
+    <button class="btn" @click="upload">ENREGISTER LA SALLE</button>
   </div>
 </template>
 <script>
@@ -133,8 +84,7 @@ export default {
       places: "",
       ajouts: "",
       obligations: "",
-      prix_min: "",
-      prix_max: "",
+      prix: "",
       details: "",
       province: "",
       commune: "",
@@ -166,24 +116,12 @@ export default {
         return;
       }
       switch (img_id) {
-        case "img1":
-          this.img1 = raw;
-          break;
-        case "img2":
-          this.img2 = raw;
-          break;
-        case "img3":
-          this.img3 = raw;
-          break;
-        case "img4":
-          this.img4 = raw;
-          break;
-        case "img5":
-          this.img5 = raw;
-          break;
-        default:
-          console.log("DONE");
-          break;
+        case "img1": this.img1 = raw; break;
+        case "img2": this.img2 = raw; break;
+        case "img3": this.img3 = raw; break;
+        case "img4": this.img4 = raw; break;
+        case "img5": this.img5 = raw; break;
+        default: console.log("DONE"); break;
       }
       var reader = new FileReader();
       reader.readAsDataURL(raw);
@@ -200,8 +138,7 @@ export default {
       form.append("no_places", this.places);
       form.append("valeurs_ajoutees", this.ajouts);
       form.append("obligations", this.obligations);
-      form.append("prix_min", this.prix_min);
-      form.append("prix_max", this.prix_max);
+      form.append("prix", this.prix);
       form.append("details", this.details);
       form.append("photo_principal", this.img1);
       form.append("photo_1", this.img2);
@@ -232,14 +169,25 @@ export default {
 };
 </script>
 <style scoped>
+.page{
+  width: 90%;
+  max-width: 1080px;
+  margin: 120px auto 20px auto;
+}
+.container{
+  background-color: white;
+  border-radius: 5px;
+}
 .pics {
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 20px;
   grid-template-columns: repeat(2, 1fr);
+  padding: 0;
+  margin-bottom: 20px
 }
 .altpic {
   display: grid;
-  grid-gap: 5px;
+  grid-gap: 20px;
   grid-template-columns: repeat(2, 1fr);
 }
 .logs {
@@ -261,22 +209,25 @@ input {
   display: block;
   width: 100%;
 }
-.twin {
-  display: flex;
-  gap: 10px;
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
 }
-.submit {
-  display: block;
-  margin: 20px 0 20px auto;
+.btn {
+  margin: 20px 0;
+  font-size: .9em;
 }
-
 input, textarea {
   width: 100%;
-  padding: 15px;
+  padding: 12px 20px;
   margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
-  border: 1px solid var(--white3);
+  background: #F9F9F9;
+  border-color: #DDD;
+}
+h3{
+  margin: 10px 0 20px 0;
+  color: var(--primary);
 }
 @media only screen and (max-width: 400px) {
   .field {
