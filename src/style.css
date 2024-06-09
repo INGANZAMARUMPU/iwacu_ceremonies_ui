@@ -65,7 +65,15 @@ h3{
 .logs {
   color: red;
 }
-
+.field * {
+  display: block;
+  width: 100%;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
 /** Formulaires d'authentification*/
 /* Add styles to the form container */
 .form-container {

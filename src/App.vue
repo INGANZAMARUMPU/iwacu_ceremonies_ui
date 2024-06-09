@@ -1,6 +1,7 @@
 <template>
 <div id="app">
 	<TopBar/>
+	<LoginDialog v-if="$store.state.login_shown"/>
 	<router-view/>
 	<Foot/>
 </div>
@@ -8,9 +9,10 @@
 <script>
 import TopBar from "./components/topbar"
 import Foot from "./components/foot.vue"
+import LoginDialog from "./components/login.vue"
 
 export default {
-	components:{ TopBar, Foot },
+	components:{ TopBar, Foot, LoginDialog },
 	watch:{
 		"$store.state.user":{
 			deep:true,

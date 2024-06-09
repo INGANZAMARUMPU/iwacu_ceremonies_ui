@@ -205,15 +205,6 @@ input[type="file"] {
 input {
   padding: 8px;
 }
-.field * {
-  display: block;
-  width: 100%;
-}
-.fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
-}
 .btn {
   margin: 20px 0;
   font-size: .9em;

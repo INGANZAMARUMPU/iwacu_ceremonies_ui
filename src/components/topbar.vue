@@ -60,35 +60,19 @@
             </div>
           </div>
         </div>
-        <router-link
-          to="/produits"
-          v-slot="{ href, navigate, isActive, isExactActive }">
-          <div class="menu-item">
-            <a :href="href" :class="{ selected: isActive }">
-              Profile
-            </a>
-          </div>
-        </router-link>
-        <router-link
-          to="/produits"
-          v-slot="{ href, navigate, isActive, isExactActive }">
-          <div class="menu-item">
-            <a :href="href" :class="{ selected: isActive }">
-              Contact
-            </a>
-          </div>
-        </router-link>
+        <div class="menu-item" @click="$store.state.profile_shown=true">
+          Profile
+        </div>
+        <div class="menu-item" @click="$store.state.contact_shown=true">
+          Contact
+        </div>
       </div>
       <div class="right">
-        <div class="menu-item" v-if="!!active_user">
-          <a href="#" @click="login">
-            Se Connecter
-          </a>
+        <div class="menu-item" v-if="!!active_user" @click="logout">
+          Se Deconnecter
         </div>
-        <div class="menu-item" v-else>
-          <a href="#" @click="login">
-            Se Deconnecter
-          </a>
+        <div class="menu-item" v-else @click="$store.state.login_shown=true">
+          Se Connecter
         </div>
         <router-link
           to="/create"
@@ -109,6 +93,11 @@ export default {
   data() {
   },
   methods: {
+    logout() {
+      if(window.confirm("Voulez-vous vraiment vous deconnecter?")){
+        this.$store.state.user = null;
+      }
+    },
   },
   mounted(){
   }
@@ -146,6 +135,8 @@ a{
 }
 .menu-item{
   padding: 15px;
+  color: black;
+  cursor: pointer;
 }
 .submenu .content{
   border-radius: 5px;
