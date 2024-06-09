@@ -2,29 +2,38 @@
   <div class="page">
     <SearchView/>
     <div class="items">
-      ok
+      {{ $store.state.salles?.count || 0 }} Resultats trouvés
+      <Item v-for="salle in salles" :item="salle"/>
     </div>
   </div>
 </template>
 <script>
 import SearchView from "@/components/search_view"
+import Item from "@/components/item"
 export default {
   components:{
-    SearchView,
+    SearchView, Item
   },
   data() {
     return {
-      salles: []
+      salles: this.$store.state.salles?.results
     };
   },
   watch: {
+    "$store.state.salles.results"(new_val){
+      this.salles = new_val
+    }
   },
   methods: {
     fetchData() {
     },
   },
   mounted() {
-    this.fetchData()
+		if(!this.$store.state.salles?.results){
+			this.fetchSalles()
+		} else {
+      this.salles = this.$store.state.salles?.results
+    }
   },
 };
 </script>
@@ -35,8 +44,10 @@ export default {
   margin: 80px auto 20px auto;
 }
 .items{
-  background-color: white;
-  border-radius: 5px;
+  background-color: var(--white);
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 </style>

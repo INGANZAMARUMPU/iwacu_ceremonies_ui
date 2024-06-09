@@ -35,7 +35,9 @@ export default{
 	methods:{
 	},
 	mounted(){
-		this.fetchSalles()
+		if(this.$store.state.salles?.results?.length == 0){
+			this.fetchSalles()
+		}
 	}
 };
 </script>

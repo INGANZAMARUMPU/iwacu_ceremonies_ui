@@ -80,6 +80,6 @@ export default{
 button{
   margin-top: 20px;
   width: 100%;
+  font-size: .9em;
 }
-
 </style>
