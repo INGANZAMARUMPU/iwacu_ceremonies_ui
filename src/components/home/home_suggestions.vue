@@ -6,7 +6,7 @@
 	</div>
 	<div class="suggestions">
 		<div class="items">
-			<SuggestionItem :item="salle" v-for="salle in $store.state.salles?.results?.slice(0, 9)"/>
+			<SuggestionItem :item="salle" v-for="salle in salles"/>
 		</div>
 	</div>
 </div>
@@ -15,6 +15,16 @@
 import SuggestionItem from "@/components/suggestion_item.vue";
 export default{
 	components:{ SuggestionItem },
+	data(){
+		return {
+			salles: this.$store.state.salles?.results?.slice(0, 9)
+		}
+	},
+	watch:{
+		"$store.state.salles.results"(new_val){
+			this.salles = new_val.slice(0, 9)
+		}
+	}
 };
 </script>
 <style scoped>

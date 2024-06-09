@@ -2,7 +2,7 @@
   <div class="page">
     <div class="container">
       <section class="section">
-        <h3>Ajouter une salle</h3>
+        <h2>Ajouter une salle</h2>
         <label class="logs">{{ img_logs }}</label>
         <div class="field">
           <label for="nom">Nom</label>
@@ -225,7 +225,7 @@ input, textarea {
   background: #F9F9F9;
   border-color: #DDD;
 }
-h3{
+h2{
   margin: 10px 0 20px 0;
   color: var(--primary);
 }

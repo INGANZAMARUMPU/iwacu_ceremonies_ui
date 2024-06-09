@@ -38,7 +38,6 @@ let mixins = {
         .get(this.url + "/salles/")
         .then((response) => {
           this.$store.state.salles = response.data;
-          this.salles = response.data;
         })
         .catch((error) => {
           console.error(error);

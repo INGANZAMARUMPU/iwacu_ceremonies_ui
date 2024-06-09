@@ -8,7 +8,7 @@ export default createStore({
     auth_popup: false,
   	user:null,
   	images:[],
-  	salles:[],
+  	salles:{results:[]},
     suggestions:[],
     mes_salles:[],
     current_salle:null,
