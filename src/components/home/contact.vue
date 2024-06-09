@@ -4,7 +4,7 @@
 	<div class="caption">
 		<div class="inner">
 			<h1>Veuillez entrer en contact avec l'équipe de nos experts la plus proche de chez vous.</h1>
-			<div><button>CONTACT</button></div>
+			<div><button class="btn">CONTACT</button></div>
 		</div>
 	</div>
 </div>

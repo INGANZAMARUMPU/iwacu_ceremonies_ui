@@ -94,7 +94,7 @@
           to="/produits"
           v-slot="{ href, navigate, isActive, isExactActive }">
           <div class="menu-item">
-            <button :href="href" :class="{ selected: isActive }">
+            <button :href="href" :class="{ selected: isActive }" class="btn">
               <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
               Ajouter une Salle
             </button>

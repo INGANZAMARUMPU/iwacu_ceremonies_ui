@@ -16,7 +16,7 @@
   padding: 0;
   outline: 0;
   font-family: var(--font-family-sans-serif);
-  color: #999;
+  color: #666;
 }
 html{
   background-color: #fcf4ed;
@@ -37,7 +37,7 @@ select {
   border: 1px solid lightgray;
   color: #888;
 }
-button {
+.btn {
   background-color: var(--primary);
   color: #fff;
   border: 0;

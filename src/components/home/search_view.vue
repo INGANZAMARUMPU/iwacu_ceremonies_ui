@@ -21,7 +21,7 @@
         <option value="6">2 500 000 à 3 000 000 Fbu</option>
         <option value="7">plus de 3 000 000 Fbu</option>
       </select>
-      <button @click="search">
+      <button @click="search" class="btn">
         <i class="pi pi-search" style="color:whitesmoke"></i>
         Trouver
       </button>

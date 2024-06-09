@@ -18,10 +18,11 @@
       <div class="left">
         <ImgPlayer :photos="gallery"/>
         <SalleDetails :salle="current_salle"/>
+        <Suggestions/>
       </div>
       <div class="right">
         <Agent/>
-        <Suggestions/>
+        <Calendar/>
       </div>
     </div>
   </div>
@@ -32,9 +33,10 @@ import Agent from "@/components/details/agent"
 import ImgPlayer from "@/components/details/img_player"
 import SalleDetails from "@/components/details/details"
 import Suggestions from "@/components/details/suggestions"
+import Calendar from "@/components/details/calendar"
 export default {
   components:{
-    Agent, ImgPlayer, SalleDetails, Suggestions
+    Agent, ImgPlayer, SalleDetails, Suggestions, Calendar
   },
   data() {
     return {
