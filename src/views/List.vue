@@ -1,12 +1,16 @@
 <template>
   <div class="page">
+    <SearchView/>
+    <div class="items">
+      ok
+    </div>
   </div>
 </template>
 <script>
-import Agent from "@/components/details/agent"
+import SearchView from "@/components/search_view"
 export default {
   components:{
-    Agent,
+    SearchView,
   },
   data() {
     return {
@@ -25,5 +29,14 @@ export default {
 };
 </script>
 <style scoped>
-
+.page{
+  width: 90%;
+  max-width: 1080px;
+  margin: 80px auto 20px auto;
+}
+.items{
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
 </style>
