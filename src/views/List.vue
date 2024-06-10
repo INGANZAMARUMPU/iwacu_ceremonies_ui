@@ -50,4 +50,9 @@ export default {
   flex-direction: column;
   gap: 20px;
 }
+@media only screen and (max-width: 600px) {
+  .body{
+    padding: 10px;
+  }
+}
 </style>

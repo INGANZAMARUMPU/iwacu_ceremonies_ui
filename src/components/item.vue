@@ -51,11 +51,8 @@ export default{
 	overflow: hidden;
 	display: flex;
 }
-.img, img{
+img{
 	width: 360px;
-}
-.img{
-	overflow: hidden;
 }
 .infos{
 	background-color: white;
@@ -84,5 +81,22 @@ h2{
 }
 h3{
 	color: var(--secondary);
+}
+@media only screen and (max-width: 800px) {
+	img{
+		width: 240px;
+	}
+}
+@media only screen and (max-width: 500px) {
+	img{
+		width: 120px;
+	}
+	.prix{
+		padding: 10px;
+	}
+	.numbers{
+		padding: 10px;
+		gap: 10px;
+	}
 }
 </style>

@@ -220,9 +220,9 @@ h2{
   margin: 10px 0 20px 0;
   color: var(--primary);
 }
-@media only screen and (max-width: 400px) {
-  .field {
-    grid-column: span 2;
+@media only screen and (max-width: 600px) {
+  .fields{
+    grid-template-columns: 1fr 1fr;
   }
 }
 </style>

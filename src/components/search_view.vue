@@ -82,4 +82,9 @@ button{
   width: 100%;
   font-size: .9em;
 }
+@media only screen and (max-width: 600px) {
+  .options{
+    grid-template-columns: 1fr;
+  }
+}
 </style>

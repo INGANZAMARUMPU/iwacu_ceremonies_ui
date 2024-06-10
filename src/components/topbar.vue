@@ -159,6 +159,7 @@ a{
 }
 .content-item:hover .submenu{
   display: block;
+  text-align: left;
 }
 .submenu-item{
   padding: 10px;

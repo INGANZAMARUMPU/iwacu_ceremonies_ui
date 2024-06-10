@@ -94,7 +94,7 @@ h1, h3{
   padding: 40px 0;
 }
 .right{
-  width: 300px;
+  flex-basis: 300px;
 }
 .left{
   flex-grow: 1;
@@ -110,5 +110,13 @@ h1, h3{
 }
 .primary{
   color: var(--secondary)!important;
+}
+@media only screen and (max-width: 900px) {
+  .details{
+    grid-template-columns: 1fr;
+  }
+  .right{
+    flex-direction: column-reverse;
+  }
 }
 </style>
