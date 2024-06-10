@@ -45,7 +45,6 @@ export default{
 </script>
 <style scoped>
 .salle{
-	width: 360px;
 	border-radius: 5px;
 	cursor: default;
 	overflow: hidden;

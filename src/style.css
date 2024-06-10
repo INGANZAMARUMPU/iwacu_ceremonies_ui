@@ -127,9 +127,9 @@ h3{
     max-width: 300px;
   }
 }
-/**Fin Formulaires d'authentification*/
-
-/** design sections */
+.responsive{
+  display: none;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -143,11 +143,11 @@ h3{
 }
 /**End design sections */
 
-@media only screen and (max-width: 400px) {
-  .body {
-    margin-top: 0;
+@media only screen and (max-width: 900px) {
+  .default{
+    display: none!important;
   }
-  .form-container {
-    max-width: 300px;
+  .responsive{
+    display: block;
   }
 }

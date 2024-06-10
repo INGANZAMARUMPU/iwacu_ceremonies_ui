@@ -4,13 +4,15 @@
       <div class="logo">
         <router-link to="/">
           <img src="/static/logo.png" width="36" />
-          FiGiBook.com
+          <span class="default">
+            FiGiBook.com
+          </span>
         </router-link>
       </div>
       <div>
         <router-link to="/"
           v-slot="{ href, navigate, isActive, isExactActive }">
-          <div class="menu-item">
+          <div class="menu-item default">
             <a :href="href" :class="{ selected: isActive }">
               Accueil
             </a>
@@ -60,11 +62,11 @@
             </div>
           </div>
         </div>
-        <div class="menu-item" @click="$store.state.profile_shown=true">
+        <div class="menu-item default" @click="show_profile">
           Profile
         </div>
-        <div class="menu-item" @click="$store.state.contact_shown=true">
-          Contact
+        <div class="menu-item">
+          <a href="https://wa.me/25771208396" target="_blank">Contact</a>
         </div>
       </div>
       <div class="right">
@@ -72,15 +74,18 @@
           Se Deconnecter
         </div>
         <div class="menu-item" v-else @click="$store.state.login_shown=true">
-          Se Connecter
+          Connexion
         </div>
         <router-link
           to="/create"
           v-slot="{ href, navigate, isActive, isExactActive }">
           <div class="menu-item">
-            <button :href="href" :class="{ selected: isActive }" class="btn">
+            <button :href="href" :class="{ selected: isActive }" class="btn default">
               <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
               Ajouter une Salle
+            </button>
+            <button :href="href" :class="{ selected: isActive }" class="btn responsive">
+              <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
             </button>
           </div>
         </router-link>
@@ -98,6 +103,14 @@ export default {
         this.$store.state.user = null;
       }
     },
+    show_profile(){
+      if(!this.active_user){
+        this.$store.state.login_shown = true
+      } else {
+        alert(`Vous êtes connecté comme ${this.active_user.first_name} ${this.active_user.last_name}`)
+        this.$store.state.profile_shown=true
+      }
+    }
   },
   mounted(){
   }
@@ -137,6 +150,7 @@ a{
   padding: 15px;
   color: black;
   cursor: pointer;
+  text-align: center;
 }
 .submenu .content{
   border-radius: 5px;
@@ -154,5 +168,12 @@ a{
 }
 a:hover{
   color: var(--secondary);
+}
+@media only screen and (max-width: 600px) {
+  .menu-item{
+    padding: 5px;
+    color: black;
+    cursor: pointer;
+  }
 }
 </style>

@@ -33,18 +33,33 @@ export default{
 	text-align: center;
 }
 .suggestions{
-	width: 1150px;
-	overflow-x: hidden;
+	width: 80%;
 	margin: 0 auto 30px auto;
+	overflow-x: hidden;
 }
 .items{
-	width: 3600px;
 	overflow: hidden;
-	padding: 10px 0;
+	display: grid;
+	width: 300%;
+	gap: 20px;
+	grid-template-columns: repeat(9, 1fr);
+	align-items: baseline;
 }
 .items > *{
-	display: inline-block;
-	margin-right: 30px;
 	box-shadow: 1px 1px 10px #9993;
+}
+@media only screen and (max-width: 900px) {
+	.suggestions{
+		width: 90%;
+		margin: 0 auto 20px auto;
+	}
+	.items{
+		width: 450%;
+	}
+}
+@media only screen and (max-width: 420px) {
+	.items{
+		width: 940%;
+	}
 }
 </style>

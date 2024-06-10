@@ -8,15 +8,19 @@
 		<div class="img">
 			<img src="/static/Bujumbura.jpg" alt="">
 			<div class="caption">
-				<h3>Bujumbura</h3>
-				<div>3 salles</div>
+				<div class="txt">
+					<h3>Bujumbura</h3>
+					<div>3 salles</div>
+				</div>
 			</div>
 		</div>
 		<div class="img">
 			<img src="/static/Kayanza.jpg" alt="">
 			<div class="caption">
-				<h3>Kayanza</h3>
-				<div>3 salles</div>
+				<div class="txt">
+					<h3>Kayanza</h3>
+					<div>3 salles</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -24,15 +28,19 @@
 		<div class="img">
 			<img src="/static/Ngozi.jpg" alt="">
 			<div class="caption">
-				<h3>Ngozi</h3>
-				<div>3 salles</div>
+				<div class="txt">
+					<h3>Ngozi</h3>
+					<div>3 salles</div>
+				</div>
 			</div>
 		</div>
 		<div class="img">
 			<img src="/static/Gitega.jpg" alt="">
 			<div class="caption">
-				<h3>Gitega</h3>
-				<div>3 salles</div>
+				<div class="txt">
+					<h3>Gitega</h3>
+					<div>3 salles</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -65,7 +73,7 @@ export default{
 	grid-template-columns: 3fr 5fr;
 }
 img{
-	height: 100%;
+	min-height: 100%;
 	min-width: 100%;
 	position: absolute;
 	top: 50%;
@@ -74,8 +82,7 @@ img{
 	transform: translate(-50%, -50%);
 }
 .img:hover img{
-	height: 105%;
-	min-width: 110%;
+	transform: scale(1.2) translate(-45%, -45%);
 }
 .img{
 	position: relative;
@@ -87,10 +94,19 @@ img{
 	height: 100%;
 	position: relative;
 	text-align: center;
-	padding-top: 250px;
 	z-index: 2;
+}
+.txt{
+	position: relative;
+	top: 70%;
 }
 .caption *{
 	color: #ddd;
+}
+@media only screen and (max-width: 900px) {
+  .ligne1, .ligne2{
+    grid-template-columns: 1fr;
+	height: 600px;
+  }
 }
 </style>

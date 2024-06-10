@@ -59,10 +59,11 @@ export default{
 </script>
 <style scoped>
 .parent{
-	position: absolute;
+	position: fixed;
 	top:0;
 	width: 100%;
 	height: 100%;
+	overflow-y: auto;
 	background-color: #0005;
 	z-index: 11;
 }

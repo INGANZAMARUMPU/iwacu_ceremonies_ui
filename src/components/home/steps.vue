@@ -62,4 +62,10 @@ export default{
 h3{
 	color: var(--primary);
 }
+@media only screen and (max-width: 900px) {
+  .steps{
+    flex-direction: column;
+	align-items: center;
+  }
+}
 </style>

@@ -23,6 +23,7 @@ export default{
 img{
 	position: absolute;
 	width: 100%;
+	min-height: 100%;
 	z-index: -1;
 }
 .caption{
@@ -43,5 +44,10 @@ h1{
 }
 button{
 	background-color: var(--secondary);
+}
+@media only screen and (max-width: 900px) {
+	h1{
+		font-size: 1.8em;
+	}
 }
 </style>

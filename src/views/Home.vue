@@ -6,7 +6,6 @@
 		</div>
 		<div class="slider-text">
 			<div class="form">
-				<h1>Trouver votre salle de réception</h1>
 				<SearchView/>
 			</div>
 		</div>
@@ -64,11 +63,5 @@ export default{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-}
-.slider-text h1{
-	font-size: 3em;
-	color: white;
-	text-align: center;
-	padding-bottom: 20px;
 }
 </style>

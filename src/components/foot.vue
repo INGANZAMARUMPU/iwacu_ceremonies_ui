@@ -13,7 +13,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="item">
+		<div class="item default">
 			<h3>SERVICES</h3>
 			<div>
 				<a href="salles.figibook.com">Salles de réception</a>
@@ -79,6 +79,7 @@ export default{
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	flex-basis: 200px;
 }
 .item input{
 	width: 100%;
