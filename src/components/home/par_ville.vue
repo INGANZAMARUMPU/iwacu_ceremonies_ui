@@ -51,6 +51,14 @@ export default{
 };
 </script>
 <style scoped>
+@keyframes zoomIn {
+	from {
+		transform: translate(-50%, -50%);
+	}
+	to {
+		transform: scale(1.2) translate(-45%, -45%);
+	}
+}
 .recent{
 	padding: 0 40px 40px 40px;
 }
@@ -83,6 +91,7 @@ img{
 }
 .img:hover img{
 	transform: scale(1.2) translate(-45%, -45%);
+	animation: zoomIn 1s;
 }
 .img{
 	position: relative;

@@ -28,6 +28,28 @@ export default{
 };
 </script>
 <style scoped>
+@keyframes push {
+	0% { left: 0; }
+	13% {left: 0;}
+	
+	17% {left: -33.34%;}
+	28% {left: -33.34%;}
+
+	34% {left: -66.67%;}
+	43% {left: -66.67%;}
+
+	47% {left: -100%;}
+	58% {left: -100%;}
+	
+	62% {left: -133.34%;}
+	73% {left: -133.34%;}
+	
+	77% {left: -166.67%;}
+	88% {left: -166.67%;}
+	
+	92% {left: -200%;}
+	98% {left: -200%;}
+}
 .title{
 	padding: 30px;
 	text-align: center;
@@ -42,6 +64,8 @@ export default{
 	display: grid;
 	width: 300%;
 	gap: 20px;
+	position: relative;
+	animation: push 60s infinite;
 	grid-template-columns: repeat(9, 1fr);
 	align-items: baseline;
 }

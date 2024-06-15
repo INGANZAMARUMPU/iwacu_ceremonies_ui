@@ -117,6 +117,16 @@ export default {
 };
 </script>
 <style scoped>
+@keyframes submenu {
+	from {
+    margin-top: -5px;
+    opacity: .5;
+	}
+	to {
+    margin-top:0;
+    opacity: 1;
+	}
+}
 #nav{
   background-color: #FFFE;
   position: fixed;
@@ -160,6 +170,7 @@ a{
 .content-item:hover .submenu{
   display: block;
   text-align: left;
+  animation: submenu .5s;
 }
 .submenu-item{
   padding: 10px;

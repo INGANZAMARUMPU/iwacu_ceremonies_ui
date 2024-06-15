@@ -58,6 +58,16 @@ export default{
 }
 </script>
 <style scoped>
+@keyframes submenu {
+	from {
+    margin-top: -20px;
+    opacity: .5;
+	}
+	to {
+    margin-top:0;
+    opacity: 1;
+	}
+}
 .parent{
 	position: fixed;
 	top:0;
@@ -69,7 +79,7 @@ export default{
 }
 .body{
 	width: 300px;
-	margin: 80px auto;
+	margin: 80px auto 0 auto;
 }
 .form{
 	background-color: white;
@@ -78,6 +88,7 @@ export default{
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	animation: submenu .5s;
 }
 .title{
 	display: flex;
@@ -85,14 +96,14 @@ export default{
 	cursor: default;
 }
 .title > *{
-	color: #AAA;
+	color: #DDD;
 	padding: 10px 0;
 	flex-grow: 1;
 	text-align: center;
 	margin-bottom: 5px;
 }
 .active{
-	color: white;
+	color: #fff;
 }
 .active::after{
 	content:"";
