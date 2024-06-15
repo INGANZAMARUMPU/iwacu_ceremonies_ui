@@ -48,7 +48,7 @@ export default{
 	88% {left: -166.67%;}
 	
 	92% {left: -200%;}
-	98% {left: -200%;}
+	98% {left: 0%;}
 }
 .title{
 	padding: 30px;
@@ -73,6 +73,28 @@ export default{
 	box-shadow: 1px 1px 10px #9993;
 }
 @media only screen and (max-width: 900px) {
+	@keyframes push {
+		0% { left: 0; }
+		13% {left: 0;}
+		
+		17% {left: -50%;}
+		28% {left: -50%;}
+
+		34% {left: -100%;}
+		43% {left: -100%;}
+
+		47% {left: -150%;}
+		58% {left: -150%;}
+		
+		62% {left: -200%;}
+		73% {left: -200%;}
+		
+		77% {left: -250%;}
+		88% {left: -250%;}
+		
+		92% {left: -300%;}
+		98% {left: 0%;}
+	}
 	.suggestions{
 		width: 90%;
 		margin: 0 auto 20px auto;
@@ -82,6 +104,28 @@ export default{
 	}
 }
 @media only screen and (max-width: 420px) {
+	@keyframes push {
+		0% { left: 0; }
+		13% {left: 0;}
+		
+		17% {left: -105%;}
+		28% {left: -105%;}
+
+		34% {left: -210%;}
+		43% {left: -210%;}
+
+		47% {left: -315%;}
+		58% {left: -315%;}
+		
+		62% {left: -420%;}
+		73% {left: -420%;}
+		
+		77% {left: -525%;}
+		88% {left: -525%;}
+		
+		92% {left: -630%;}
+		98% {left: 0%;}
+	}
 	.items{
 		width: 940%;
 	}
