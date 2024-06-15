@@ -50,7 +50,7 @@
                   </div>
                 </router-link>
                 <router-link
-                  to="/produits"
+                  to="/reservations"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">

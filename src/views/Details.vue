@@ -44,8 +44,6 @@ export default {
       gallery:[]
     };
   },
-  watch: {
-  },
   methods: {
     fetchData() {
       let salle_name = this.$route.params["salle_name"];

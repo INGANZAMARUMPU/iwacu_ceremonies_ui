@@ -15,7 +15,8 @@ export default{
 	props:[ "photos" ],
 	data(){
 		return {
-			current: 0
+			current: 0,
+			interval: null
 		}
 	},
 	computed:{
@@ -24,6 +25,14 @@ export default{
 		close(){
 			this.$emit("close");
 		},
+	},
+	mounted(){
+		this.interval = window.setInterval(() => {
+			this.current = (this.current + 1) % this.photos.length
+		}, 5000)
+	},
+	unmounted(){
+		window.clearInterval(this.interval)
 	}
 };
 </script>
