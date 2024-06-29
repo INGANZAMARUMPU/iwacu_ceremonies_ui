@@ -80,15 +80,43 @@
           to="/create"
           v-slot="{ href, navigate, isActive, isExactActive }">
           <div class="menu-item">
-            <button :href="href" :class="{ selected: isActive }" class="btn default">
-              <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
-              Ajouter une Salle
-            </button>
-            <button :href="href" :class="{ selected: isActive }" class="btn responsive">
-              <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
-            </button>
           </div>
         </router-link>
+        <div @click="toggleMenu" id="add_button" @mouseleave="hideAdd">
+          <div class="menu-item">
+            <div>
+              <button class="btn default">
+                <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
+                Ajouter
+              </button>
+              <button class="btn responsive">
+                <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
+              </button>
+            </div>
+            <div class="submenu">
+              <div class="content">
+                <router-link
+                  to="/list"
+                  v-slot="{ href, navigate, isActive, isExactActive }">
+                  <div class="submenu-item">
+                    <a :href="href" :class="{ selected: isActive }">
+                      Une salle
+                    </a>
+                  </div>
+                </router-link>
+                <router-link
+                  to="/mine"
+                  v-slot="{ href, navigate, isActive, isExactActive }">
+                  <div class="submenu-item">
+                    <a :href="href" :class="{ selected: isActive }">
+                      Une voiture
+                    </a>
+                  </div>
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -110,6 +138,12 @@ export default {
         alert(`Vous êtes connecté comme ${this.active_user.first_name} ${this.active_user.last_name}`)
         this.$store.state.profile_shown=true
       }
+    },
+    toggleMenu(){
+      add_button.classList.toggle("content-item")
+    },
+    hideAdd(){
+      add_button.classList.remove("content-item")
     }
   },
   mounted(){

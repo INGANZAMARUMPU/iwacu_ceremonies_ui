@@ -23,6 +23,7 @@
 				<div>{{ money(produit.prix) }} BIF</div>
 			</div>
 		</div>
+		<button class="btn float" @click.stop>modifier</button>
 	</div>
 </div>
 </template>
@@ -57,6 +58,7 @@ img{
 .infos{
 	background-color: white;
 	flex-grow: 1;
+	position: relative;
 }
 .prix{
 	width: 100%;
@@ -81,6 +83,22 @@ h2{
 }
 h3{
 	color: var(--secondary);
+}
+.float{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	background-color: white;
+	color: var(--primary);
+	border: 2px solid var(--primary);
+}
+.btn.float{
+	padding: 5px 20px;
+}
+.btn.float:hover{
+	padding: 5px 20px;
+	color: white;
+	background-color: var(--primary);
 }
 @media only screen and (max-width: 800px) {
 	img{
