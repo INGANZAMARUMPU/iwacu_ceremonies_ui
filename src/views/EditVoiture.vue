@@ -2,7 +2,7 @@
   <div class="page">
     <div class="container">
       <section class="section">
-        <h2>Edition de la salle {{ nom }}</h2>
+        <h2>Edition de la voiture {{ nom }}</h2>
         <label class="logs">{{ img_logs }}</label>
         <div class="field">
           <label for="nom">Nom</label>

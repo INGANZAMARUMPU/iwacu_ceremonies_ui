@@ -24,7 +24,7 @@
               v-slot="{ href, navigate, isActive, isExactActive }">
               <div>
                 <a :href="href" :class="{ selected: isActive }">
-                  Les salles
+                  Salles
                   <i class="pi pi-angle-down" style="color:var(--primary)"></i>
                 </a>
               </div>
@@ -62,11 +62,52 @@
             </div>
           </div>
         </div>
+        <div class="content-item">
+          <div class="menu-item parent-menu">
+            <router-link to="/list"
+              v-slot="{ href, navigate, isActive, isExactActive }">
+              <div>
+                <a :href="href" :class="{ selected: isActive }">
+                  Voitures
+                  <i class="pi pi-angle-down" style="color:var(--primary)"></i>
+                </a>
+              </div>
+            </router-link>
+            <div class="submenu">
+              <div class="content">
+                <router-link
+                  to="/list"
+                  v-slot="{ href, navigate, isActive, isExactActive }">
+                  <div class="submenu-item">
+                    <a :href="href" :class="{ selected: isActive }">
+                      Tout les voitures
+                    </a>
+                  </div>
+                </router-link>
+                <router-link
+                  to="/mine"
+                  v-slot="{ href, navigate, isActive, isExactActive }">
+                  <div class="submenu-item">
+                    <a :href="href" :class="{ selected: isActive }">
+                      Mes voitures
+                    </a>
+                  </div>
+                </router-link>
+                <router-link
+                  to="/reservations"
+                  v-slot="{ href, navigate, isActive, isExactActive }">
+                  <div class="submenu-item">
+                    <a :href="href" :class="{ selected: isActive }">
+                      Mes reservations
+                    </a>
+                  </div>
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="menu-item default" @click="show_profile">
           Profile
-        </div>
-        <div class="menu-item">
-          <a href="https://wa.me/25771208396" target="_blank">Contact</a>
         </div>
       </div>
       <div class="right">
@@ -96,7 +137,7 @@
             <div class="submenu">
               <div class="content">
                 <router-link
-                  to="/list"
+                  to="/edit-salle"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
@@ -105,7 +146,7 @@
                   </div>
                 </router-link>
                 <router-link
-                  to="/mine"
+                  to="/edit-voiture"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
