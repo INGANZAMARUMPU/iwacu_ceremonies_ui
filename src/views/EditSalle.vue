@@ -1,8 +1,9 @@
 <template>
   <div class="page">
+    <h2>Edition de la salle {{ nom }}</h2>
+    <Indicator :labels="['identification', 'images', 'Fin']" :current="page" @click="page++"/>
     <div class="container">
-      <section class="section">
-        <h2>Edition de la salle {{ nom }}</h2>
+      <section class="section" v-show="page == 0">
         <label class="logs">{{ img_logs }}</label>
         <div class="field">
           <label for="nom">Nom</label>
@@ -40,22 +41,28 @@
             placeholder="Les autres details sur cette salle">
           </textarea>
         </div>
-        <section class="pics">
-          <div class="mainpic">
-            <img src="/static/img_placeholder.png" id="img1" @click="forwardTo('img1')"/>
-          </div>
-          <div class="altpic">
-            <img src="/static/img_placeholder.png" id="img2" @click="forwardTo('img2')"/>
-            <img src="/static/img_placeholder.png" id="img3" @click="forwardTo('img3')"/>
-            <img src="/static/img_placeholder.png" id="img4" @click="forwardTo('img4')"/>
-            <img src="/static/img_placeholder.png" id="img5" @click="forwardTo('img5')"/>
-          </div>
-          <input type="file" ref="img1" @change="(e) => load(e, 'img1')" accept=".jpg,.jpeg,.gif,.png"/>
-          <input type="file" ref="img2" @change="(e) => load(e, 'img2')" accept=".jpg,.jpeg,.gif,.png"/>
-          <input type="file" ref="img3" @change="(e) => load(e, 'img3')" accept=".jpg,.jpeg,.gif,.png"/>
-          <input type="file" ref="img4" @change="(e) => load(e, 'img4')" accept=".jpg,.jpeg,.gif,.png"/>
-          <input type="file" ref="img5" @change="(e) => load(e, 'img5')" accept=".jpg,.jpeg,.gif,.png"/>
-        </section>
+        <label class="logs">{{ logs }}</label>
+        <button class="btn" @click="upload">SUIVANT</button>
+      </section>
+      <section class="pics" v-show="page == 1">
+        <div class="mainpic">
+          <img src="/static/img_placeholder.png" id="img1" @click="forwardTo('img1')"/>
+        </div>
+        <div class="altpic">
+          <img src="/static/img_placeholder.png" id="img2" @click="forwardTo('img2')"/>
+          <img src="/static/img_placeholder.png" id="img3" @click="forwardTo('img3')"/>
+          <img src="/static/img_placeholder.png" id="img4" @click="forwardTo('img4')"/>
+          <img src="/static/img_placeholder.png" id="img5" @click="forwardTo('img5')"/>
+        </div>
+        <input type="file" ref="img1" @change="(e) => load(e, 'img1')" accept=".jpg,.jpeg,.gif,.png"/>
+        <input type="file" ref="img2" @change="(e) => load(e, 'img2')" accept=".jpg,.jpeg,.gif,.png"/>
+        <input type="file" ref="img3" @change="(e) => load(e, 'img3')" accept=".jpg,.jpeg,.gif,.png"/>
+        <input type="file" ref="img4" @change="(e) => load(e, 'img4')" accept=".jpg,.jpeg,.gif,.png"/>
+        <input type="file" ref="img5" @change="(e) => load(e, 'img5')" accept=".jpg,.jpeg,.gif,.png"/>
+        <label class="logs">{{ logs }}</label>
+        <button class="btn" @click="upload">SUIVANT</button>
+      </section>
+      <section v-show="page == 2">
         <div class="field">
           <label for="ajouts">Valeurs ajoutées</label>
           <textarea cols="30" rows="10" id="ajouts" v-model="ajouts"
@@ -68,15 +75,17 @@
             placeholder="ce que vous obligez aux clients">
           </textarea>
         </div>
+        <label class="logs">{{ logs }}</label>
+        <button class="btn" @click="upload">ENREGISTER LA SALLE</button>
       </section>
-      <label class="logs">{{ logs }}</label>
     </div>
-    <button class="btn" @click="upload">ENREGISTER LA SALLE</button>
   </div>
 </template>
 <script>
 import axios from "axios";
+import Indicator from "../components/indicator.vue";
 export default {
+  components: { Indicator },
   data() {
     return {
       nom: "",
@@ -96,6 +105,7 @@ export default {
       img3: null,
       img4: null,
       img5: null,
+      page: 0
     };
   },
   computed: {
@@ -206,7 +216,8 @@ input {
   padding: 8px;
 }
 .btn {
-  margin: 20px 0;
+  display: block;
+  margin: 10px 0 10px auto;
   font-size: .9em;
 }
 input, textarea {

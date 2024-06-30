@@ -117,12 +117,6 @@
         <div class="menu-item" v-else @click="$store.state.login_shown=true">
           Connexion
         </div>
-        <router-link
-          to="/create"
-          v-slot="{ href, navigate, isActive, isExactActive }">
-          <div class="menu-item">
-          </div>
-        </router-link>
         <div @click="toggleMenu" id="add_button" @mouseleave="hideAdd">
           <div class="menu-item">
             <div>
