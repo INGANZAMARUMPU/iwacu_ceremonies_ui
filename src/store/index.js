@@ -15,7 +15,11 @@ export default createStore({
     suggestions:[],
     mes_salles:[],
     current_salle:null,
-    allocation_states:{ "Partiellement Payée":1, "Entierement Payée":2}
+    allocation_states:{ "Partiellement Payée":1, "Entierement Payée":2},
+    alert:{
+      message: "Bienvenue sur FiGiBook",
+      type: "success"
+    },
   },
   mutations: {
   },

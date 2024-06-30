@@ -4,15 +4,17 @@
 	<LoginDialog v-if="$store.state.login_shown"/>
 	<router-view/>
 	<Foot/>
+	<Notifier/>
 </div>
 </template>
 <script>
 import TopBar from "./components/topbar"
 import Foot from "./components/foot.vue"
 import LoginDialog from "./components/login.vue"
+import Notifier from "./components/notifier.vue"
 
 export default {
-	components:{ TopBar, Foot, LoginDialog },
+	components:{ TopBar, Foot, LoginDialog, Notifier },
 	watch:{
 		"$store.state.user":{
 			deep:true,
