@@ -16,9 +16,14 @@
           </div>
           <div class="field">
             <label for="password">Mot de passe</label>
-            <input type="text" v-model="password" placeholder="Mot de passe"/>
+            <input :type="pass_shown?'text':'password'"
+				v-model="password" placeholder="Mot de passe"/>
+			<span class="show" @click="pass_shown=!pass_shown">
+				<i class="pi pi-eye-slash" v-if="pass_shown"></i>
+				<i class="pi pi-eye" v-else></i>
+			</span>
           </div>
-		  <button class="btn" @click="upload">Se connecter</button>
+		  <button class="btn" @click="login">Se connecter</button>
 		</div>
 		<div class="form" v-else>
           <div class="field">
@@ -54,6 +59,28 @@ export default{
 			active: "login",
 			pass_shown: false
 		}
+	},
+	methods:{
+		login(){
+		this.is_loading=true
+		this.logs = ""
+		axios.post(this.url+"/login/", 
+			{"username": this.username, "password":this.password}
+		).then((response) => {
+			this.$store.state.user = response.data
+			this.$store.state.login_shown=false
+			this.$store.state.alert = {
+				type:"success", message:`Bienvenue sur FiGiBook, ${this.username}!`
+			}
+		}).catch((error) => {
+			console.log(error)
+			if(!!error.response){
+				this.$store.state.alert = {
+					type:"danger", message:this.cleanString(error.response.data)
+				}
+			}
+		}).finally(()=>this.is_loading=false)
+		},
 	}
 }
 </script>
