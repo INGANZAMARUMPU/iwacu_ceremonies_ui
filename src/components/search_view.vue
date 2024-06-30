@@ -1,7 +1,12 @@
 <template>
   <div class="body">
-    <input type="text" class="search" name="" placeholder="Rechercher">
-    <div class="options">
+    <div class="one">
+      <input type="text" class="search" name="" placeholder="Rechercher">
+      <button @click="search" class="btn" v-if="!show_all">
+        CHERCHER
+      </button>
+    </div>
+    <div class="options" v-if="show_all">
       <select>
         <option value="">N'importe quel prix</option>
         <option value="1">50 000 à 500 000 Fbu</option>
@@ -39,9 +44,13 @@
         <option value="1">1000 personnes ou moins</option>
       </select>
     </div>
-    <button @click="search" class="btn">
+    <button @click="search" class="btn main-btn" v-if="show_all">
       APPLIQUER LES FILTRES
     </button>
+    <div @click="show_all = !show_all">
+      <a href="#" v-if="!show_all">+ plus de filtres</a>
+      <a href="#" v-else>- moins de filtres</a>
+    </div>
   </div>
 </template>
 <script>
@@ -64,7 +73,6 @@ export default{
 }
 .search{
   width: 100%;
-  margin-bottom: 20px;
 }
 .search, select, button{
   padding: 10px 20px;
@@ -75,12 +83,25 @@ export default{
 .options{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 10px;
 }
-button{
-  margin-top: 20px;
+.main-btn{
+  margin: 10px;
   width: 100%;
   font-size: .9em;
+  margin: 10px 0;
+}
+.one{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+a{
+  color: var(--primary);
+}
+a:hover{
+  text-decoration: underline;
 }
 @media only screen and (max-width: 600px) {
   .options{
