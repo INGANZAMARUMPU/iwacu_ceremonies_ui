@@ -23,7 +23,7 @@
 				<div>{{ money(produit.prix) }} BIF</div>
 			</div>
 		</div>
-		<button class="btn float" @click.stop>modifier</button>
+		<button class="btn float" @click.stop="modifier">modifier</button>
 	</div>
 </div>
 </template>
@@ -41,6 +41,10 @@ export default{
 		},
 		reserver(slug){
 			this.$router.push(`/details/${slug}#calendar`)
+		},
+		modifier(){
+			this.$store.state.current_salle = this.item
+			this.$router.push("/edit-salle")
 		}
 	}
 };

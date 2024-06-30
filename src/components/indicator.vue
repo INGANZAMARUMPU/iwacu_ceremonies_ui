@@ -21,7 +21,8 @@ export default{
 </script>
 <style scoped>
 .indicator{
-	width: 80%;
+	padding-top: 1px;
+	width: 90%;
 	margin: auto;
 }
 .progress{
