@@ -25,11 +25,11 @@
               <div>
                 <a :href="href" :class="{ selected: isActive }">
                   Salles
-                  <i class="pi pi-angle-down" style="color:var(--primary)"></i>
+                  <i class="pi pi-angle-down" style="color:var(--primary)" v-if="!!active_user"></i>
                 </a>
               </div>
             </router-link>
-            <div class="submenu">
+            <div class="submenu" v-if="!!active_user">
               <div class="content">
                 <router-link
                   to="/list"
@@ -69,11 +69,11 @@
               <div>
                 <a :href="href" :class="{ selected: isActive }">
                   Voitures
-                  <i class="pi pi-angle-down" style="color:var(--primary)"></i>
+                  <i class="pi pi-angle-down" style="color:var(--primary)" v-if="!!active_user"></i>
                 </a>
               </div>
             </router-link>
-            <div class="submenu">
+            <div class="submenu" v-if="!!active_user">
               <div class="content">
                 <router-link
                   to="/list"
@@ -106,26 +106,21 @@
             </div>
           </div>
         </div>
-        <div class="menu-item default" @click="show_profile">
-          Profile
-        </div>
       </div>
       <div class="right">
         <div class="menu-item" v-if="!!active_user" @click="logout">
-          Se Deconnecter
+          <i class="pi pi-power-off" style="font-weight: 900"></i>
+          {{ active_user.first_name || "Deconnexion" }}
         </div>
         <div class="menu-item" v-else @click="$store.state.login_shown=true">
           Connexion
         </div>
         <div @click="toggleMenu" id="add_button" @mouseleave="hideAdd">
           <div class="menu-item">
-            <div>
-              <button class="btn default">
-                <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
-                Ajouter
-              </button>
-              <button class="btn responsive">
-                <i class="pi pi-plus" style="font-weight: 900; color:white"></i>
+            <div v-if="!!active_user">
+              <button class="btn">
+                <i class="pi pi-plus" style="font-weight: 900; color: white;"></i>
+                <span class="default" style="color: white;"> Ajouter</span>
               </button>
             </div>
             <div class="submenu">
@@ -164,14 +159,6 @@ export default {
     logout() {
       if(window.confirm("Voulez-vous vraiment vous deconnecter?")){
         this.$store.state.user = null;
-      }
-    },
-    show_profile(){
-      if(!this.active_user){
-        this.$store.state.login_shown = true
-      } else {
-        alert(`Vous êtes connecté comme ${this.active_user.first_name} ${this.active_user.last_name}`)
-        this.$store.state.profile_shown=true
       }
     },
     toggleMenu(){
