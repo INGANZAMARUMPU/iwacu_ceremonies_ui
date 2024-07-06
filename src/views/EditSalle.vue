@@ -1,38 +1,38 @@
 <template>
   <div class="page">
-    <h2>Edition de la salle {{ nom }}</h2>
+    <h2>Edition de la salle {{ current_salle?.nom }}</h2>
     <Indicator :labels="['identification', 'images', 'Fin']" :current="page"/>
-    <div class="container">
+    <div class="container" v-if="!!current_salle">
       <section v-show="page == 0">
         <div class="fields">
           <div class="field">
             <label for="nom">Nom</label>
-            <input id="nom" v-model="nom" type="text" placeholder="Nom de la salle"/>
+            <input id="nom" v-model="current_salle.nom" type="text" placeholder="Nom de la salle"/>
           </div>
           <div class="field">
             <label for="lieu">Province</label>
-            <input id="lieu" v-model="province" type="text" placeholder="Province"/>
+            <input id="lieu" v-model="current_salle.province" type="text" placeholder="Province"/>
           </div>
           <div class="field">
             <label for="lieu">Lieu</label>
-            <input type="text" v-model="lieu" placeholder="Commune, Quartier et Rue"/>
+            <input type="text" v-model="current_salle.lieu" placeholder="Commune, Quartier et Rue"/>
           </div>
           <div class="field">
             <label for="taille_parking">Taille du taille_parking</label>
-            <input id="taille_parking" v-model="taille_parking" type="number" placeholder="Combien de voitures"/>
+            <input id="taille_parking" v-model="current_salle.taille_parking" type="number" placeholder="Combien de voitures"/>
           </div>
           <div class="field">
             <label for="places">Nombre de places</label>
-            <input id="places" v-model="places" type="number" min="30" max="1000" placeholder="Capacité de la salle"/>
+            <input id="places" v-model="current_salle.places" type="number" min="30" max="1000" placeholder="Capacité de la salle"/>
           </div>
           <div class="field">
             <label for="prix">Prix</label>
-            <input id="prix" v-model="prix" type="number" min="50000" placeholder="Prix de location"/>
+            <input id="prix" v-model="current_salle.prix" type="number" min="50000" placeholder="Prix de location"/>
           </div>
         </div>
         <div class="field">
           <label for="details">Details:</label>
-          <textarea rows="7" id="details" v-model="details"
+          <textarea rows="7" id="details" v-model="current_salle.details"
             placeholder="Les autres details sur cette salle">
           </textarea>
         </div>
@@ -41,34 +41,28 @@
       </section>
       <section v-show="page == 1">
         <div class="pics">
-          <div class="mainpic">
-            <img src="/static/img_placeholder.png" id="img1" @click="forwardTo('img1')"/>
+          <div class="img" v-for="img in current_salle.gallery">
+            <img :src="img.image" alt="">
           </div>
-          <div class="altpic">
-            <img src="/static/img_placeholder.png" id="img2" @click="forwardTo('img2')"/>
-            <img src="/static/img_placeholder.png" id="img3" @click="forwardTo('img3')"/>
-            <img src="/static/img_placeholder.png" id="img4" @click="forwardTo('img4')"/>
-            <img src="/static/img_placeholder.png" id="img5" @click="forwardTo('img5')"/>
-          </div>
-          <input type="file" ref="img1" @change="(e) => load(e, 'img1')" accept=".jpg,.jpeg,.gif,.png"/>
-          <input type="file" ref="img2" @change="(e) => load(e, 'img2')" accept=".jpg,.jpeg,.gif,.png"/>
-          <input type="file" ref="img3" @change="(e) => load(e, 'img3')" accept=".jpg,.jpeg,.gif,.png"/>
-          <input type="file" ref="img4" @change="(e) => load(e, 'img4')" accept=".jpg,.jpeg,.gif,.png"/>
-          <input type="file" ref="img5" @change="(e) => load(e, 'img5')" accept=".jpg,.jpeg,.gif,.png"/>
         </div>
+        <div class="field">
+          Ajouter une image
+          <input type="file" ref="img" @change="(e) => load(e)" accept=".jpg,.jpeg,.gif,.png"/>
+        </div>
+        <img id="img" @click="forwardTo"/>
         <label class="logs">{{ logs }}</label>
         <button class="btn" @click="upload_images">SUIVANT</button>
       </section>
       <section v-show="page == 2">
         <div class="field">
           <label for="ajouts">Valeurs ajoutées</label>
-          <textarea cols="30" rows="10" id="ajouts" v-model="ajouts"
+          <textarea cols="30" rows="10" id="ajouts" v-model="current_salle.ajouts"
             placeholder="autres choses que le client beneficie">
           </textarea>
         </div>
         <div class="field">
           <label for="obligations">Obligations</label>
-          <textarea cols="30" rows="10" id="obligations" v-model="obligations"
+          <textarea cols="30" rows="10" id="obligations" v-model="current_salle.obligations"
             placeholder="ce que vous obligez aux clients">
           </textarea>
         </div>
@@ -85,47 +79,30 @@ export default {
   components: { Indicator },
   data() {
     return {
-      nom: "",
-      taille_parking: "",
-      places: "",
-      ajouts: "",
-      obligations: "",
-      prix: "",
-      details: "",
-      province: "",
-      lieu: "",
+      current_salle: null,
       logs: "",
-      img1: null, img2: null, img3: null, img4: null, img5: null,
-      page: 0
+      img: null,
+      page: 1
     };
   },
   watch:{
-    "$store.state.current_salle":{
-      deep:true,
-      handler(new_val){
-      }
+    "$store.state.current_salle"(new_val){
+      this.current_salle = new_val
     }
   },
   methods: {
     forwardTo(component) {
       this.$refs[component].click();
     },
-    load(event, img_id) {
+    load(event) {
       this.logs = "";
-      let placeholder = document.getElementById(img_id);
+      let placeholder = document.getElementById("img");
       let raw = event.target.files[0];
       if (raw.size > 350_000) {
         this.logs = "L'image doit être inferieur à 350ko";
         return;
       }
-      switch (img_id) {
-        case "img1": this.img1 = raw; break;
-        case "img2": this.img2 = raw; break;
-        case "img3": this.img3 = raw; break;
-        case "img4": this.img4 = raw; break;
-        case "img5": this.img5 = raw; break;
-        default: console.log("DONE"); break;
-      }
+      this.img = raw;
       var reader = new FileReader();
       reader.readAsDataURL(raw);
       reader.onload = function (event) {
@@ -176,8 +153,9 @@ export default {
     },
     upload_images() {
       this.logs = "";
+      let images = [ this.img, this.img2, this.img3, this.img4, this.img5 ]
       let form = new FormData();
-      form.append("photo_principal", this.img1);
+      form.append("photo_principal", this.img);
       form.append("photo_1", this.img2);
       form.append("photo_2", this.img3);
       form.append("photo_3", this.img4);
@@ -197,21 +175,30 @@ export default {
         console.error(error);
       });
     },
+    fetchItem(id){
+      axios.get(this.url + `/salles/${id}/`, this.headers)
+      .then((response) => {
+        this.$store.state.current_salle = response.data;
+        this.current_salle = response.data;
+      }).catch((error) => {
+        if (error.response.status == 403) {
+          this.refreshToken(() => this.fetchItem(id));
+        } else {
+          this.logs = error.response.data;
+          console.error(error);
+        }
+      });
+    }
   },
   mounted() {
-    this.nom = this.$store.state.current_salle?.nom
-    this.taille_parking = this.$store.state.current_salle?.taille_parking
-    this.places = this.$store.state.current_salle?.places
-    this.ajouts = this.$store.state.current_salle?.ajouts
-    this.obligations = this.$store.state.current_salle?.obligations
-    this.prix = this.$store.state.current_salle?.prix
-    this.details = this.$store.state.current_salle?.details
-    this.province = this.$store.state.current_salle?.province
-    this.lieu = this.$store.state.current_salle?.lieu
+    let salle_id = this.$route.params.salle_id
+    if(salle_id != this.$store.state.current_salle?.id){
+      this.$store.state.current_salle = null
+      this.fetchItem(salle_id)
+    } else {
+      this.current_salle = this.$store.state.current_salle
+    }
   },
-  unmounted(){
-    this.$store.state.current_salle = null
-  }
 };
 </script>
 <style scoped>
@@ -228,14 +215,9 @@ export default {
 .pics {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 0;
   margin-bottom: 20px
-}
-.altpic {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(2, 1fr);
 }
 .logs {
   grid-column: 1 / span 2;
@@ -245,9 +227,6 @@ export default {
 img {
   background-color: #ddd;
   width: 100%;
-}
-input[type="file"] {
-  display: none;
 }
 input {
   padding: 8px;

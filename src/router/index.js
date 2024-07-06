@@ -11,7 +11,7 @@ const routes = [
   { path: '/mine', name:'mine', component:List},
   { path: '/list', name:'list', component:List},
   { path: '/list/:prix/:localite', name:'search', component:List},
-  { path: '/edit-salle', name:'edit_salle', component:EditSalle},
+  { path: '/edit-salle/:salle_id', name:'edit_salle', component:EditSalle},
   { path: '/edit-voiture', name:'edit_voiture', component:EditVoiture},
   { path: '/details/:salle_name', name:'details', component:Details},
 ]

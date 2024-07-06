@@ -47,7 +47,7 @@ export default{
 		},
 		modifier(){
 			this.$store.state.current_salle = this.item
-			this.$router.push("/edit-salle")
+			this.$router.push(`/edit-salle/${this.item.id}`)
 		}
 	}
 };
