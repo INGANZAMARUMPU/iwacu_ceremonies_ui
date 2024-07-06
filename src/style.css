@@ -135,7 +135,7 @@ h3{
   flex-direction: column;
   gap: 10px;
 }
-.section {
+section {
   background: var(--white2);
   padding: 20px;
   border: 1px solid var(--white3);

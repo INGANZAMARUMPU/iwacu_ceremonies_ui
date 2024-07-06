@@ -3,8 +3,7 @@
     <h2>Edition de la salle {{ nom }}</h2>
     <Indicator :labels="['identification', 'images', 'Fin']" :current="page"/>
     <div class="container">
-      <section class="section" v-show="page == 0">
-        <label class="logs">{{ logs }}</label>
+      <section v-show="page == 0">
         <div class="fields">
           <div class="field">
             <label for="nom">Nom</label>
@@ -19,8 +18,8 @@
             <input type="text" v-model="lieu" placeholder="Commune, Quartier et Rue"/>
           </div>
           <div class="field">
-            <label for="parking">Taille du parking</label>
-            <input id="parking" v-model="parking" type="number" placeholder="Combien de voitures"/>
+            <label for="taille_parking">Taille du taille_parking</label>
+            <input id="taille_parking" v-model="taille_parking" type="number" placeholder="Combien de voitures"/>
           </div>
           <div class="field">
             <label for="places">Nombre de places</label>
@@ -87,7 +86,7 @@ export default {
   data() {
     return {
       nom: "",
-      parking: "",
+      taille_parking: "",
       places: "",
       ajouts: "",
       obligations: "",
@@ -139,8 +138,8 @@ export default {
         "nom": this.nom,
         "province": this.lieu,
         "lieu": this.lieu,
-        "taille_parking": this.parking,
-        "no_places": this.places,
+        "taille_parking": this.taille_parking,
+        "places": this.places,
         "valeurs_ajoutees": this.ajouts,
         "obligations": this.obligations,
         "prix": this.prix,
@@ -161,7 +160,7 @@ export default {
         });
       } else {
         let salle = this.$store.state.current_salle
-        axios.put(this.url + `/salle/${salle.id}/`, data, this.headers)
+        axios.put(this.url + `/salles/${salle.id}/`, data, this.headers)
         .then((response) => {
           this.$store.state.current_salle = response.data;
           this.page += 1
@@ -184,7 +183,7 @@ export default {
       form.append("photo_3", this.img4);
       form.append("photo_4", this.img5);
 
-      axios.post(this.url + "/salle/", form, this.headers)
+      axios.post(this.url + "/salles/", form, this.headers)
       .then((response) => {
         alert("la salle a été ajoutée");
         this.$store.state.salles.push(response.data);
@@ -201,7 +200,7 @@ export default {
   },
   mounted() {
     this.nom = this.$store.state.current_salle?.nom
-    this.parking = this.$store.state.current_salle?.parking
+    this.taille_parking = this.$store.state.current_salle?.taille_parking
     this.places = this.$store.state.current_salle?.places
     this.ajouts = this.$store.state.current_salle?.ajouts
     this.obligations = this.$store.state.current_salle?.obligations

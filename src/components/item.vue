@@ -23,7 +23,10 @@
 				<div>{{ money(produit.prix) }} BIF</div>
 			</div>
 		</div>
-		<button class="btn float" @click.stop="modifier">modifier</button>
+		<button class="btn float" @click.stop="modifier"
+			v-if="active_user && active_user.id == item.owner">
+			modifier
+		</button>
 	</div>
 </div>
 </template>
