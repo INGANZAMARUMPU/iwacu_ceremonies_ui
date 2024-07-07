@@ -40,17 +40,7 @@
         <button class="btn" @click="upload">SUIVANT</button>
       </section>
       <section v-show="page == 1">
-        <div class="pics">
-          <div class="img" v-for="img in current_salle.gallery">
-            <img :src="img.image" alt="">
-          </div>
-        </div>
-        <div class="field">
-          Ajouter une image
-          <input type="file" ref="img" @change="(e) => load(e)" accept=".jpg,.jpeg,.gif,.png"/>
-        </div>
-        <img id="img" @click="forwardTo"/>
-        <label class="logs">{{ logs }}</label>
+        <gallery :item="current_salle"/>
         <button class="btn" @click="upload_images">SUIVANT</button>
       </section>
       <section v-show="page == 2">
@@ -75,8 +65,10 @@
 <script>
 import axios from "axios";
 import Indicator from "../components/indicator.vue";
+import Gallery from "../components/gallery.vue";
+
 export default {
-  components: { Indicator },
+  components: { Indicator, Gallery },
   data() {
     return {
       current_salle: null,
@@ -151,30 +143,6 @@ export default {
         });
       }
     },
-    upload_images() {
-      this.logs = "";
-      let images = [ this.img, this.img2, this.img3, this.img4, this.img5 ]
-      let form = new FormData();
-      form.append("photo_principal", this.img);
-      form.append("photo_1", this.img2);
-      form.append("photo_2", this.img3);
-      form.append("photo_3", this.img4);
-      form.append("photo_4", this.img5);
-
-      axios.post(this.url + "/salles/", form, this.headers)
-      .then((response) => {
-        alert("la salle a été ajoutée");
-        this.$store.state.salles.push(response.data);
-        this.$router.push("/create");
-      })
-      .catch((error) => {
-        if (error.response.status == 403) {
-          this.refreshToken(this.upload);
-        }
-        this.logs = error.response.data;
-        console.error(error);
-      });
-    },
     fetchItem(id){
       axios.get(this.url + `/salles/${id}/`, this.headers)
       .then((response) => {
@@ -211,13 +179,6 @@ export default {
   background-color: white;
   border-radius: 5px;
   margin: 30px 0 50px 0;
-}
-.pics {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 0;
-  margin-bottom: 20px
 }
 .logs {
   grid-column: 1 / span 2;
