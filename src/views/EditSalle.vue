@@ -40,7 +40,7 @@
         <button class="btn" @click="upload">SUIVANT</button>
       </section>
       <section v-show="page == 1">
-        <gallery :item="current_salle"/>
+        <gallery :item="current_salle" name="salle" upload_url="/gallery-salles/"/>
         <button class="btn" @click="upload_images">SUIVANT</button>
       </section>
       <section v-show="page == 2">

@@ -2,8 +2,10 @@
   <div class="parent">
     <div class="pics">
       <div class="img" v-for="img in item.gallery">
-        <img :src="img.image" alt="">
-        <div class="overlay"></div>
+        <div class="crop">
+          <img :src="img.image" alt="">
+          <div class="overlay"></div>
+        </div>
         <div class="close">
           <i class="pi pi-times" style="color: white;"></i>
         </div>
@@ -28,7 +30,7 @@
 import axios from "axios";
 
 export default {
-  props: ["item", "url_path"],
+  props: ["item", "upload_url", "name"],
   data() {
     return {
       logs: "",
@@ -47,36 +49,29 @@ export default {
       let raw = event.target.files[0];
       if (raw.size > 350_000) {
         this.logs = "L'image doit être inferieur à 350ko";
+        this.loading = false
         return;
       }
-      this.img = raw;
       var reader = new FileReader();
-      reader.readAsDataURL(raw);
-      reader.onload = function (event) {
+      this.img = raw;
+      reader.onload = (event) => {
         placeholder.src = event.target.result;
+        this.upload()
       };
+      reader.readAsDataURL(raw);
     },
-    upload_images() {
+    upload() {
       this.logs = "";
-      let images = [ this.img, this.img2, this.img3, this.img4, this.img5 ]
       let form = new FormData();
-      form.append("photo_principal", this.img);
-      form.append("photo_1", this.img2);
-      form.append("photo_2", this.img3);
-      form.append("photo_3", this.img4);
-      form.append("photo_4", this.img5);
-
-      axios.post(this.url + "/salles/", form, this.headers)
+      form.append("image.image", this.img);
+      form.append(this.name, this.item.id);
+      axios.post(this.url + `${this.upload_url}`, form, this.headers)
       .then((response) => {
-        alert("la salle a été ajoutée");
-        this.$store.state.salles.push(response.data);
-        this.$router.push("/create");
-      })
-      .catch((error) => {
-        if (error.response.status == 403) {
-          this.refreshToken(this.upload);
-        }
-        this.logs = error.response.data;
+        this.item.gallery.push(response.data.image);
+        this.loading = false
+      }).catch((error) => {
+        if (error.response.status == 403) this.refreshToken(this.upload);
+        this.$store.state.alert = {type:"danger", message:error.response?.data};
         console.error(error);
       });
     },
@@ -98,19 +93,21 @@ export default {
 }
 img {
   width: 100%;
-  border-radius: 5px;
 }
-.black{
+.black, .crop{
   background-color: #000;
+  overflow: hidden;
+  height: 100%;
 }
-.img, .new, .black{
+.img, .new, .black, .crop{
   position: relative;
   display: flex;
   align-items: center;
   border-radius: 5px;
 }
 .close{
-  display: none
+  display: none;
+  z-index: 10;
 }
 .img:hover .close{
   display: flex;
