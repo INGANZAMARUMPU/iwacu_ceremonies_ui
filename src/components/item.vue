@@ -1,6 +1,6 @@
 <template>
 <div class="salle" @click="details(item.nom)">
-	<img :src="item.photo_principal">
+	<img :src="item.gallery[0]?.image">
 	<div class="infos">
 		<div class="prix">
 			<h2>{{ item.nom }}</h2>
@@ -58,9 +58,10 @@ export default{
 	cursor: default;
 	overflow: hidden;
 	display: flex;
+	height: 200px;
 }
 img{
-	width: 360px;
+	flex-basis: 300px;
 }
 .infos{
 	background-color: white;

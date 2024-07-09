@@ -1,6 +1,6 @@
 <template>
 <div class="salle" @click="details(item.nom)">
-	<img :src="item.photo_principal">
+	<img :src="item.gallery[0]?.image || '/static/img_placeholder.png'" height="200px"/>
 	<div class="infos">
 		<div style="width: 100%; overflow: hidden;">
 			<h3>{{ item.nom }}</h3>
@@ -48,6 +48,8 @@ export default{
 	border-radius: 5px;
 	cursor: default;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
 .img, img{
 	width: 100%;

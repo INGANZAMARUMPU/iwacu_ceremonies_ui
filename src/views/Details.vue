@@ -53,9 +53,7 @@ export default {
         .then((response) => {
           let salle = response.data;
           this.current_salle = response.data;
-          this.gallery = [
-            salle.photo_principal, salle.photo_1, salle.photo_2, salle.photo_3, salle.photo_4,
-          ]
+          this.gallery = response.data.gallery.map(x => x.image)
         })
         .catch((error) => {
           if (error.response.status == 401) {

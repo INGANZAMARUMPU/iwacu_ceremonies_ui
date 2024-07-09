@@ -19,7 +19,7 @@ export default{
 		fetchSuggestions(){
 			axios.get(this.url+"/salles/")
 			.then((response) => {
-				this.images = response.data.results.map(x => x.photo_principal)
+				this.images = response.data.results.filter(x => x.gallery.length > 0).map(x => x.gallery[0].image)
 			}).catch((error) => {
 				console.error(error);
 			})
