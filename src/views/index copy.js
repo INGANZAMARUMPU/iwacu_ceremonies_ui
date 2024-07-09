@@ -11,19 +11,20 @@ import ListVoitures from '../views/ListVoitures'
 import DetailsVoiture from '../views/DetailsVoiture'
 import ReservationsVoiture from '../views/ReservationsVoiture'
 
+
 const routes = [
   { path: '/', name:'home', component:Home},
   
-  { path: '/mine/salle', name:'salle_mine', component:ListSalles},
-  { path: '/list/salle', name:'salle_list', component:ListSalles},
+  { path: '/mine/salle', name:'salle_mine', component:Salle},
+  { path: '/list/salle', name:'salle_list', component:Salle},
   { path: '/reservations/salle', name:'salle_reservations', component:ReservationsSalle},
   { path: '/salle/:prix/:localite', name:'search_salle', component:ListSalles},
   { path: '/edit-salle/:salle_id', name:'edit_salle', component:EditSalle},
   { path: '/edit-salle', name:'add_salle', component:EditSalle},
   { path: '/details-salle/:salle_name', name:'details-salle', component:DetailsSalle},
   
-  { path: '/mine/voiture', name:'voiture_mine', component:ListVoitures},
-  { path: '/list/voiture', name:'voiture_list', component:ListVoitures},
+  { path: '/mine/voiture', name:'voiture_mine', component:Voiture},
+  { path: '/list/voiture', name:'voiture_list', component:Voiture},
   { path: '/reservations/voiture', name:'voiture_reservations', component:ReservationsVoiture},
   { path: '/voiture/:prix/:localite', name:'search_voiture', component:ListVoitures},
   { path: '/details-voiture/:voiture_name', name:'details-voiture', component:DetailsVoiture},

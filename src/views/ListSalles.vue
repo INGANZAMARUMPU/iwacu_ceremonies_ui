@@ -22,17 +22,30 @@ export default {
   watch: {
     "$store.state.salles.results"(new_val){
       this.salles = new_val
+    },
+    "$route.path"(new_val){
+      this.display(new_val)
     }
   },
   methods: {
-    fetchData() {
+    display(url){
+      if(url == "/mine"){
+        this.salles = this.$store.state.salles?.results.filter(x => this.active_user.id == x.owner)
+        this.fetchSalles(`/api/salles/?owner=${this.active_user.id}`, result => this.salles = result)
+      } else {
+        this.salles = this.$store.state.salles?.results
+      }
     },
   },
   mounted() {
 		if(this.$store.state.salles.results?.length == 0){
-			this.fetchSalles()
+      if(this.$route.path == "/mine"){
+        this.fetchSalles(`/api/salles/?owner=${this.active_user.id}`, result => this.salles = result)
+      } else {
+        this.fetchSalles("/api/salles/", result => this.salles = result)
+      }
 		} else {
-      this.salles = this.$store.state.salles?.results
+      this.display(this.$route.path)
     }
   },
 };

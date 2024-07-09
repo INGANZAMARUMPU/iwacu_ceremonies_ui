@@ -33,15 +33,16 @@ let mixins = {
         }
       })
     },
-    fetchSalles() {
-      axios
-        .get(this.url + "/salles/")
-        .then((response) => {
-          this.$store.state.salles = response.data;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    fetchSalles(url = this.url + "/salles/", callback) {
+      axios.get(url)
+      .then((response) => {
+        this.$store.state.salles = response.data;
+        if(!!callback){
+          callback(response.data.results)
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
     },
     compress(file, width, callback){
       let reader = new FileReader();
