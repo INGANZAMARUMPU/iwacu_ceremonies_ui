@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     display(url){
-      if(url == "/mine"){
+      if(url == "/mine/salle"){
         this.salles = this.$store.state.salles?.results.filter(x => this.active_user.id == x.owner)
         this.fetchSalles(`/api/salles/?owner=${this.active_user.id}`, result => this.salles = result)
       } else {
@@ -39,7 +39,7 @@ export default {
   },
   mounted() {
 		if(this.$store.state.salles.results?.length == 0){
-      if(this.$route.path == "/mine"){
+      if(this.$route.path == "/mine/salle"){
         this.fetchSalles(`/api/salles/?owner=${this.active_user.id}`, result => this.salles = result)
       } else {
         this.fetchSalles("/api/salles/", result => this.salles = result)

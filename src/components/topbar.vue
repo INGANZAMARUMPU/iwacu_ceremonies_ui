@@ -20,7 +20,7 @@
         </router-link>
         <div class="content-item">
           <div class="menu-item parent-menu">
-            <router-link to="/list"
+            <router-link to="/list/salle"
               v-slot="{ href, navigate, isActive, isExactActive }">
               <div>
                 <a :href="href" :class="{ selected: isActive }">
@@ -32,7 +32,7 @@
             <div class="submenu" v-if="!!active_user">
               <div class="content">
                 <router-link
-                  to="/list"
+                  to="/list/salle"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
@@ -41,7 +41,7 @@
                   </div>
                 </router-link>
                 <router-link
-                  to="/mine"
+                  to="/mine/salle"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
@@ -50,7 +50,7 @@
                   </div>
                 </router-link>
                 <router-link
-                  to="/reservations"
+                  to="/reservations/salle"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
@@ -64,7 +64,7 @@
         </div>
         <div class="content-item">
           <div class="menu-item parent-menu">
-            <router-link to="/list"
+            <router-link to="/list/voiture"
               v-slot="{ href, navigate, isActive, isExactActive }">
               <div>
                 <a :href="href" :class="{ selected: isActive }">
@@ -76,7 +76,7 @@
             <div class="submenu" v-if="!!active_user">
               <div class="content">
                 <router-link
-                  to="/list"
+                  to="/list/voiture"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
@@ -85,7 +85,7 @@
                   </div>
                 </router-link>
                 <router-link
-                  to="/mine"
+                  to="/mine/voiture"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">
@@ -94,7 +94,7 @@
                   </div>
                 </router-link>
                 <router-link
-                  to="/reservations"
+                  to="/reservations/voiture"
                   v-slot="{ href, navigate, isActive, isExactActive }">
                   <div class="submenu-item">
                     <a :href="href" :class="{ selected: isActive }">

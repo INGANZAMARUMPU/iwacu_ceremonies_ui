@@ -35,10 +35,10 @@ export default{
 	},
 	methods:{
 		details(slug){
-			this.$router.push(`/details/${slug}`)
+			this.$router.push(`/details-salle/${slug}`)
 		},
 		reserver(slug){
-			this.$router.push(`/details/${slug}#calendar`)
+			this.$router.push(`/details-salle/${slug}#calendar`)
 		}
 	}
 };
