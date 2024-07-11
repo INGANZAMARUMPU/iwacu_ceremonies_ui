@@ -41,7 +41,7 @@
       </section>
       <section v-show="page == 1">
         <gallery :item="current_salle" name="salle" upload_url="/gallery-salles/"/>
-        <button class="btn" @click="upload_images">SUIVANT</button>
+        <button class="btn" @click="page = 2">SUIVANT</button>
       </section>
       <section v-show="page == 2">
         <div class="field">
@@ -74,7 +74,7 @@ export default {
       current_salle: null,
       logs: "",
       img: null,
-      page: 1
+      page: 0
     };
   },
   watch:{
@@ -104,15 +104,15 @@ export default {
     upload() {
       this.logs = "";
       let data = {
-        "nom": this.nom,
-        "province": this.lieu,
-        "lieu": this.lieu,
-        "taille_parking": this.taille_parking,
-        "places": this.places,
-        "valeurs_ajoutees": this.ajouts,
-        "obligations": this.obligations,
-        "prix": this.prix,
-        "details": this.details
+        "nom": this.current_salle.nom,
+        "province": this.current_salle.lieu,
+        "lieu": this.current_salle.lieu,
+        "taille_parking": this.current_salle.taille_parking,
+        "places": this.current_salle.places,
+        "valeurs_ajoutees": this.current_salle.ajouts,
+        "obligations": this.current_salle.obligations,
+        "prix": this.current_salle.prix,
+        "details": this.current_salle.details
       }
       if(!this.$store.state.current_salle){
         axios.post(this.url + "/salle/", data, this.headers)
@@ -132,7 +132,19 @@ export default {
         axios.put(this.url + `/salles/${salle.id}/`, data, this.headers)
         .then((response) => {
           this.$store.state.current_salle = response.data;
-          this.page += 1
+          if(this.page < 2){
+            this.page += 1
+          } else {
+            let salle = this.$store.state.salles.results.find(x => x.id == this.current_salle.id)
+            if(!salle){
+              for (const key of Object.keys(salle)) {
+                salle[key] = this.current_salle[key]
+              }
+            } else {
+              this.$store.state.salles.results.unshift(this.current_salle)
+            }
+            this.$router.push("/mine/salle")
+          }
         }).catch((error) => {
           if (error.response.status == 403) {
             this.refreshToken(this.upload);
